@@ -142,7 +142,7 @@ const App = () => {
 							user={user}
 							/> 
 						} */}
-				/>
+				{/* /> */}
 
 			{/* // Developer create */}
 				{/* <Route
@@ -158,7 +158,7 @@ const App = () => {
 							user={user}
 							/> 
 						} */}
-				/>
+				{/* /> */}
 		{/* // END DEVELOPER ROUTES */}
 			</Routes>
 
