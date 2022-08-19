@@ -97,83 +97,57 @@ const App = () => {
 
 		{/* // PROJECT ROUTES */}
 
-			{/* // Project index */}
-				<Route
-					path='/projects'
-					element={ 
-						<ProjectsIndex 
-							msgAlert={msgAlert} 
-							user={user}
-						/> 
-					}
-				/>
+				{/* // Project index */}
+					<Route
+						path='/projects'
+						element={ <ProjectIndex msgAlert={msgAlert} user={user}/> }
+					/>
 
-			{/* // Project Create */}
-				<Route
-					path='/projects/create-project'
-					element={ 
-						<CreateProject 
-							msgAlert={msgAlert} 
-							user={user}
-						/> 
-					}
-				/>
+				{/* // Project Create */}
+					{/* <Route
+						path='/projects/create-project'
+						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
+					/> */}
 
-			{/* // Project show specific */}
-				<Route
-					path='/projects/:id'
-					element={ 
-						<ShowProject 
-						msgAlert={msgAlert} 
-						user={user}
-						/> 
-					}
-				/>
-		{/* // END PROJECT ROUTES */}
+				{/* // Project show specific */}
+					{/* <Route
+						path='/projects/:id'
+						element={ <ShowProject msgAlert={msgAlert} user={user}/> }
+					/> */}
+			{/* // END PROJECT ROUTES */}
 
-		{/* // DEVELOPER ROUTES	 */}
-				
-			{/* // Developer index */}
-				{/* <Route
-					path='/developers/'
-					element={ 
-						<ShowAllDevelopers 
-							msgAlert={msgAlert} 
-							user={user}
-							/> 
-						} */}
-				{/* /> */}
+			{/* // DEVELOPER ROUTES	 */}
+					
+				{/* // Developer index */}
+					{/* <Route
+						path='/developers/'
+						element={ <ShowAllDevelopers msgAlert={msgAlert} user={user}/> }
+					/> */}
 
-			{/* // Developer create */}
-				{/* <Route
-					path='/developers/create-dev'
-					element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
-				/> */}
-			{/* // Developer show specific	 */}
-				{/* <Route
-					path='/developers/:id'
-					element={ 
-						<ShowDeveloper 
-							msgAlert={msgAlert} 
-							user={user}
-							/> 
-						} */}
-				{/* /> */}
-		{/* // END DEVELOPER ROUTES */}
-			</Routes>
-
-			{msgAlerts.map((msgAlert) => (
-				<AutoDismissAlert
-					key={msgAlert.id}
-					heading={msgAlert.heading}
-					variant={msgAlert.variant}
-					message={msgAlert.message}
-					id={msgAlert.id}
-					deleteAlert={deleteAlert}
-				/>
-			))}
-		</Fragment>
-	)
+				{/* // Developer create */}
+					{/* <Route
+						path='/developers/create-dev'
+						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
+					/> */}
+				{/* // Developer show specific	 */}
+					{/* <Route
+						path='/developers/:id'
+						element={ <ShowDeveloper msgAlert={msgAlert} user={user}/> }
+					/> */}
+			{/* // END DEVELOPER ROUTES */}
+				</Routes>
+				{msgAlerts.map((msgAlert) => (
+					<AutoDismissAlert
+						key={msgAlert.id}
+						heading={msgAlert.heading}
+						variant={msgAlert.variant}
+						message={msgAlert.message}
+						id={msgAlert.id}
+						deleteAlert={deleteAlert}
+					/>
+				))}
+			</Fragment>
+		)
 }
 
 export default App
