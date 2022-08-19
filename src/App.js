@@ -12,8 +12,14 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
-import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
+//import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
+import ShowAllDevelopers from './components/developers/ShowAllDevelopers'
+import ShowDeveloper from './components/developers/ShowDeveloper'
+//import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
+//import CreateProject from './components/projects/CreateProjects'
+//import EditProjectsModal from './component/projects/EditProjectsModal'
+//import ProjectsIndex from './component/projects/ProjectsIndex'
+
 
 const App = () => {
 
@@ -95,7 +101,7 @@ const App = () => {
 		{/* // PROJECT ROUTES */}
 
 			{/* // Project index */}
-				<Route
+				{/* <Route
 					path='/projects'
 					element={ 
 						<ShowAllProjects 
@@ -103,10 +109,10 @@ const App = () => {
 							user={user}
 						/> 
 					}
-				/>
+				/> */}
 
 			{/* // Project Create */}
-				<Route
+				{/* <Route
 					path='/projects/create-project'
 					element={ 
 						<CreateProject 
@@ -114,10 +120,10 @@ const App = () => {
 							user={user}
 						/> 
 					}
-				/>
+				/> */}
 
 			{/* // Project show specific */}
-				<Route
+				{/* <Route
 					path='/projects/:id'
 					element={ 
 						<ShowProject 
@@ -125,7 +131,7 @@ const App = () => {
 						user={user}
 						/> 
 					}
-				/>
+				/> */}
 		{/* // END PROJECT ROUTES */}
 
 		{/* // DEVELOPER ROUTES	 */}

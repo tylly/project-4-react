@@ -4,7 +4,7 @@ import '../../style.css'
 
 const ProjectForm = (props) => {
   const { project, handleChange, heading, handleSubmit } = props;
-
+  const [value, setValue] = useState(null)
   const handleSelect = (e) => {
     console.log(e);
     setValue(e);
