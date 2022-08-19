@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { createProject } from '../../api/projects'
 import { useNavigate } from 'react-router-dom'
 import { createProjectSuccess, createProjectFailure } from '../shared/AutoDismissAlert/messages'
-import ProjectForm from '../shared/DestinationForm'
+import ProjectForm from '../shared/ProjectForm'
 import axios from 'axios'
 import '../../style.css'
 
@@ -27,7 +27,7 @@ const CreateProject = (props) => {
         developers: []
     })
 
-    //console.log('this is destination in createDestination', destination)
+
 
     const handleChange = (e) => {
         setProject(prevProject => {

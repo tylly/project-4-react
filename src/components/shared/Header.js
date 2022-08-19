@@ -39,7 +39,7 @@ const unauthenticatedOptions = (
 const alwaysOptions = (
 	<>
 		<Nav.Item className='m-2'>
-			<Link to='/' style={linkStyle}>
+			<Link to='/projects' style={linkStyle}>
 				Projects
 			</Link>
 		</Nav.Item>

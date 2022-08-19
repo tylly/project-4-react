@@ -12,8 +12,12 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
-import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
+import ShowAllDevelopers from './components/developers/ShowAllDevelopers'
+import ShowDeveloper from './components/developers/ShowDeveloper'
+import CreateProject from './components/projects/CreateProjects'
+import ShowProject from './components/projects/ShowAuthProject'
+import ShowAllProjects from './components/projects/ShowAllProjects'
+// import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 
 
 

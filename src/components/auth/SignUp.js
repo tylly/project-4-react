@@ -11,8 +11,6 @@ import Button from 'react-bootstrap/Button'
 const signUpStyle = {
     color: 'white',
     textAlign: 'center', 
-    width: '30%', 
-    marginLeft: '35%'
 }
 
 
