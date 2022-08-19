@@ -27,7 +27,7 @@ const CreateProjects = (props) => {
         developers: []
     })
 
-    //console.log('this is destination in createDestination', destination)
+
 
     const handleChange = (e) => {
         setProject(prevProject => {

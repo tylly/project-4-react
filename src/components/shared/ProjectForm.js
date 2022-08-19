@@ -1,15 +1,19 @@
+import { useState } from "react";
 import { Form, Button, Container, DropdownButton } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+// import axios from "axios";
 import '../../style.css'
 
 const ProjectForm = (props) => {
-  const { project, handleChange, heading, handleSubmit } = props;
-  const [value, setValue] = useState(null)
-  const handleSelect = (e) => {
-    console.log(e);
-    setValue(e);
-  };
+  const { project, heading, handleChange, handleSubmit } = props;
+
+//   const [image, setImage] = useState({ preview: "", raw: "" });
+//   const [value, setValue] = useState("React");
+
+//   const handleSelect = (e) => {
+//     console.log(e);
+//     setValue(e);
+//   };
 
 console.log(project)
 
@@ -17,14 +21,52 @@ console.log(project)
     color: 'white',
     textAlign: 'center',
     position: 'absolute',
-    zIndex: '2'
+    zIndex: '2',
+    width: '45%',
+    marginLeft: '30%'
   }
+
+// const handleChange = (e) => {
+// setProject((prevProject) => {
+//     let value = e.target.value;
+//     const name = e.target.name;
+//     console.log(value);
+//     // console.log('this is the input type', e.target.type)
+
+//     const updatedProject = {
+//     [name]: value,
+//     }
+//     return {
+//         ...prevProject,
+//         ...updatedProject,
+//     }
+// })
+// }
+
+// const handleUpload = async e => {
+//     e.preventDefault();
+//     const formData = new FormData();
+//     formData.append("image", image.raw);
+
+//     await axios.get("YOUR_URL", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "multipart/form-data"
+//       },
+//       body: formData
+//     });
+//   };
+
+
+
 
   return (
       <div className='row'id='projectForm'style={formStyle}>
           <div className='col-sm col-md col-lg col-xl mx-auto mt-5' >
             <h3 style={{color: 'white'}} id="projectFormHeading">{heading}</h3>
               <Form className="cards" onSubmit={handleSubmit}>
+                <h1 style={{color: 'black'}}> Upload project </h1>
+                <br />
                 <Form.Control
                     placeholder="Project name"
                     name="name"
@@ -35,7 +77,7 @@ console.log(project)
                     style={{textAlign: 'center'}}
                 />
                 
-                <DropdownButton onSelect={handleSelect} variant="info">
+                {/* <DropdownButton onSelect={handleSelect} variant="info">
                     <Dropdown.Item eventKey="React">
                     React
                     </Dropdown.Item>
@@ -52,7 +94,7 @@ console.log(project)
                     <Dropdown.Item eventKey="Vanilla JavaScript">
                     Vanilla JavaScript
                     </Dropdown.Item>
-                </DropdownButton>
+                </DropdownButton> */}
       
                 <Form.Control
                     placeholder="Tags"
@@ -76,7 +118,7 @@ console.log(project)
                     placeholder="Front End Repo"
                     name="front_end_repo"
                     id={project._id}
-                    value={project.frontendrepo}
+                    value={project.front_end_repo}
                     onChange={handleChange}
                     className="mt-2"
                     style={{textAlign: 'center'}}
@@ -85,7 +127,7 @@ console.log(project)
                     placeholder="Back End Repo"
                     name="back_end_repo"
                     id={project._id}
-                    value={project.backendrepo}
+                    value={project.back_end_repo}
                     onChange={handleChange}
                     className="mt-2"
                     style={{textAlign: 'center'}}
@@ -99,7 +141,7 @@ console.log(project)
                     className="mt-2"
                     style={{textAlign: 'center'}}
                 />
-                
+                {/* <Button onClick={handleUpload}>Upload</Button> */}
                 <Button type="submit" className="mt-3" size="sm">Submit</Button>
               </Form>
           </div>
