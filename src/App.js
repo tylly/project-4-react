@@ -1,5 +1,5 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -13,11 +13,12 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
+
 const App = () => {
 
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
-
+	const MyContext = React.createContext()
   console.log('user in app', user)
   console.log('message alerts', msgAlerts)
   const clearUser = () => {
@@ -74,7 +75,7 @@ const App = () => {
 
 			{/* // PROJECT ROUTES */}
 
-				{/* // Project index */}
+				// Project index
 					<Route
 						path='/projects'
 						element={ <ShowAllProjects msgAlert={msgAlert} user={user}/> }
