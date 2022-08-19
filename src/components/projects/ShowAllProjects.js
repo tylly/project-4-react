@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-// import LoadingScreen from '../shared/LoadingScreen'
+import LoadingScreen from '../shared/LoadingScreen'
 import { getAllProjects } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 
@@ -25,26 +25,30 @@ const ProjectIndex = (props) => {
 
   console.log("Props in ShowAllProjects", props);
 
-  useEffect(() => {
-    console.log(props);
-    getAllProjects()
-      .then((res) => setProjects(res.data.projects))
-      .catch((err) => {
-        msgAlert({
-          heading: "Error Getting Services",
-          message: messages.getProjectsFailure,
-          variant: "danger",
-        });
-        setError(true);
-      });
-  }, []);
+    useEffect(() => {
+        console.log('happening shai!')
+        getAllProjects()
+            .then(res => {
+                console.log(res)
+                console.log(res.data)
+                console.log(res.data.projects)
+                setProjects(res.data.projects)})
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error Getting Projects',
+                    message: messages.getProjectsFailure,
+                    variant: 'danger',
+                })
+                setError(true)
+            })
+    }, [])
 
-  // If services haven't been loaded yet, show a loading message
-  // if (!services) {
-  //     return <LoadingScreen />
-  // } else if (services.length === 0) {
-  //     return <p>No services yet. Better add some.</p>
-  // }
+    // If services haven't been loaded yet, show a loading message
+    if (!projects) {
+        return <LoadingScreen />
+    } else if (projects.length === 0) {
+        return <p>No services yet. Better add some.</p>
+    }
 
   if (error) {
     return <p>Error!</p>;
