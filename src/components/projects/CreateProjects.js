@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { createProject } from '../../api/projects'
 import { useNavigate } from 'react-router-dom'
 import { createProjectSuccess, createProjectFailure } from '../shared/AutoDismissAlert/messages'
-// import ProjectForm from '../shared/DestinationForm'
+import ProjectForm from '../shared/ProjectForm'
 import axios from 'axios'
 import '../../style.css'
 
@@ -10,7 +10,7 @@ import '../../style.css'
 const formStyle = {
     zIndex: "2"
 }
-const CreateProject = (props) => {
+const CreateProjects = (props) => {
     //console.log('these are the props in createProject\n', props)
     const { user, msgAlert } = props
 
@@ -85,4 +85,4 @@ const CreateProject = (props) => {
     )
 }
 
-export default CreateProject
+export default CreateProjects
