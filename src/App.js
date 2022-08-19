@@ -18,7 +18,7 @@ const App = () => {
 
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
-	const MyContext = React.createContext()
+	const MyContext = React.createContext
   console.log('user in app', user)
   console.log('message alerts', msgAlerts)
   const clearUser = () => {
