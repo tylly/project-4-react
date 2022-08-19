@@ -9,7 +9,6 @@ const linkStyle = {
 
 const navStyle ={
 	display: 'inline',
-	
 }
 const authenticatedOptions = (
 	<>
@@ -39,11 +38,11 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
+		<Nav.Item className='m-2'>
 			<Link to='/' style={linkStyle}>
-				Home
+				Projects
 			</Link>
-		</Nav.Link>
+		</Nav.Item>
 	</>
 )
 
@@ -55,7 +54,7 @@ const Header = ({ user }) => (
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
-		<Navbar.Collapse id='basic-navbar-nav'>
+		<Navbar.Collapse className='justify-content-end'id='basic-navbar-nav'>
 			<Nav className='ml-auto ms-2'>
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.email}</span>

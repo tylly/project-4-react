@@ -8,6 +8,14 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+const signUpStyle = {
+    color: 'white',
+    textAlign: 'center', 
+    width: '30%', 
+    marginLeft: '35%'
+}
+
+
 const SignUp = (props) => {
 	// constructor(props) {
 	// 	super(props)
@@ -56,12 +64,12 @@ const SignUp = (props) => {
 
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign Up</h3>
-                <Form onSubmit={onSignUp}>
+        <>
+        <div className='row' id='sign-up'>
+            <div className='col-sm col-md col-lg col-xl mx-auto mt-5'>
+                <h3 style={signUpStyle}>Sign Up</h3>
+                <Form onSubmit={onSignUp} style={signUpStyle}>
                     <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
                         <Form.Control
                             required
                             type='email'
@@ -69,10 +77,11 @@ const SignUp = (props) => {
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
+                            style={{textAlign: 'center'}}
+                            className="mt-3"
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
                         <Form.Control
                             required
                             name='password'
@@ -80,10 +89,11 @@ const SignUp = (props) => {
                             type='password'
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
+                            style={{textAlign: 'center'}}
+                            className="mt-3"
                         />
                     </Form.Group>
                     <Form.Group controlId='passwordConfirmation'>
-                        <Form.Label>Password Confirmation</Form.Label>
                         <Form.Control
                             required
                             name='passwordConfirmation'
@@ -91,14 +101,17 @@ const SignUp = (props) => {
                             type='password'
                             placeholder='Confirm Password'
                             onChange={e => setPasswordConfirmation(e.target.value)}
+                            style={{textAlign: 'center'}}
+                            className="mt-3"
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant="info" type='submit'className="mt-3" size="sm">
                         Submit
                     </Button>
                 </Form>
             </div>
         </div>
+        </>
     )
 
 }

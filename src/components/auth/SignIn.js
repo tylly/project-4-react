@@ -7,6 +7,14 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+const signInStyle = {
+    color: "white",
+    width: '30%',
+    justifyContentCenter: 'center',
+    textAlign: 'center',
+    marginLeft: '35%'
+}
+
 const SignIn = (props) => {
 	// constructor(props) {
 	// 	super(props)
@@ -55,12 +63,12 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign In</h3>
-                <Form onSubmit={onSignIn}>
+        <>
+        <div className='row'id='sign-in'>
+            <div className='col-sm col-md col-lg col-xl mx-auto mt-5' >
+                <h3 style={signInStyle}>Sign In</h3>
+                <Form onSubmit={onSignIn} style={signInStyle}>
                     <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
                         <Form.Control
                             required
                             type='email'
@@ -68,10 +76,11 @@ const SignIn = (props) => {
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
+                            className="mt-3"
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
                         <Form.Control
                             required
                             name='password'
@@ -79,14 +88,17 @@ const SignIn = (props) => {
                             type='password'
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
+                            className="mt-3"
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant="info" type='submit'className="mt-3" size="sm">
                         Submit
                     </Button>
                 </Form>
             </div>
         </div>
+        </>
     )
 }
 
