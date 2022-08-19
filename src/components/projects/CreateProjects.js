@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { createProject } from '../../api/projects'
 import { useNavigate } from 'react-router-dom'
 import { createProjectSuccess, createProjectFailure } from '../shared/AutoDismissAlert/messages'
-import ProjectForm from '../shared/DestinationForm'
+// import ProjectForm from '../shared/DestinationForm'
 import axios from 'axios'
 import '../../style.css'
 
@@ -75,12 +75,12 @@ const CreateProject = (props) => {
 
     return (
       <>
-      <ProjectForm 
+      {/* <ProjectForm 
       project={ project } 
       handleChange={ handleChange }
       handleSubmit={ handleSubmit }
       heading="Where to?"
-      />
+      /> */}
       </>
     )
 }

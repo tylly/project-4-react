@@ -12,9 +12,11 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
-import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
-
+//import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
+//import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
+import CreateProject from './components/projects/CreateProjects'
+ import ProjectsIndex from './components/projects/EditProjectsModal'
+ import ShowProject from './components/projects/ShowProject'
 
 const App = () => {
 
@@ -99,7 +101,7 @@ const App = () => {
 				<Route
 					path='/projects'
 					element={ 
-						<ShowAllProjects 
+						<ProjectsIndex 
 							msgAlert={msgAlert} 
 							user={user}
 						/> 
@@ -132,14 +134,14 @@ const App = () => {
 		{/* // DEVELOPER ROUTES	 */}
 				
 			{/* // Developer index */}
-				<Route
+				{/* <Route
 					path='/developers/'
 					element={ 
 						<ShowAllDevelopers 
 							msgAlert={msgAlert} 
 							user={user}
 							/> 
-						}
+						} */}
 				/>
 
 			{/* // Developer create */}
@@ -148,14 +150,14 @@ const App = () => {
 					element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
 				/> */}
 			{/* // Developer show specific	 */}
-				<Route
+				{/* <Route
 					path='/developers/:id'
 					element={ 
 						<ShowDeveloper 
 							msgAlert={msgAlert} 
 							user={user}
 							/> 
-						}
+						} */}
 				/>
 		{/* // END DEVELOPER ROUTES */}
 			</Routes>
