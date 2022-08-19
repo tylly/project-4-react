@@ -109,10 +109,15 @@ const App = () => {
         {/* // DEVELOPER ROUTES	 */}
 
         {/* // Developer index */}
-        {/* <Route
-						path='/developers/'
-						element={ <ShowAllDevelopers msgAlert={msgAlert} user={user}/> }
-					/> */}
+        <Route
+			path='/developers/'
+			element={ 
+				<ShowAllDevelopers 
+					msgAlert={msgAlert} 
+					user={user}
+				/> 
+			}
+		/>
 
         {/* // Developer create */}
         {/* <Route

@@ -5,15 +5,15 @@ import messages from "../shared/AutoDismissAlert/messages"
 
 const ShowAllDevelopers = ({user, msgAlert}) => {
 
-    const [devs, setDevs] = useState(null)
+    const [developers, setDevelopers] = useState(null)
     const [updated, setUpdated] = useState(false)
     
     useEffect(() => {
         getAllDevelopers()
             
             .then(res => {
-                console.log('resdata========>>\n', res.data)
-                setDevs(res.data)
+                console.log('resdata========>>\n', res.data.developers)
+                setDevelopers(res.data.developers)
             })
             .catch(err => {
                 msgAlert({
@@ -22,19 +22,20 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
                     variant: 'error'
                 })
             })
+            
     }, [updated])
 
-    if (!devs) {
+    if (!developers) {
         return (
             <h1>Loading space holder for animation</h1>
         )
-    } else if (devs.length === 0) {
+    } else if (developers.length === 0) {
         return (
-            'No devs'
+            'No developers'
         )
     }
-
-    const myDevs = devs.map((dev, i) => {
+    console.log('THIS IS DEVS======>>\n', developers)
+    const myDevs = developers.map((dev, i) => {
         return <Dev
             dev={dev}
             key={i}
@@ -47,7 +48,9 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
 
     return (
         <>
-            {myDevs.reverse()}
+            <div style={{marginTop: 100}}>
+                {myDevs}
+            </div>
         </>
     )
 
