@@ -12,7 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import ShowAllProjects from './components/projects/ShowAllProjects'
+import ProjectIndex from './components/projects/ShowAllProjects'
 // import CreateProject from './components/projects/CreateProjects'
 // import ShowProject from './components/projects/ShowProject'
 // import ShowAllDevelopers from './components/developers/ShowAllDevelopers'
@@ -81,7 +81,7 @@ const App = () => {
 				{/* // Project index */}
 					<Route
 						path='/projects'
-						element={ <ShowAllProjects msgAlert={msgAlert} user={user}/> }
+						element={ <ProjectIndex msgAlert={msgAlert} user={user}/> }
 					/>
 
 				{/* // Project Create */}
@@ -111,10 +111,10 @@ const App = () => {
 						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
 					/> */}
 				{/* // Developer show specific	 */}
-					<Route
+					{/* <Route
 						path='/developers/:id'
 						element={ <ShowDeveloper msgAlert={msgAlert} user={user}/> }
-					/>
+					/> */}
 			{/* // END DEVELOPER ROUTES */}
 				</Routes>
 				{msgAlerts.map((msgAlert) => (

@@ -52,7 +52,7 @@ const ProjectIndex = (props) => {
     if (error) {
         return <p>Error!</p>
     }
-    // console.log('here are our services!', services)
+    console.log('here are our projects!', projects)
 
     const projectCards = projects.map(project => (
         <Card style={{ width: '30%', margin: 5}} key={ project._id }>
@@ -60,10 +60,11 @@ const ProjectIndex = (props) => {
             <Card.Body>
                 <Card.Text>
                     <small><em> { project.description }</em></small><br />
-                    <small>{ service.description }</small><br />
-                    <small>Location: { service.location }</small><br />
-                    <small>${ service.rate }</small><br />
-                    <Link to={`/services/${service._id}`}>View { service.name }</Link>
+                    <small>{ project.deployment }</small><br />
+                    <small>Location: { project.front_end_repo }</small><br />
+                    <small>${ project.back_end_repo }</small><br />
+
+                    <Link to={`/projects/${project._id}`}>View { project.name }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>
@@ -71,7 +72,7 @@ const ProjectIndex = (props) => {
 
     return (
         <div style={ cardContainerStyle }>
-            { serviceCards }
+            { projectCards }
         </div>
     )
 }
