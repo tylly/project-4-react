@@ -75,12 +75,12 @@ const CreateProjects = (props) => {
 
     return (
       <>
-      {/* <ProjectForm 
+      <ProjectForm 
       project={ project } 
       handleChange={ handleChange }
       handleSubmit={ handleSubmit }
       heading="Where to?"
-      /> */}
+      />
       </>
     )
 }

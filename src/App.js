@@ -14,12 +14,12 @@ import SignOut from "./components/auth/SignOut";
 import ChangePassword from "./components/auth/ChangePassword";
 //import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
-import CreateProject from "./components/projects/CreateProjects";
 //  import ProjectsIndex from './components/projects/EditProjectsModal'
 import ProjectIndex from "./components/projects/ShowAllProjects";
 import ShowProject from "./components/projects/ShowProject";
 import ShowAllDevelopers from "./components/developers/ShowAllDevelopers";
 import ShowDeveloper from "./components/developers/ShowDeveloper";
+import CreateProjects from "./components/projects/CreateProjects";
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 //import CreateProject from './components/projects/CreateProjects'
 //import EditProjectsModal from './component/projects/EditProjectsModal'
@@ -91,10 +91,13 @@ const App = () => {
         />
 
         {/* // Project Create */}
-        {/* <Route
-						path='/projects/create-project'
-						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
-					/> */}
+		<Route
+							path="/projects/create-project"
+							element={
+								<RequireAuth user={ user }>
+									<CreateProjects msgAlert={msgAlert} user={user}/>
+								</RequireAuth>}
+					/>
 
         {/* // Project show specific */}
         <Route
