@@ -12,6 +12,8 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
+import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 
 
 const App = () => {
@@ -41,91 +43,135 @@ const App = () => {
 		})
 	}
 
-		return (
-			<Fragment>
-				<Header user={user} />
-				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+	return (
+		<Fragment>
+			<Header user={user} />
+			<Routes>
+				<Route 
+					path='/' 
+					element={
+						<Home 
+							msgAlert={msgAlert} 
+							user={user} 
+						/>
+					} 
+				/>
 
-				{/* // USER ROUTES */}
+			{/* // USER ROUTES */}
 
-					<Route
-						path='/sign-up'
-						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
-					/>
-					<Route
-						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
-					/>
-          			<Route
-            			path='/sign-out'
-            			element={
-              			<RequireAuth user={user}>
-                			<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              			</RequireAuth>
-            			}
-          			/>
-          			<Route
-            			path='/change-password'
-            			element={
-              			<RequireAuth user={user}>
-                			<ChangePassword msgAlert={msgAlert} user={user} />
-              			</RequireAuth>}
-          			/>
+				<Route
+					path='/sign-up'
+					element={
+						<SignUp 
+							msgAlert={msgAlert} 
+							setUser={setUser} 
+						/>
+					}
+				/>
+				<Route
+					path='/sign-in'
+					element={
+						<SignIn 
+							msgAlert={msgAlert} 
+							setUser={setUser} 
+						/>
+					}
+				/>
+				<Route
+					path='/sign-out'
+					element={
+					<RequireAuth user={user}>
+						<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+					</RequireAuth>
+					}
+				/>
+				<Route
+					path='/change-password'
+					element={
+					<RequireAuth user={user}>
+						<ChangePassword msgAlert={msgAlert} user={user} />
+					</RequireAuth>}
+				/>
 
-			{/* // PROJECT ROUTES */}
+		{/* // PROJECT ROUTES */}
 
-				// Project index
-					<Route
-						path='/projects'
-						element={ <ShowAllProjects msgAlert={msgAlert} user={user}/> }
-					/>
+			{/* // Project index */}
+				<Route
+					path='/projects'
+					element={ 
+						<ShowAllProjects 
+							msgAlert={msgAlert} 
+							user={user}
+						/> 
+					}
+				/>
 
-				{/* // Project Create */}
-					<Route
-						path='/projects/create-project'
-						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
-					/>
+			{/* // Project Create */}
+				<Route
+					path='/projects/create-project'
+					element={ 
+						<CreateProject 
+							msgAlert={msgAlert} 
+							user={user}
+						/> 
+					}
+				/>
 
-				{/* // Project show specific */}
-					<Route
-						path='/projects/:id'
-						element={ <ShowProject msgAlert={msgAlert} user={user}/> }
-					/>
-			{/* // END PROJECT ROUTES */}
+			{/* // Project show specific */}
+				<Route
+					path='/projects/:id'
+					element={ 
+						<ShowProject 
+						msgAlert={msgAlert} 
+						user={user}
+						/> 
+					}
+				/>
+		{/* // END PROJECT ROUTES */}
 
-			{/* // DEVELOPER ROUTES	 */}
-					
-				{/* // Developer index */}
-					<Route
-						path='/developers/'
-						element={ <ShowAllDevelopers msgAlert={msgAlert} user={user}/> }
-					/>
+		{/* // DEVELOPER ROUTES	 */}
+				
+			{/* // Developer index */}
+				<Route
+					path='/developers/'
+					element={ 
+						<ShowAllDevelopers 
+							msgAlert={msgAlert} 
+							user={user}
+							/> 
+						}
+				/>
 
-				{/* // Developer create */}
-					<Route
-						path='/developers/create-dev'
-						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
-					/>
-				{/* // Developer show specific	 */}
-					<Route
-						path='/developers/:id'
-						element={ <ShowDeveloper msgAlert={msgAlert} user={user}/> }
-					/>
-			{/* // END DEVELOPER ROUTES */}
-				</Routes>
-				{msgAlerts.map((msgAlert) => (
-					<AutoDismissAlert
-						key={msgAlert.id}
-						heading={msgAlert.heading}
-						variant={msgAlert.variant}
-						message={msgAlert.message}
-						id={msgAlert.id}
-						deleteAlert={deleteAlert}
-					/>
-				))}
-			</Fragment>
-		)
+			{/* // Developer create */}
+				{/* <Route
+					path='/developers/create-dev'
+					element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
+				/> */}
+			{/* // Developer show specific	 */}
+				<Route
+					path='/developers/:id'
+					element={ 
+						<ShowDeveloper 
+							msgAlert={msgAlert} 
+							user={user}
+							/> 
+						}
+				/>
+		{/* // END DEVELOPER ROUTES */}
+			</Routes>
+
+			{msgAlerts.map((msgAlert) => (
+				<AutoDismissAlert
+					key={msgAlert.id}
+					heading={msgAlert.heading}
+					variant={msgAlert.variant}
+					message={msgAlert.message}
+					id={msgAlert.id}
+					deleteAlert={deleteAlert}
+				/>
+			))}
+		</Fragment>
+	)
 }
 
 export default App
