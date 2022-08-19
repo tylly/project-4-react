@@ -9,6 +9,8 @@ const messages = {
 	removeProjectSuccess: 'You added a project!',
 	removeProjectFailure: 'Project creation failed!',
 	errorShowingDevs: 'Error showing developers',
+	createProjectSuccess: 'Successfully uploaded your project!',
+	createProjectFailure: 'Failed to upload your project'
 }
 
 module.exports = messages

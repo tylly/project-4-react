@@ -91,10 +91,10 @@ const App = () => {
         />
 
         {/* // Project Create */}
-        {/* <Route
+        <Route
 						path='/projects/create-project'
 						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
-					/> */}
+					/>
 
         {/* // Project show specific */}
         <Route
