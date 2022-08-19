@@ -6,6 +6,10 @@ const linkStyle = {
     color: 'white',
     textDecoration: 'none'
 }
+
+const navStyle ={
+	display: 'inline',
+}
 const authenticatedOptions = (
 	<>
 		<Nav.Item>
@@ -23,10 +27,10 @@ const authenticatedOptions = (
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item>
+        <Nav.Item className='m-2 mt-2'style={navStyle}>
 		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
         </Nav.Item>
-        <Nav.Item>
+        <Nav.Item className='m-2 mt-2'style={navStyle}>
 		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
         </Nav.Item>
 	</>
@@ -34,24 +38,24 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
+		<Nav.Item className='m-2'>
 			<Link to='/' style={linkStyle}>
-				Home
+				Projects
 			</Link>
-		</Nav.Link>
+		</Nav.Item>
 	</>
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
-		<Navbar.Brand>
+	<Navbar className='fixed-top' bg='black' variant='dark' expand='md' id='navbar'>
+		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
-                react-auth-template
+                ProjectX
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
-		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
+		<Navbar.Collapse className='justify-content-end'id='basic-navbar-nav'>
+			<Nav className='ml-auto ms-2'>
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
 				)}

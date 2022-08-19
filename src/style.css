@@ -1,0 +1,9 @@
+
+
+#sign-in, #sign-up, #destinationForm, #change-password{
+    position: absolute;
+    z-index: 1;
+    display:flex;
+    top: 30%;
+    left: 43%
+}
