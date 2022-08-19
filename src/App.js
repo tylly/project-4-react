@@ -83,7 +83,10 @@ const App = () => {
 				{/* // Project Create */}
 					<Route
 						path='/projects/create-project'
-						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
+						element={ 
+							<RequireAuth user={user}>
+								<CreateProject msgAlert={msgAlert} user={user}/>
+							</RequireAuth> }
 					/>
 
 				{/* // Project show specific */}
@@ -104,7 +107,10 @@ const App = () => {
 				{/* // Developer create */}
 					<Route
 						path='/developers/create-dev'
-						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
+						element={ 
+							<RequireAuth user={user}>
+								<CreateDeveloper msgAlert={msgAlert} user={user}/>
+							</RequireAuth> }
 					/>
 				{/* // Developer show specific	 */}
 					<Route
