@@ -14,6 +14,7 @@ import {
   removeProject,
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
+import EditProjectsModal from "./EditProjectsModal";
 // import EditDestinationModal from "./EditDestinationModal";
 // import NewActivityModal from "../activities/NewActivityModal";
 // import SearchActivityModal from "../activities/SearchActivityModal";
@@ -33,7 +34,7 @@ const cardContainerLayout = {
 const ShowProject = (props) => {
   const [project, setProject] = useState(null);
   //   const [activityModalShow, setActivityModalShow] = useState(false);
-  //   const [editModalShow, setEditModalShow] = useState(false);
+     const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
   //   const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
   console.log(props);
@@ -97,15 +98,35 @@ const ShowProject = (props) => {
               <h1 style={cardContainerLayout}>{project.name}</h1>
               
             </Card.Text>
+            {user && project.owner === user._id ? (
+              <>
+                <Button
+                  onClick={() => setEditModalShow(true)}
+                  className="m-2"
+                  variant="outline-primary"
+                  size="sm"
 
+                >
+                  Edit Destination
+                </Button>
+                <Button
+                  onClick={() => removeTheProject()}
+                  className="m-2"
+                  variant="outline-danger"
+                  size="sm"
+                >
+                  Delete
+                </Button>
+              </>
+            ) : null}
           </Card.Body>
         </Card>
        
       </Container>
 
-      {/* <EditDestinationModal
+      {/* <EditProjectsModal
         user={user}
-        destination={destination}
+        project={project}
         show={editModalShow}
         updateDestination={updateDestination}
         msgAlert={msgAlert}

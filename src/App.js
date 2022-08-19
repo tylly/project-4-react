@@ -91,13 +91,14 @@ const App = () => {
         />
 
         {/* // Project Create */}
-		<Route
-							path="/projects/create-project"
-							element={
-								<RequireAuth user={ user }>
-									<CreateProjects msgAlert={msgAlert} user={user}/>
-								</RequireAuth>}
-					/>
+        <Route
+          path="/projects/create-project"
+          element={
+            <RequireAuth user={user}>
+              <CreateProjects msgAlert={msgAlert} user={user} />
+            </RequireAuth>
+          }
+        />
 
         {/* // Project show specific */}
         <Route
@@ -110,14 +111,9 @@ const App = () => {
 
         {/* // Developer index */}
         <Route
-			path='/developers/'
-			element={ 
-				<ShowAllDevelopers 
-					msgAlert={msgAlert} 
-					user={user}
-				/> 
-			}
-		/>
+          path="/developers/"
+          element={<ShowAllDevelopers msgAlert={msgAlert} user={user} />}
+        />
 
         {/* // Developer create */}
         {/* <Route
