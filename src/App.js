@@ -12,6 +12,10 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import ShowAllProjects from './components/projects/ShowAllProjects'
+// import CreateProject from './components/projects/CreateProjects'
+// import ShowProject from './components/projects/ShowProject'
+// import ShowAllDevelopers from './components/developers/ShowAllDevelopers'
 
 const App = () => {
 
@@ -81,31 +85,31 @@ const App = () => {
 					/>
 
 				{/* // Project Create */}
-					<Route
+					{/* <Route
 						path='/projects/create-project'
 						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
-					/>
+					/> */}
 
 				{/* // Project show specific */}
-					<Route
+					{/* <Route
 						path='/projects/:id'
 						element={ <ShowProject msgAlert={msgAlert} user={user}/> }
-					/>
+					/> */}
 			{/* // END PROJECT ROUTES */}
 
 			{/* // DEVELOPER ROUTES	 */}
 					
 				{/* // Developer index */}
-					<Route
+					{/* <Route
 						path='/developers/'
 						element={ <ShowAllDevelopers msgAlert={msgAlert} user={user}/> }
-					/>
+					/> */}
 
 				{/* // Developer create */}
-					<Route
+					{/* <Route
 						path='/developers/create-dev'
 						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
-					/>
+					/> */}
 				{/* // Developer show specific	 */}
 					<Route
 						path='/developers/:id'

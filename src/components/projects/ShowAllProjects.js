@@ -59,7 +59,7 @@ const ProjectIndex = (props) => {
             <Card.Header>{ project.name}</Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <small><em>Type: { service.type }</em></small><br />
+                    <small><em> { project.description }</em></small><br />
                     <small>{ service.description }</small><br />
                     <small>Location: { service.location }</small><br />
                     <small>${ service.rate }</small><br />
