@@ -1,4 +1,5 @@
-This is the client app, designed to work with the server app.
+# SEIR Project  `Project name` - clientThis is the client app, designed to work with the
+ server app.
 Repo to the server app is here:
 https://github.com/tylly/project-4-mongoose-express
  
@@ -75,5 +76,5 @@ TBD
 ###### Mongoose JS - https://mongoosejs.com/
 ###### MongoDB - https://www.mongodb.com/
 ###### NPM JS - https://www.npmjs.com/
-# SEIR Project  `Project name` - client
+
  
