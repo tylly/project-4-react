@@ -125,10 +125,15 @@ const App = () => {
 						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
 					/> */}
         {/* // Developer show specific	 */}
-        {/* <Route
-						path='/developers/:id'
-						element={ <ShowDeveloper msgAlert={msgAlert} user={user}/> }
-					/> */}
+        <Route
+			path='/developers/:id'
+			element={ 
+				<ShowDeveloper 
+					msgAlert={msgAlert} 
+					user={user}
+				/> 
+			}
+		/>
         {/* // END DEVELOPER ROUTES */}
       </Routes>
       {msgAlerts.map((msgAlert) => (

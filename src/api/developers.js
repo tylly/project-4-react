@@ -8,7 +8,7 @@ export const getAllDevelopers = () => {
 }
 
 // READ => SHOW
-export const getOneProject = (id) => {
+export const getOneDeveloper = (id) => {
     return axios(`${apiUrl}/developers/${id}`)
 }
 
