@@ -48,6 +48,12 @@ const alwaysOptions = (
 				Projects
 			</Link>
 		</Nav.Item>
+
+		<Nav.Item className='m-2'>
+			<Link to='/developers' style={linkStyle}>
+				Developers
+			</Link>
+		</Nav.Item>
 	</>
 )
 
