@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import {getAllDevelopers} from '../../api/developers'
 import Dev from '../developers/Dev'
 import messages from "../shared/AutoDismissAlert/messages"
+import LoadingChakra from '../shared/LoadingChakra'
 
 const ShowAllDevelopers = ({user, msgAlert}) => {
 
@@ -19,7 +20,7 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
                 msgAlert({
                     heading: 'Error',
                     message: messages.errorShowingDevs,
-                    variant: 'error'
+                    variant: 'danger'
                 })
             })
             
@@ -27,7 +28,17 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
 
     if (!developers) {
         return (
-            <h1>Loading space holder for animation</h1>
+            <div style={{marginTop: 100}}>
+                <LoadingChakra
+                    style={{
+                        marginTop: 100,
+                        paddingTop: 100
+                    }}
+                    align='center'
+                    justify='center'
+                />
+            </div>
+           
         )
     } else if (developers.length === 0) {
         return (

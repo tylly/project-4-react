@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import messages from "../shared/AutoDismissAlert/messages"
+import LoadingChakra from "../shared/LoadingChakra"
 
 const ShowDevelopers = ({msgAlert, user}) => {
 
@@ -24,7 +25,7 @@ const ShowDevelopers = ({msgAlert, user}) => {
                 msgAlert({
                     heading: 'Error',
                     message: messages.errorShowingDevs,
-                    variant: 'error'
+                    variant: 'danger'
                 })
             })
             
@@ -32,7 +33,11 @@ const ShowDevelopers = ({msgAlert, user}) => {
 
     if (!developer) {
         return (
-            <h1>Loading space holder for animation</h1>
+            <LoadingChakra
+                marginTop='100'
+                align='center'
+                justify='center'
+            />
         )
     } 
 
