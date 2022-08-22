@@ -6,7 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import '../../style.css'
 import { createUrl } from "../../api/aws";
 import { createProject } from '../../api/projects'
-import { getOneDevByName } from "../../api/developers";
+import { getOneDevByName, updateDeveloper, getOneDeveloper, updateDeveloperWithProject } from "../../api/developers";
 import { createProjectSuccess, createProjectFailure, errorUploadingImage, errorFindingDev } from '../shared/AutoDismissAlert/messages'
 
 
@@ -92,7 +92,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         return {
             ...prevProject,
             ...updatedProject,
-            developers: dev
+            //developers: dev
         }
     })
   }
@@ -117,11 +117,15 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         }
 
         console.log('ARE WE THERE YET', newProject)
-        
+        let newDev = {
+          projects: dev
+        }
         createProject(user, newProject)
           .then(res => {
             console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\N", res)
-            
+            updateDeveloperWithProject(user, res.data.project._id, dev)
+              .then(res => console.log(res))
+              
             navigate(`/projects/${res.data.project._id}`)})
           .then(() =>
             msgAlert({
