@@ -6,7 +6,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 import '../../style.css'
 import { createUrl } from "../../api/aws";
 import { createProject } from '../../api/projects'
-import { createProjectSuccess, createProjectFailure, errorUploadingImage } from '../shared/AutoDismissAlert/messages'
+import { getOneDevByName } from "../../api/developers";
+import { createProjectSuccess, createProjectFailure, errorUploadingImage, errorFindingDev } from '../shared/AutoDismissAlert/messages'
+
 
 
 const ProjectForm = ({heading, user, msgAlert}) => {
@@ -53,12 +55,35 @@ const ProjectForm = ({heading, user, msgAlert}) => {
   }
 
   function handleChange(e) {
+    let dev = null
     setProject(prevProject => {
+        //let updatedValue = null
         let updatedValue = e.target.value
         updatedValue = updatedValue.charAt(0).toUpperCase()+updatedValue.slice(1)
         const updatedName = e.target.name
 
         //console.log('this is the input type', e.target.type)
+        if (updatedName === 'developers') {
+          
+          getOneDevByName(updatedValue)
+            .then(res => {
+              console.log('RES.DATA from getOneDevByName', res.data.developer)
+              updatedValue = res.data.developer._id
+              console.log('THIS IS updatedValue IN GETONEDEV======>>>\n', updatedValue)
+            })
+            .catch(err => {
+              console.log(err)
+              msgAlert({
+                heading: 'Error',
+                message: errorFindingDev,
+                variant: 'danger'
+              })
+            })
+          
+        }// else {
+        //   updatedValue = e.target.value
+        //   updatedValue = updatedValue.charAt(0).toUpperCase()+updatedValue.slice(1)
+        // }
 
         const updatedProject = {
             [updatedName]: updatedValue
