@@ -124,15 +124,16 @@ const ShowProject = (props) => {
        
       </Container>
 
-      {/* <EditProjectsModal
+     <EditProjectsModal
         user={user}
         project={project}
         show={editModalShow}
-        updateDestination={updateDestination}
+        updateProject={updateProject}
         msgAlert={msgAlert}
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setEditModalShow(false)}
       />
+       {/* 
       <NewActivityModal
         user={user}
         destination={destination}

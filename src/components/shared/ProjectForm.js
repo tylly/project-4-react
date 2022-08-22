@@ -120,13 +120,13 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         })
       })
   }
+  console.log(project)
 
   return (
       <div className='row'id='projectForm'style={formStyle}>
           <div className='col-sm col-md col-lg col-xl mx-auto mt-5' >
             <h3 style={{color: 'white'}} id="projectFormHeading">{heading}</h3>
               <Form className="cards" onSubmit={handleSubmit}>
-                <h1 style={{color: 'black'}}> Upload project </h1>
                 <br />
                 <Form.Control
                     placeholder="Project name"
