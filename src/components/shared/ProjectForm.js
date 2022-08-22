@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Form, Button, Container, DropdownButton, FormLabel, Input } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom'
 import Dropdown from "react-bootstrap/Dropdown";
 // import axios from "axios";
 import '../../style.css'
 import { createUrl } from "../../api/aws";
+import { createProject } from '../../api/projects'
+import { createProjectSuccess, createProjectFailure, errorUploadingImage } from '../shared/AutoDismissAlert/messages'
 
 
-const ProjectForm = ({ project, heading, handleChange, handleSubmit, handleChangeFile }) => {
-  // const { project, heading, handleChange, handleSubmit, handleChangeFile } = props;
-
+const ProjectForm = ({heading, user, msgAlert}) => {
+  
 //   const [image, setImage] = useState({ preview: "", raw: "" });
 //   const [value, setValue] = useState("React");
 
@@ -16,8 +18,6 @@ const ProjectForm = ({ project, heading, handleChange, handleSubmit, handleChang
 //     console.log(e);
 //     setValue(e);
 //   };
-
-console.log(project)
 
   const formStyle ={
     color: 'white',
@@ -28,39 +28,98 @@ console.log(project)
     marginLeft: '30%'
   }
 
-// const handleChange = (e) => {
-// setProject((prevProject) => {
-//     let value = e.target.value;
-//     const name = e.target.name;
-//     console.log(value);
-//     // console.log('this is the input type', e.target.type)
+  const [file, setFile] = useState()
+  const [ loading, setLoading ] = useState(null)
+  const navigate = useNavigate()
 
-//     const updatedProject = {
-//     [name]: value,
-//     }
-//     return {
-//         ...prevProject,
-//         ...updatedProject,
-//     }
-// })
-// }
+  const myUrl = useRef("")
+  const [project, setProject] = useState({
+      name: '',
+      description: '',
+      tags: [],
+      deployment: '',
+      img: '',
+      front_end_repo: '',
+      back_end_repo: '',
+      developers: []
+  })
 
-// const handleUpload = async e => {
-//     e.preventDefault();
-//     const formData = new FormData();
-//     formData.append("image", image.raw);
+  console.log('WHAT AM I EVEN DOING HERE?!',project)
 
-//     await axios.get("YOUR_URL", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "multipart/form-data"
-//       },
-//       body: formData
-//     });
-//   };
+  function handleChangeFile(event) {
+    console.log('IM AM IN THE FILE UPLOAD FUNCTION')
+    setFile(event.target.files[0])
 
+  }
 
+  function handleChange(e) {
+    setProject(prevProject => {
+        let updatedValue = e.target.value
+        updatedValue = updatedValue.charAt(0).toUpperCase()+updatedValue.slice(1)
+        const updatedName = e.target.name
 
+        //console.log('this is the input type', e.target.type)
+
+        const updatedProject = {
+            [updatedName]: updatedValue
+        }
+        return {
+            ...prevProject,
+            ...updatedProject
+        }
+    })
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // If this is acting out comment out from here====>>>>
+    console.log('IN THE HANDLE SUBMIT BEFORE FORMDATA')
+    const data = new FormData()
+    data.append('upload', file)
+    setLoading(true)
+    createUrl(data)
+      .then(res => {
+        console.log('FIRST THEN IN CREATE URL=====================', project)
+        myUrl.current = res.data.upload.url
+        const image = myUrl.current
+        console.log('THIS IS IMAGE===========>>>\n', image)
+        
+        const newProject = {
+          ...project,
+          img: image
+        }
+
+        console.log('ARE WE THERE YET', newProject)
+        
+        createProject(user, newProject)
+          .then(res => {
+            console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\N", res)
+            navigate(`/projects/${res.data.project._id}`)})
+          .then(() =>
+            msgAlert({
+              heading: "oh yea!",
+              message: createProjectSuccess,
+              variant: "success",
+            })
+          )
+          .catch(() =>
+            msgAlert({
+              heading: "oh no!",
+              message: createProjectFailure,
+              variant: "danger",
+            })
+          );
+      })
+      .then(() => setLoading(true))
+      .catch(err => {
+        console.log(err)
+        msgAlert({
+          heading: "Error",
+          message: errorUploadingImage,
+          variant: "danger",
+        })
+      })
+  }
 
   return (
       <div className='row'id='projectForm'style={formStyle}>
@@ -164,58 +223,4 @@ console.log(project)
   );
 };
 
-export default ProjectForm;
-
-
-// import { Form, Button, Spinner } from 'react-bootstrap'
-
-
-// const Home = ({ msgAlert }) => {
-// 	const [ selected, setSelected ] = useState(null)
-// 	const [ upload, setUpload ] = useState({})
-// 	const [ loading, setLoading ] = useState(null)
-
-// 	const handleChange = (e) => {
-// 		e.preventDefault()
-// 		setSelected(e.target.files[0])
-// 	}
-
-// 	const handleSubmit =(e) => {
-// 		e.preventDefault()
-// 		setLoading(true)
-// 		const data = new FormData()
-// 		data.append('upload', selected)
-// 		axios({
-// 			url: `${apiUrl}/uploads`,
-// 			method: 'POST',
-// 			//short for data: data
-// 			data
-// 		})
-// 			.then(res => {
-// 				setUpload(res.data.upload)
-// 				msgAlert('Image upload success', 'success')
-// 			})
-// 			.then(() => setLoading(false))
-// 			.catch(err => {
-// 				msgAlert('Error uploading image', 'error')
-// 			})
-// 	}
-// 	return (
-// 		<>
-			
-// 			<h2>Home Page</h2>
-// 			{upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
-// 			{loading ? (<Spinner animation="border" />) : ''}
-// 			{/* form for file input */}
-// 			<Form onSubmit={handleSubmit}>
-// 			<Form.Group className="mb-3">
-// 				<Form.Label>Default file input example</Form.Label>
-// 				<Form.Control type="file" onChange={handleChangeFile} />
-// 			</Form.Group>
-// 			<Button type="submit" variant="outline-secondary">Secondary</Button>
-// 			</Form>
-// 		</>
-// 	)
-// }
-
-// export default Home
+export default ProjectForm
