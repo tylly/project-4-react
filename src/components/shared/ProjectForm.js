@@ -20,7 +20,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
 //     console.log(e);
 //     setValue(e);
 //   };
-let dev
+  //let dev = null // add to state?
   const formStyle ={
     color: 'white',
     textAlign: 'center',
@@ -32,6 +32,7 @@ let dev
 
   const [file, setFile] = useState()
   const [ loading, setLoading ] = useState(null)
+  const [ dev, setDev ] = useState(null)
   const navigate = useNavigate()
 
   const myUrl = useRef("")
@@ -54,7 +55,7 @@ let dev
 
   }
 
-  function handleChange(e) {
+  function handleChange(e) { // CS data structure - tree - for the autocomplete 
     
     setProject(prevProject => {
         //let updatedValue = null
@@ -68,7 +69,7 @@ let dev
           getOneDevByName(updatedValue)
             .then(res => {
               console.log('RES.DATA from getOneDevByName', res.data.developer)
-              dev = res.data.developer._id
+              setDev(res.data.developer._id)
               console.log('THIS IS updatedValue IN GETONEDEV======>>>\n', dev)
             })
             .catch(err => {
@@ -111,8 +112,8 @@ let dev
         
         const newProject = {
           ...project,
-          developers: ["6303c2ce0abd9266e5a2bc64"],
-          img: image
+          img: image,
+          developers: dev // dev is undefined
         }
 
         console.log('ARE WE THERE YET', newProject)
@@ -120,6 +121,7 @@ let dev
         createProject(user, newProject)
           .then(res => {
             console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\N", res)
+            
             navigate(`/projects/${res.data.project._id}`)})
           .then(() =>
             msgAlert({
