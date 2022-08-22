@@ -98,6 +98,30 @@ const ShowProject = (props) => {
   // }
   console.log('this is the front end repo', project.front_end_repo)
 
+  const developerSideBar = project.developers.map((developer)=>(
+    <Box p='8' borderWidth='1px' pb='150%' marginTop='55px' >
+          <h1 style={{textAlign: 'center', paddingBottom: '10px'}}><strong>Developers:</strong></h1>
+          <UnorderedList listStyleType='none'>
+            <ListItem>
+              <Grid ml='-3'>
+                <GridItem colStart={2} mr='-2'>
+                  {/* Map through links */}
+                  <Link href={developer.linkedin}><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img></Link>
+                </GridItem>
+                <GridItem >
+                  <Link href={developer.github}d-inline><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img>
+                  </Link>
+                </GridItem>
+                <GridItem colEnd={6} ml='-4'>
+                  {/* {developer.name} map through */}
+                  {developer.name}
+                </GridItem>
+              </Grid>
+            </ListItem>
+          </UnorderedList> 
+        </Box>
+  ))
+
   return (
     <Flex>
     <Box maxW='sm' maxH='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='10%'  marginLeft='25%' width='50%'>
@@ -147,33 +171,12 @@ const ShowProject = (props) => {
             {/* Will map through each tag*/}
             <Badge mr='5'>
             React
-            {project.tag}
+            {project.tags}
             </Badge>
             </ListItem>
           </UnorderedList>
-          
         </Box>
-        <Box p='8' borderWidth='1px' pb='150%' marginTop='55px' >
-          <h1 style={{textAlign: 'center', paddingBottom: '10px'}}><strong>Developers:</strong></h1>
-          <UnorderedList listStyleType='none'>
-            <ListItem>
-              <Grid ml='-3'>
-                <GridItem colStart={2} mr='-2'>
-                  {/* Map through links */}
-                  <Link href='https://www.linkedin.com/in/amanda-corral-01a90a168/'><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img></Link>
-                </GridItem>
-                <GridItem >
-                  <Link href='https://github.com/Amandacorral07' d-inline><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img>
-                  </Link>
-                </GridItem>
-                <GridItem colEnd={6} ml='-4'>
-                  {/* {developer.name} map through */}
-                  Mands
-                </GridItem>
-              </Grid>
-            </ListItem>
-          </UnorderedList> 
-        </Box>
+        {developerSideBar}
     </VStack>
     
    
