@@ -10,28 +10,15 @@ const CreateProjects = ({ user, msgAlert }) => {
 
     return (
       <>
-<<<<<<< HEAD
       <ProjectForm 
-      project={ project } 
-      handleChange={ handleChange }
-      handleSubmit={ handleSubmit }
-      handleChangeFile={ handleChangeFile }
-      heading="Where to?"
+      msgAlert={msgAlert} 
+      user={user}
+      heading={"where to?"} 
       />
 
       </>
     )
 }
 
-=======
-        <ProjectForm
-          user={user}
-          msgAlert={msgAlert}
-          heading="Where to?"
-        />
-      </>
-    )
-}
->>>>>>> 96a42d7bba6930f5899fc354ed9121aeb5b48d89
 
 export default CreateProjects;

@@ -35,7 +35,7 @@ const EditProjectsModal = (props) => {
             <ProjectForm 
             project={project}
             handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            // handleSubmit={handleSubmit}
             heading="Update Destination"
             />
         {/* </Modal.Body> */}

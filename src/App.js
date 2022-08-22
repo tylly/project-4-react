@@ -93,11 +93,6 @@ const App = () => {
 
         {/* // Project Create */}
         <Route
-<<<<<<< HEAD
-						path='/projects/create-project'
-						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
-					/>
-=======
           path="/projects/create-project"
           element={
             <RequireAuth user={user}>
@@ -108,7 +103,6 @@ const App = () => {
             </RequireAuth>
           }
         />
->>>>>>> 3dab3b350f1003bbec7c837b83d91970ee290b24
 
         {/* // Project show specific */}
         <Route
