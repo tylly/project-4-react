@@ -53,6 +53,14 @@ const EditProjectsModal = (props) => {
       >
         {/* <Modal.Header closeButton />
         <Modal.Body> */}
+
+            {/* <ProjectForm 
+            project={project}
+            handleChange={handleChange}
+            // handleSubmit={handleSubmit}
+            heading="Update Destination"
+            /> */}
+
         <EditProjectForm
         show={show} onHide={handleClose}
           project={project}
@@ -60,6 +68,7 @@ const EditProjectsModal = (props) => {
           handleSubmit={handleSubmit}
           heading="Update Project"
         />
+
         {/* </Modal.Body> */}
       </Modal>
     </>

@@ -12,7 +12,7 @@ const navStyle ={
 }
 const authenticatedOptions = (
 	<>
-			<Nav.Item className='m-2'>
+		<Nav.Item className='m-2'>
 			<Link to="/projects/create-project" style={linkStyle}>
 			Add Project
 			</Link>

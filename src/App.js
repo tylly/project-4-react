@@ -51,8 +51,9 @@ const App = () => {
   };
 
   return (
+    <>
     <Fragment>
-      <Header user={user} />
+      <Header user={user} style={{position: 'fixed'}}/>
       <Routes>
         <Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
 
@@ -147,7 +148,8 @@ const App = () => {
         />
       ))}
     </Fragment>
-  );
-};
+  </>
+  )
+}
 
 export default App;
