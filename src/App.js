@@ -20,6 +20,7 @@ import ShowProject from "./components/projects/ShowProject";
 import ShowAllDevelopers from "./components/developers/ShowAllDevelopers";
 import ShowDeveloper from "./components/developers/ShowDeveloper";
 import CreateProjects from "./components/projects/CreateProjects";
+import ProjectForm from "./components/shared/ProjectForm";
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 //import CreateProject from './components/projects/CreateProjects'
 //import EditProjectsModal from './component/projects/EditProjectsModal'
@@ -95,7 +96,10 @@ const App = () => {
           path="/projects/create-project"
           element={
             <RequireAuth user={user}>
-              <CreateProjects msgAlert={msgAlert} user={user} />
+              <ProjectForm 
+              msgAlert={msgAlert} 
+              user={user}
+              heading={"where to?"} />
             </RequireAuth>
           }
         />
