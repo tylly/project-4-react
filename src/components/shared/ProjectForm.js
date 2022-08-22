@@ -20,7 +20,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
 //     console.log(e);
 //     setValue(e);
 //   };
-
+let dev
   const formStyle ={
     color: 'white',
     textAlign: 'center',
@@ -55,7 +55,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
   }
 
   function handleChange(e) {
-    let dev = null
+    
     setProject(prevProject => {
         //let updatedValue = null
         let updatedValue = e.target.value
@@ -68,8 +68,8 @@ const ProjectForm = ({heading, user, msgAlert}) => {
           getOneDevByName(updatedValue)
             .then(res => {
               console.log('RES.DATA from getOneDevByName', res.data.developer)
-              updatedValue = res.data.developer._id
-              console.log('THIS IS updatedValue IN GETONEDEV======>>>\n', updatedValue)
+              dev = res.data.developer._id
+              console.log('THIS IS updatedValue IN GETONEDEV======>>>\n', dev)
             })
             .catch(err => {
               console.log(err)
@@ -84,17 +84,17 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         //   updatedValue = e.target.value
         //   updatedValue = updatedValue.charAt(0).toUpperCase()+updatedValue.slice(1)
         // }
-
+        
         const updatedProject = {
             [updatedName]: updatedValue
         }
         return {
             ...prevProject,
-            ...updatedProject
+            ...updatedProject,
+            developers: dev
         }
     })
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     // If this is acting out comment out from here====>>>>
@@ -107,10 +107,11 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         console.log('FIRST THEN IN CREATE URL=====================', project)
         myUrl.current = res.data.upload.url
         const image = myUrl.current
-        console.log('THIS IS IMAGE===========>>>\n', image)
+        console.log('THIS IS DEV===========>>>\n', image)
         
         const newProject = {
           ...project,
+          developers: ["6303c2ce0abd9266e5a2bc64"],
           img: image
         }
 
