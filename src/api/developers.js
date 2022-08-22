@@ -37,11 +37,6 @@ export const updateDeveloperWithProject = (user, projectId, devId) => {
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
-		},
-		data: {
-			developer: {
-				_id: devId
-			}
 		}
 	})
 }
