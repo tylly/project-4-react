@@ -20,7 +20,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
 //     console.log(e);
 //     setValue(e);
 //   };
-
+  //let dev = null // add to state?
   const formStyle ={
     color: 'white',
     textAlign: 'center',
@@ -32,6 +32,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
 
   const [file, setFile] = useState()
   const [ loading, setLoading ] = useState(null)
+  const [ dev, setDev ] = useState(null)
   const navigate = useNavigate()
 
   const myUrl = useRef("")
@@ -54,8 +55,8 @@ const ProjectForm = ({heading, user, msgAlert}) => {
 
   }
 
-  function handleChange(e) {
-    let dev = null
+  function handleChange(e) { // CS data structure - tree - for the autocomplete 
+    
     setProject(prevProject => {
         //let updatedValue = null
         let updatedValue = e.target.value
@@ -68,8 +69,8 @@ const ProjectForm = ({heading, user, msgAlert}) => {
           getOneDevByName(updatedValue)
             .then(res => {
               console.log('RES.DATA from getOneDevByName', res.data.developer)
-              updatedValue = res.data.developer._id
-              console.log('THIS IS updatedValue IN GETONEDEV======>>>\n', updatedValue)
+              setDev(res.data.developer._id)
+              console.log('THIS IS updatedValue IN GETONEDEV======>>>\n', dev)
             })
             .catch(err => {
               console.log(err)
@@ -111,7 +112,8 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         
         const newProject = {
           ...project,
-          img: image
+          img: image,
+          developers: dev // dev is undefined
         }
 
         console.log('ARE WE THERE YET', newProject)
@@ -119,6 +121,7 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         createProject(user, newProject)
           .then(res => {
             console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\N", res)
+            
             navigate(`/projects/${res.data.project._id}`)})
           .then(() =>
             msgAlert({
