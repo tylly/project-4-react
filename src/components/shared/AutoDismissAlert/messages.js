@@ -9,6 +9,7 @@ const messages = {
 	removeProjectSuccess: 'You added a project!',
 	removeProjectFailure: 'Project creation failed!',
 	errorShowingDevs: 'Error showing developers',
+	errorFindingDev: 'Error finding the developer',
 	errorUploadingImage: 'Error uploading image',
 }
 

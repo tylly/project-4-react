@@ -12,6 +12,11 @@ export const getOneDeveloper = (id) => {
     return axios(`${apiUrl}/developers/${id}`)
 }
 
+// READ => get Dev to add to project
+export const getOneDevByName = (name) => {
+    return axios(`${apiUrl}/developers/name/${name}`)
+}
+
 // CREATE
 export const createDeveloper = (user, newDeveloper) => {
     console.log('hit')
