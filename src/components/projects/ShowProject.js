@@ -96,6 +96,7 @@ const ShowProject = (props) => {
           <Card.Body>
             <Card.Text>
               <h1 style={cardContainerLayout}>{project.name}</h1>
+              <img src={project.img}></img>
               
             </Card.Text>
             {user && project.owner === user._id ? (
@@ -133,23 +134,6 @@ const ShowProject = (props) => {
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setEditModalShow(false)}
       />
-       {/* 
-      <NewActivityModal
-        user={user}
-        destination={destination}
-        show={activityModalShow}
-        msgAlert={msgAlert}
-        triggerRefresh={() => setUpdated((prev) => !prev)}
-        handleClose={() => setActivityModalShow(false)}
-      />
-      <SearchActivityModal
-        user={user}
-        destination={destination}
-        show={searchActivityModalShow}
-        msgAlert={msgAlert}
-        triggerRefresh={() => setUpdated((prev) => !prev)}
-        handleClose={() => setSearchActivityModalShow(false)}
-      /> */}
     </>
   );
 };
