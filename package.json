@@ -11,11 +11,8 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
-<<<<<<< HEAD
-=======
     "formik": "^2.2.9",
     "framer-motion": "^6.3.3",
->>>>>>> bd2eda51f06e41b0fbbba0acdf1f76bf871536a1
     "bootstrap": "^5.2.0",
     "dotenv": "^8.2.0",
     "emotion-theming": "^10.3.0",
@@ -31,7 +28,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
