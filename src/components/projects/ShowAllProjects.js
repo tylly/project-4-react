@@ -101,11 +101,12 @@ const ProjectIndex = (props) => {
         fontWeight='semibold'
         as='h4'
         lineHeight='tight'
+        marginBottom='10px'
       >
         {project.name}
       </Box>
 
-        <Box>
+        <Box  marginTop='10px'>
         <Accordion allowMultiple>
   
         <AccordionItem>
