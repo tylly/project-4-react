@@ -133,14 +133,10 @@ const CreateProjects = (props) => {
       handleChangeFile={ handleChangeFile }
       heading="Where to?"
       />
-<<<<<<< HEAD
+
       </>
     )
 }
-=======
-    </>
-  );
-};
->>>>>>> 3dab3b350f1003bbec7c837b83d91970ee290b24
+
 
 export default CreateProjects;
