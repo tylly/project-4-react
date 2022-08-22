@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../style.css";
 
 import { Container, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import LoadingScreen from "../shared/LoadingScreen";
 import {
   getOneProject,
@@ -15,14 +15,15 @@ import {
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditProjectsModal from "./EditProjectsModal";
-import { Box, Image, Badge} from '@chakra-ui/react'
-import {  ExternalLinkIcon } from '@chakra-ui/icons'
+import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 // import EditDestinationModal from "./EditDestinationModal";
 // import NewActivityModal from "../activities/NewActivityModal";
 // import SearchActivityModal from "../activities/SearchActivityModal";
 // import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
+import ShowDevelopers from "../developers/ShowDeveloper";
 
 // We need to get the destination's id from the parameters
 // Then we need to make a request to the api
@@ -95,12 +96,13 @@ const ShowProject = (props) => {
   //   reviewCount: 34,
   //   rating: 4,
   // }
+  console.log('this is the front end repo', project.front_end_repo)
 
   return (
-    <>
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='10%' marginLeft='25%' width='50%'>
+    <Flex>
+    <Box maxW='sm' maxH='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='10%'  marginLeft='25%' width='50%'>
       <Image src={project.img} />
-      <Box p='6'>
+      <Box p='3'>
         <Box display='flex' alignItems='baseline'>
           <Box
           mt='1'
@@ -116,21 +118,66 @@ const ShowProject = (props) => {
           mt='1'
           as='h1'
           lineHeight='tight'
-          noOfLines={1}
           >
-          {project.description}
+            Description: {project.description}
           </Box>
-          <Box
-          mt='1'
-          as='h1'
-          lineHeight='tight'
-          noOfLines={1}
-          >
-          {/* <Link href='https://chakra-ui.com'>{project.front_end_repo}
-          </Link> */}
+          <Box>
+          <Link href={project.deployment} isExternal  paddingRight='10px'>
+            Deployment URL<ExternalLinkIcon mx='2px' />
+          </Link>
+          </Box>
+          <Box>
+          <Link href={project.front_end_repo} isExternal  paddingRight='10px'>
+            Front-End Repo<ExternalLinkIcon mx='2px' />
+          </Link>
+          </Box>
+          <Box>
+          <Link href={project.back_end_repo} isExternal>
+            Back-End Repo<ExternalLinkIcon mx='2px' />
+          </Link>
           </Box>
       </Box>
     </Box>
+    <Spacer />
+    <VStack spacing={-.85} align='stretch' w='250px'>
+        <Box p='8' borderWidth='1px' pb='100%' marginTop='55px' textAlign='center'>
+          <h1><strong style={{ paddingBottom: '10px'}}>Tags:</strong> </h1>
+          <UnorderedList listStyleType='none'textAlign='center'>
+            <ListItem>
+            {/* Will map through each tag*/}
+            <Badge mr='5'>
+            React
+            {project.tag}
+            </Badge>
+            </ListItem>
+          </UnorderedList>
+          
+        </Box>
+        <Box p='8' borderWidth='1px' pb='150%' marginTop='55px' >
+          <h1 style={{textAlign: 'center', paddingBottom: '10px'}}><strong>Developers:</strong></h1>
+          <UnorderedList listStyleType='none'>
+            <ListItem>
+              <Grid ml='-3'>
+                <GridItem colStart={2} mr='-2'>
+                  {/* Map through links */}
+                  <Link href='https://www.linkedin.com/in/amanda-corral-01a90a168/'><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img></Link>
+                </GridItem>
+                <GridItem >
+                  <Link href='https://github.com/Amandacorral07' d-inline><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img>
+                  </Link>
+                </GridItem>
+                <GridItem colEnd={6} ml='-4'>
+                  {/* {developer.name} map through */}
+                  Mands
+                </GridItem>
+              </Grid>
+            </ListItem>
+          </UnorderedList> 
+        </Box>
+    </VStack>
+    
+   
+    
 
       {/* <Box p='6'>
         <Box display='flex' alignItems='baseline'>
@@ -243,7 +290,7 @@ const ShowProject = (props) => {
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setEditModalShow(false)}
       />
-    </>
+     </Flex>
   );
 };
 
