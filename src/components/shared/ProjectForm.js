@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Form, Button, Container, DropdownButton } from "react-bootstrap";
+import { Form, Button, Container, DropdownButton, FormLabel, Input } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 // import axios from "axios";
 import '../../style.css'
+import { createUrl } from "../../api/aws";
 
-const ProjectForm = (props) => {
-  const { project, heading, handleChange, handleSubmit } = props;
+
+const ProjectForm = ({ project, heading, handleChange, handleSubmit, handleChangeFile }) => {
+  // const { project, heading, handleChange, handleSubmit, handleChangeFile } = props;
 
 //   const [image, setImage] = useState({ preview: "", raw: "" });
 //   const [value, setValue] = useState("React");
@@ -141,6 +143,19 @@ console.log(project)
                     className="mt-2"
                     style={{textAlign: 'center'}}
                 />
+                
+                <Form.Group 
+                  controlId="formFileLg" 
+                  className="mt-2">
+                  <Form.Label>Image</Form.Label>
+                  <Form.Control 
+                    type="file" 
+                    size="lg" 
+                    style={{textAlign: 'center'}}
+                    onChange={handleChangeFile}
+                  />
+                </Form.Group>
+                
                 {/* <Button onClick={handleUpload}>Upload</Button> */}
                 <Button type="submit" className="mt-3" size="sm">Submit</Button>
               </Form>
@@ -150,3 +165,57 @@ console.log(project)
 };
 
 export default ProjectForm;
+
+
+// import { Form, Button, Spinner } from 'react-bootstrap'
+
+
+// const Home = ({ msgAlert }) => {
+// 	const [ selected, setSelected ] = useState(null)
+// 	const [ upload, setUpload ] = useState({})
+// 	const [ loading, setLoading ] = useState(null)
+
+// 	const handleChange = (e) => {
+// 		e.preventDefault()
+// 		setSelected(e.target.files[0])
+// 	}
+
+// 	const handleSubmit =(e) => {
+// 		e.preventDefault()
+// 		setLoading(true)
+// 		const data = new FormData()
+// 		data.append('upload', selected)
+// 		axios({
+// 			url: `${apiUrl}/uploads`,
+// 			method: 'POST',
+// 			//short for data: data
+// 			data
+// 		})
+// 			.then(res => {
+// 				setUpload(res.data.upload)
+// 				msgAlert('Image upload success', 'success')
+// 			})
+// 			.then(() => setLoading(false))
+// 			.catch(err => {
+// 				msgAlert('Error uploading image', 'error')
+// 			})
+// 	}
+// 	return (
+// 		<>
+			
+// 			<h2>Home Page</h2>
+// 			{upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
+// 			{loading ? (<Spinner animation="border" />) : ''}
+// 			{/* form for file input */}
+// 			<Form onSubmit={handleSubmit}>
+// 			<Form.Group className="mb-3">
+// 				<Form.Label>Default file input example</Form.Label>
+// 				<Form.Control type="file" onChange={handleChangeFile} />
+// 			</Form.Group>
+// 			<Button type="submit" variant="outline-secondary">Secondary</Button>
+// 			</Form>
+// 		</>
+// 	)
+// }
+
+// export default Home

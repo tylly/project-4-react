@@ -1,21 +1,25 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { createProject } from '../../api/projects'
 import { useNavigate } from 'react-router-dom'
 import { createProjectSuccess, createProjectFailure } from '../shared/AutoDismissAlert/messages'
 import ProjectForm from '../shared/ProjectForm'
 import axios from 'axios'
 import '../../style.css'
+import { createUrl } from '../../api/aws'
 
 
 const formStyle = {
-    zIndex: "2"
-}
+  zIndex: "2",
+};
 const CreateProjects = (props) => {
-    //console.log('these are the props in createProject\n', props)
-    const { user, msgAlert } = props
+  //console.log('these are the props in createProject\n', props)
+  const { user, msgAlert } = props;
+
+    const [file, setFile] = useState()
+    const [ loading, setLoading ] = useState(null)
 
     const navigate = useNavigate()
-
+    const myUrl = useRef("")
     const [project, setProject] = useState({
         name: '',
         description: '',
@@ -27,7 +31,10 @@ const CreateProjects = (props) => {
         developers: []
     })
 
-
+    function handleChangeFile(event) {
+      console.log('IM AM IN THE FILE UPLOAD FUNCTION')
+      setFile(event.target.files[0])
+    }
 
     const handleChange = (e) => {
         setProject(prevProject => {
@@ -53,25 +60,69 @@ const CreateProjects = (props) => {
         e.preventDefault();
 
         //AWS API call here?
-        
-        createProject(user, project)
-        .then(res => {
-            navigate(`/projects/${res.data.project._id}`)})
-          .then(() =>
-            msgAlert({
-              heading: "oh yea!",
-              message: createProjectSuccess,
-              variant: "success",
+        // If this is acting out comment out from here====>>>>
+        console.log('IN THE HANDLE SUBMIT BEFORE FORMDATA')
+        const data = new FormData()
+        data.append('upload', file)
+        setLoading(true)
+        createUrl(data)
+          .then(res => {
+            myUrl.current = res.data.upload.url
+            const image = myUrl.current
+            setProject(prev => { 
+              return {
+                ...prev,
+                img: image
+              } 
             })
-          )
-          .catch(() =>
+            console.log('AFTER SET PROJECT, THIS IS PROJECT\n', project)
+            createProject(user, project)
+              .then(res => {
+                navigate(`/projects/${res.data.project._id}`)})
+              .then(() =>
+                msgAlert({
+                  heading: "oh yea!",
+                  message: createProjectSuccess,
+                  variant: "success",
+                })
+              )
+              .catch(() =>
+                msgAlert({
+                  heading: "oh no!",
+                  message: createProjectFailure,
+                  variant: "danger",
+                })
+              );
+          })
+          .then(() => setLoading(true))
+          .catch(err => {
+            console.log(err)
             msgAlert({
-              heading: "oh no!",
-              message: createProjectFailure,
+              heading: "Error",
+              message: createProjectSuccess,
               variant: "danger",
             })
-          );
-      };
+          })
+
+          // To here ============>>>>>>>>> and uncomment the buttom part
+      //   createProject(user, project)
+      //   .then(res => {
+      //       navigate(`/projects/${res.data.project._id}`)})
+      //     .then(() =>
+      //       msgAlert({
+      //         heading: "oh yea!",
+      //         message: createProjectSuccess,
+      //         variant: "success",
+      //       })
+      //     )
+      //     .catch(() =>
+      //       msgAlert({
+      //         heading: "oh no!",
+      //         message: createProjectFailure,
+      //         variant: "danger",
+      //       })
+      //     );
+    };
 
     return (
       <>
@@ -79,10 +130,17 @@ const CreateProjects = (props) => {
       project={ project } 
       handleChange={ handleChange }
       handleSubmit={ handleSubmit }
+      handleChangeFile={ handleChangeFile }
       heading="Where to?"
       />
+<<<<<<< HEAD
       </>
     )
 }
+=======
+    </>
+  );
+};
+>>>>>>> 3dab3b350f1003bbec7c837b83d91970ee290b24
 
-export default CreateProjects
+export default CreateProjects;

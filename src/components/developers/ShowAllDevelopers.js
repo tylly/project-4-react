@@ -2,39 +2,51 @@ import {useState, useEffect} from 'react'
 import {getAllDevelopers} from '../../api/developers'
 import Dev from '../developers/Dev'
 import messages from "../shared/AutoDismissAlert/messages"
+import LoadingChakra from '../shared/LoadingChakra'
 
 const ShowAllDevelopers = ({user, msgAlert}) => {
 
-    const [devs, setDevs] = useState(null)
+    const [developers, setDevelopers] = useState(null)
     const [updated, setUpdated] = useState(false)
     
     useEffect(() => {
         getAllDevelopers()
             
             .then(res => {
-                console.log('resdata========>>\n', res.data)
-                setDevs(res.data)
+                console.log('resdata========>>\n', res.data.developers)
+                setDevelopers(res.data.developers)
             })
             .catch(err => {
                 msgAlert({
                     heading: 'Error',
                     message: messages.errorShowingDevs,
-                    variant: 'error'
+                    variant: 'danger'
                 })
             })
+            
     }, [updated])
 
-    if (!devs) {
+    if (!developers) {
         return (
-            <h1>Loading space holder for animation</h1>
+            <div style={{marginTop: 100}}>
+                <LoadingChakra
+                    style={{
+                        marginTop: 100,
+                        paddingTop: 100
+                    }}
+                    align='center'
+                    justify='center'
+                />
+            </div>
+           
         )
-    } else if (devs.length === 0) {
+    } else if (developers.length === 0) {
         return (
-            'No devs'
+            'No developers'
         )
     }
-
-    const myDevs = devs.map((dev, i) => {
+    console.log('THIS IS DEVS======>>\n', developers)
+    const myDevs = developers.map((dev, i) => {
         return <Dev
             dev={dev}
             key={i}
@@ -47,7 +59,9 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
 
     return (
         <>
-            {myDevs.reverse()}
+            <div style={{marginTop: 100}}>
+                {myDevs}
+            </div>
         </>
     )
 

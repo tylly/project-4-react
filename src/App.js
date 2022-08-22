@@ -14,12 +14,12 @@ import SignOut from "./components/auth/SignOut";
 import ChangePassword from "./components/auth/ChangePassword";
 //import { ShowAllDevelopers, ShowDeveloper} from './components/developers'
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
-import CreateProject from "./components/projects/CreateProjects";
 //  import ProjectsIndex from './components/projects/EditProjectsModal'
 import ProjectIndex from "./components/projects/ShowAllProjects";
 import ShowProject from "./components/projects/ShowProject";
 import ShowAllDevelopers from "./components/developers/ShowAllDevelopers";
 import ShowDeveloper from "./components/developers/ShowDeveloper";
+import CreateProjects from "./components/projects/CreateProjects";
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 //import CreateProject from './components/projects/CreateProjects'
 //import EditProjectsModal from './component/projects/EditProjectsModal'
@@ -92,9 +92,19 @@ const App = () => {
 
         {/* // Project Create */}
         <Route
+<<<<<<< HEAD
 						path='/projects/create-project'
 						element={ <CreateProject msgAlert={msgAlert} user={user}/> }
 					/>
+=======
+          path="/projects/create-project"
+          element={
+            <RequireAuth user={user}>
+              <CreateProjects msgAlert={msgAlert} user={user} />
+            </RequireAuth>
+          }
+        />
+>>>>>>> 3dab3b350f1003bbec7c837b83d91970ee290b24
 
         {/* // Project show specific */}
         <Route
@@ -106,10 +116,10 @@ const App = () => {
         {/* // DEVELOPER ROUTES	 */}
 
         {/* // Developer index */}
-        {/* <Route
-						path='/developers/'
-						element={ <ShowAllDevelopers msgAlert={msgAlert} user={user}/> }
-					/> */}
+        <Route
+          path="/developers/"
+          element={<ShowAllDevelopers msgAlert={msgAlert} user={user} />}
+        />
 
         {/* // Developer create */}
         {/* <Route
@@ -117,10 +127,15 @@ const App = () => {
 						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
 					/> */}
         {/* // Developer show specific	 */}
-        {/* <Route
-						path='/developers/:id'
-						element={ <ShowDeveloper msgAlert={msgAlert} user={user}/> }
-					/> */}
+        <Route
+			path='/developers/:id'
+			element={ 
+				<ShowDeveloper 
+					msgAlert={msgAlert} 
+					user={user}
+				/> 
+			}
+		/>
         {/* // END DEVELOPER ROUTES */}
       </Routes>
       {msgAlerts.map((msgAlert) => (

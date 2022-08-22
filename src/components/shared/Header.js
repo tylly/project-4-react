@@ -12,9 +12,15 @@ const navStyle ={
 }
 const authenticatedOptions = (
 	<>
+<<<<<<< HEAD
 		<Nav.Item className='m-2'>
 			<Link to='projects/create-project' style={linkStyle}>
 				Upload Project
+=======
+			<Nav.Item className='m-2'>
+			<Link to="/projects/create-project" style={linkStyle}>
+			Add Project
+>>>>>>> 3dab3b350f1003bbec7c837b83d91970ee290b24
 			</Link>
 		</Nav.Item>
 		<Nav.Item className='m-2'>
@@ -46,6 +52,12 @@ const alwaysOptions = (
 		<Nav.Item className='m-2'>
 			<Link to='/projects' style={linkStyle}>
 				Projects
+			</Link>
+		</Nav.Item>
+
+		<Nav.Item className='m-2'>
+			<Link to='/developers' style={linkStyle}>
+				Developers
 			</Link>
 		</Nav.Item>
 	</>
