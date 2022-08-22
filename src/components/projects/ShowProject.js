@@ -15,6 +15,9 @@ import {
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditProjectsModal from "./EditProjectsModal";
+import { Box, Image, Badge} from '@chakra-ui/react'
+import {  ExternalLinkIcon } from '@chakra-ui/icons'
+
 // import EditDestinationModal from "./EditDestinationModal";
 // import NewActivityModal from "../activities/NewActivityModal";
 // import SearchActivityModal from "../activities/SearchActivityModal";
@@ -82,57 +85,153 @@ const ShowProject = (props) => {
     return <LoadingScreen />;
   }
 
-
-
+  // const property = {
+  //   imageUrl: 'https://bit.ly/2Z4KKcF',
+  //   imageAlt: 'Rear view of modern home with pool',
+  //   beds: 3,
+  //   baths: 2,
+  //   title: 'Modern home in city center in the heart of historic Los Angeles',
+  //   formattedPrice: '$1,900.00',
+  //   reviewCount: 34,
+  //   rating: 4,
+  // }
 
   return (
-    <>
-      <Container className="fluid" style={{ marginTop: "10%" }}>
-        <Card
-          //style={{ width: "30rem", zIndex: "2" }}
-          className="mx-auto mt-4"
-          id="card"
+    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='10%' marginLeft='25%' width='50%'>
+      <Image src={project.img} />
+      <Box p='6'>
+        <Box display='flex' alignItems='baseline'>
+          <Box
+          mt='1'
+          fontWeight='semibold'
+          as='h1'
+          lineHeight='tight'
+          noOfLines={1}
+          >
+          {project.name}
+          </Box>
+        </Box>
+          <Box
+          mt='1'
+          as='h1'
+          lineHeight='tight'
+          noOfLines={1}
+          >
+          {project.description}
+          </Box>
+          <Box
+          mt='1'
+          as='h1'
+          lineHeight='tight'
+          noOfLines={1}
+          >
+          {/* <Link href='https://chakra-ui.com'>{project.front_end_repo}
+          </Link> */}
+          </Box>
+      </Box>
+    </Box>
+)
+      {/* <Box p='6'>
+        <Box display='flex' alignItems='baseline'>
+          <Badge borderRadius='full' px='2' colorScheme='teal'>
+            New
+          </Badge>
+          <Box
+            color='gray.500'
+            fontWeight='semibold'
+            letterSpacing='wide'
+            fontSize='xs'
+            textTransform='uppercase'
+            ml='2'
+          >
+            {property.beds} beds &bull; {property.baths} baths
+          </Box>
+        </Box>
+
+        <Box
+          mt='1'
+          fontWeight='semibold'
+          as='h4'
+          lineHeight='tight'
+          noOfLines={1}
         >
-          <Card.Body>
-            <Card.Text>
-              <h1 style={cardContainerLayout}>{project.name}</h1>
-              
-            </Card.Text>
-            {user && project.owner === user._id ? (
-              <>
-                <Button
-                  onClick={() => setEditModalShow(true)}
-                  className="m-2"
-                  variant="outline-primary"
-                  size="sm"
+          {property.title}
+        </Box>
 
-                >
-                  Edit Destination
-                </Button>
-                <Button
-                  onClick={() => removeTheProject()}
-                  className="m-2"
-                  variant="outline-danger"
-                  size="sm"
-                >
-                  Delete
-                </Button>
-              </>
-            ) : null}
-          </Card.Body>
-        </Card>
+        <Box>
+          {property.formattedPrice}
+          <Box as='span' color='gray.600' fontSize='sm'>
+            / wk
+          </Box>
+        </Box>
+
+        <Box display='flex' mt='2' alignItems='center'>
+          {Array(5)
+            .fill('')
+            .map((_, i) => (
+              <StarIcon
+                key={i}
+                color={i < property.rating ? 'teal.500' : 'gray.300'}
+              />
+            ))}
+          <Box as='span' ml='2' color='gray.600' fontSize='sm'>
+            {property.reviewCount} reviews
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  ) */}
+
+
+  // return (
+  //   <>
+  //     <Container className="fluid" style={{ marginTop: "10%" }}>
+  //       <Card
+  //         //style={{ width: "30rem", zIndex: "2" }}
+  //         className="mx-auto mt-4"
+  //         id="card"
+  //       >
+  //         <Card.Body>
+  //           <Card.Text>
+  //             <h1 style={cardContainerLayout}>{project.name}</h1>
+  //             <img src={project.img}></img>
+  //           </Card.Text>
+  //           {user && project.owner === user._id ? (
+  //             <>
+  //               <Button
+  //                 onClick={() => setEditModalShow(true)}
+  //                 className="m-2"
+  //                 variant="outline-primary"
+  //                 size="sm"
+
+  //               >
+  //                 Edit Destination
+  //               </Button>
+  //               <Button
+  //                 onClick={() => removeTheProject()}
+  //                 className="m-2"
+  //                 variant="outline-danger"
+  //                 size="sm"
+  //               >
+  //                 Delete
+  //               </Button>
+  //             </>
+  //           ) : null}
+  //         </Card.Body>
+  //       </Card>
        
-      </Container>
+  //     </Container>
 
-      {/* <EditProjectsModal
-        user={user}
-        project={project}
-        show={editModalShow}
-        updateDestination={updateDestination}
-        msgAlert={msgAlert}
-        triggerRefresh={() => setUpdated((prev) => !prev)}
-        handleClose={() => setEditModalShow(false)}
-      />
+  //    <EditProjectsModal
+  //       user={user}
+  //       project={project}
+  //       show={editModalShow}
+  //       updateProject={updateProject}
+  //       msgAlert={msgAlert}
+  //       triggerRefresh={() => setUpdated((prev) => !prev)}
+  //       handleClose={() => setEditModalShow(false)}
+  //     />
+       {/* 
       <NewActivityModal
         user={user}
         destination={destination}
@@ -149,8 +248,8 @@ const ShowProject = (props) => {
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setSearchActivityModalShow(false)}
       /> */}
-    </>
-  );
+  //   </>
+  // );
 };
 
 export default ShowProject;
