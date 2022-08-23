@@ -25,15 +25,20 @@ import {
   errorUploadingImage,
   errorFindingDev,
 } from "../shared/AutoDismissAlert/messages";
+import Tags from "../shared/Tags";
 
 const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
-  //   const [value, setValue] = useState("React");
+  const [value, setValue] = useState("React");
+  const [tags, setTags] = useState([])
 
-  //   const handleSelect = (e) => {
-  //     console.log(e);
-  //     setValue(e);
-  //   };
+  const handleSelect = (e) => {
+    console.log(e);
+    setTags(current => [e, ...current]);
+    console.log(tags)
+  // setValue(e);
+  // console.log(e)
+    };
   //let dev = null // add to state?
   const formStyle = {
     color: "white",
@@ -142,11 +147,10 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               res
             );
             updateDeveloperWithProject(user, res.data.project._id, dev).then(
-              res => {
+              (res) => {
                 console.log(res);
               }
             );
-    
 
             navigate(`/projects/${res.data.project._id}`);
           })
@@ -213,12 +217,16 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                     Vanilla JavaScript
                     </Dropdown.Item>
                 </DropdownButton> */}
-
+         <DropdownButton onSelect={handleSelect}>
+          <Tags
+          
+          />
+          </DropdownButton>
           <Form.Control
             placeholder="Tags"
             name="tag"
             id={project._id}
-            value={project.tag}
+            value={tags}
             onChange={handleChange}
             className="mt-2"
             style={{ textAlign: "center" }}

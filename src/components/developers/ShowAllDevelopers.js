@@ -4,6 +4,7 @@ import Dev from '../developers/Dev'
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingChakra from '../shared/LoadingChakra'
 
+
 const ShowAllDevelopers = ({user, msgAlert}) => {
 
     const [developers, setDevelopers] = useState(null)
