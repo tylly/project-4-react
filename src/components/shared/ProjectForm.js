@@ -27,6 +27,7 @@ import {
 } from "../shared/AutoDismissAlert/messages";
 import Tags from "../shared/Tags";
 import "../../style.css";
+import Autocomplete from "../shared/Tags"
 
 const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -219,8 +220,10 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                     Vanilla JavaScript
                     </Dropdown.Item>
                 </DropdownButton> */}
+               
           <div id="tagField">
             <Form.Control
+            
               placeholder="Tags"
               name="tags"
               id={project._id}
@@ -236,6 +239,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                 <Tags />
               </DropdownButton>
             </Dropdown>
+        
           </div>
           <Form.Control
             placeholder="Description"
@@ -283,7 +287,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               onChange={handleChangeFile}
             />
           </Form.Group>
-
+                <Autocomplete style={{color: "black"}}/>
           {/* <Button onClick={handleUpload}>Upload</Button> */}
           <Button type="submit" className="mt-3" size="sm">
             Submit

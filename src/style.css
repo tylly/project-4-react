@@ -17,3 +17,10 @@
     display: flex;
     
   }
+
+  .dropdown-item {
+      color: black
+  }
+  #sus {
+      height: 20px
+  }
