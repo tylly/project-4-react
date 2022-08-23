@@ -28,7 +28,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
       : setScroll(false)
 
   window.addEventListener('scroll', changeScroll)
-
+  console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
   return (
     <Flex
       h="10vh"
@@ -63,13 +63,13 @@ const Nav = ({ onOpen, user, clearUser }) => {
                 Add Developer
               </Link>
               
-              <Link 
+              {/* <Link 
                 onClick={() => navigate("/myposts")} 
                 fontSize="md" 
                 ml={6}
               >
                 My Posts
-              </Link>
+              </Link> */}
               <Link 
                 onClick={() => navigate('/create-project')}    fontSize="md" ml={6}
               >
@@ -84,7 +84,13 @@ const Nav = ({ onOpen, user, clearUser }) => {
               </Link>
             </>) 
             :
-            ''
+            <Link 
+              onClick={() => navigate('/sign-up')} 
+              fontSize="md" 
+              ml={6}
+            >
+              Sign Up
+            </Link>
           }
           
         </>
