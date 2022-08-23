@@ -49,8 +49,8 @@ const EditProjectsModal = (props) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}
-      >
+      {/* <Modal show={show} onHide={handleClose}
+      > */}
         {/* <Modal.Header closeButton />
         <Modal.Body> */}
 
@@ -62,7 +62,8 @@ const EditProjectsModal = (props) => {
             /> */}
 
         <EditProjectForm
-        show={show} onHide={handleClose}
+          show={show} 
+          onHide={handleClose}
           project={project}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
@@ -70,7 +71,7 @@ const EditProjectsModal = (props) => {
         />
 
         {/* </Modal.Body> */}
-      </Modal>
+      {/* </Modal> */}
     </>
   );
 };

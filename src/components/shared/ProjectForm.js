@@ -288,7 +288,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               onChange={handleChangeFile}
             />
           </Form.Group>
-                <Autocomplete style={{color: "black"}}/>
+                {/* <Autocomplete style={{color: "black"}}/> */}
           {/* <Button onClick={handleUpload}>Upload</Button> */}
           <Button type="submit" className="mt-3" size="sm">
             Submit
