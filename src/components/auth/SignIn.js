@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate, Link } from 'react-router-dom'
+import { Text } from '@chakra-ui/layout'
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button'
 const signInStyle = {
     color: "white",
     justifyContentCenter: 'center',
-    textAlign: 'center',
+    textAlign: 'center'
 }
 
 const SignIn = (props) => {
@@ -93,7 +93,12 @@ const SignIn = (props) => {
                     <Button variant="info" type='submit'className="mt-3" size="sm">
                         Submit
                     </Button>
+                    <Text textAlign={"center"} fontSize='xs'>
+                        Don't have an account? 
+                        
+                    </Text> 
                 </Form>
+               
             </div>
         </div>
         </>

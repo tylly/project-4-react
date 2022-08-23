@@ -12,3 +12,15 @@
     height: 200px;
     overflow-y: scroll;
   }
+
+  #tagField {
+    display: flex;
+    
+  }
+
+  .dropdown-item {
+      color: black
+  }
+  #sus {
+      height: 20px
+  }

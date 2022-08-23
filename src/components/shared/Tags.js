@@ -32,7 +32,7 @@ export default function Tags() {
     "express",
     "firebase",
     "git",
-    "gituhb",
+    "github",
     "go",
     "go!",
     "google",
@@ -58,7 +58,7 @@ export default function Tags() {
     "typescript",
     "visual studio",
     "vue",
-    "",
+,
   ];
 
   let tagDropDownItems = Tags.map((item) => (

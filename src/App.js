@@ -1,11 +1,13 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment, useContext } from "react";
+import React, { useState, Fragment, useContext, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
+import { useDisclosure } from '@chakra-ui/react'
 import AutoDismissAlert from "./components/shared/AutoDismissAlert/AutoDismissAlert";
 import Header from "./components/shared/Header";
+import Nav from "./components/shared/Nav";
 import RequireAuth from "./components/shared/RequireAuth";
 import Home from "./components/Home";
 import SignUp from "./components/auth/SignUp";
@@ -21,6 +23,10 @@ import ShowAllDevelopers from "./components/developers/ShowAllDevelopers";
 import ShowDeveloper from "./components/developers/ShowDeveloper";
 import CreateProjects from "./components/projects/CreateProjects";
 import ProjectForm from "./components/shared/ProjectForm";
+import DevForm from './components/shared/DevForm'
+// import { DevForm, ProjectForm } from './components/shared'
+import Footer from "./components/shared/Footer";
+import DrawerComponent from "./components/DrawerComponent";
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 //import CreateProject from './components/projects/CreateProjects'
 //import EditProjectsModal from './component/projects/EditProjectsModal'
@@ -29,6 +35,7 @@ import ProjectForm from "./components/shared/ProjectForm";
 const App = () => {
   const [user, setUser] = useState(null);
   const [msgAlerts, setMsgAlerts] = useState([]);
+  const [updated, setUpdated] = useState(false)
   const MyContext = React.createContext;
   console.log("user in app", user);
   console.log("message alerts", msgAlerts);
@@ -50,10 +57,23 @@ const App = () => {
     });
   };
 
+  const triggerRefresh = () => setUpdated(prev => !prev)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  
+  const btnRef = useRef()
+
   return (
     <>
     <Fragment>
-      <Header user={user} style={{position: 'fixed'}}/>
+      {/* <Header user={user} style={{position: 'fixed'}}/> */}
+      <Nav
+        user={user}
+        onOpen={onOpen}
+        clearUser={clearUser}
+        msgAlert={msgAlert} 
+        triggerRefresh={triggerRefresh}
+        heading={'create'}
+      />
       <Routes>
         <Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
 
@@ -121,10 +141,21 @@ const App = () => {
         />
 
         {/* // Developer create */}
-        {/* <Route
-						path='/developers/create-dev'
-						element={ <CreateDeveloper msgAlert={msgAlert} user={user}/> }
-					/> */}
+        
+        <Route
+            path='/developers/createDev'
+            element={ 
+              <RequireAuth>
+                <DevForm 
+                  msgAlert={msgAlert} 
+                  user={user}
+                  triggerRefresh={triggerRefresh}
+                  heading={'create'}
+                /> 
+              </RequireAuth>
+            }
+        />
+        
         {/* // Developer show specific	 */}
         <Route
 			path='/developers/:id'
@@ -132,11 +163,13 @@ const App = () => {
 				<ShowDeveloper 
 					msgAlert={msgAlert} 
 					user={user}
+          triggerRefresh={triggerRefresh}
 				/> 
 			}
 		/>
         {/* // END DEVELOPER ROUTES */}
       </Routes>
+      <Footer />
       {msgAlerts.map((msgAlert) => (
         <AutoDismissAlert
           key={msgAlert.id}
@@ -147,6 +180,15 @@ const App = () => {
           deleteAlert={deleteAlert}
         />
       ))}
+      
+      <DrawerComponent 
+        user={user} 
+        isOpen={isOpen} 
+        onClose={onClose} 
+        btnRef={btnRef} 
+        clearUser={clearUser} 
+        msgAlert={msgAlert}
+      />
     </Fragment>
   </>
   )
