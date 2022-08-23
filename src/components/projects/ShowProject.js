@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import React from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 // useParams will allow us to see our parameters
 // useNavigate will allow us to navigate to a specific page
@@ -15,7 +15,21 @@ import {
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditProjectsModal from "./EditProjectsModal";
-import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem, Button, WrapItem, Wrap, useDisclosure } from '@chakra-ui/react';
+import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem, Button, WrapItem, Wrap, useDisclosure,  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton, 
+  FormLabel,
+  Stack,
+  Input, 
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
+  Textarea, 
+} from '@chakra-ui/react';
 import { ExternalLinkIcon, DeleteIcon, EditIcon, AddIcon } from '@chakra-ui/icons'
 
 // import EditDestinationModal from "./EditDestinationModal";
@@ -24,6 +38,7 @@ import { ExternalLinkIcon, DeleteIcon, EditIcon, AddIcon } from '@chakra-ui/icon
 // import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
 import ShowDevelopers from "../developers/ShowDeveloper";
+
 
 // We need to get the destination's id from the parameters
 // Then we need to make a request to the api
@@ -40,11 +55,16 @@ const ShowProject = (props) => {
   //   const [activityModalShow, setActivityModalShow] = useState(false);
      const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
+  const [name, setName] = useState()
+  const {isOpen, onOpen, onClose } = useDisclosure()
+  const firstField = React.useRef()
+  const { user, handleClose, msgAlert, triggerRefresh } =
+  props;
   //   const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
   console.log(props);
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, msgAlert } = props;
+  // const { user, msgAlert } = props;
 
   useEffect(() => {
     getOneProject(id)
@@ -57,6 +77,57 @@ const ShowProject = (props) => {
         //navigate back to the home page if there's an error fetching
       });
   }, [updated]);
+
+  const handleChange = (e) => {
+    setProject((prevProject) => {
+      let updatedValue = e.target.value;
+      updatedValue =
+        updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
+      const updatedName = e.target.name;
+      console.log(e.target.type);
+
+      const updatedProject = {
+        [updatedName]: updatedValue,
+      };
+      return {
+        ...prevProject,
+        ...updatedProject,
+      };
+    });
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const project = {
+      name, 
+      // description, 
+      // deployment, 
+      // front_end_repo,
+      // back_end_repo
+    }
+
+    updateProject(user, project)
+      .then(res=> {
+          handleClose()
+          setUpdated(true)
+      }) 
+      .then(() =>
+        msgAlert({
+          heading: "oh yea!",
+          message: "success",
+          variant: "success",
+        })
+      )
+      .then(() => triggerRefresh())
+      .catch(() =>
+        msgAlert({
+          heading: "oh no!",
+          message: "failure",
+          variant: "danger",
+        })
+      );
+  };
 
   const removeTheProject = () => {
     removeProject(user, project._id)
@@ -98,8 +169,7 @@ const ShowProject = (props) => {
   // }
   console.log('this is the front end repo', project.front_end_repo)
 
-  // const onOpen = useDisclosure()
-  // const firstField = React.useRef()
+  
 
   const developerSideBar = project.developers.map((developer)=>(
     <Box p='8' borderWidth='1px' pb='150%' marginTop='55px' >
@@ -203,7 +273,7 @@ const ShowProject = (props) => {
 
   return (
     <Flex>
-    <Box maxW='lg' maxH='80%' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='8%'  marginLeft='25%' width='50%' >
+    <Box maxW='lg' maxH='80%' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='80px'  marginLeft='25%' width='50%' >
       <Image src={project.img} />
       <Box p='3' >
         <Box display='flex' alignItems='baseline'>
@@ -248,13 +318,98 @@ const ShowProject = (props) => {
             </Button>
           </WrapItem>
           <WrapItem>
-            {/* {editProjectButton} */}
-          {/* <Button leftIcon={<EditIcon />} colorScheme='teal' onClick=  {onOpen && setEditModalShow(true)} >
-            Edit
-          </Button> */}
-            <Button leftIcon={<EditIcon/>}colorScheme='twitter' size='xs' onClick={() => setEditModalShow(true)}>
-              Edit
-            </Button>
+              <Button leftIcon={<EditIcon />} colorScheme='linkedin' size='xs' onClick={onOpen}>
+                Edit
+              </Button>
+              <Drawer
+                isOpen={isOpen}
+                placement='right'
+                onClose={onClose}
+                initialFocusRef={firstField}
+                size='md'
+              >
+                <DrawerOverlay />
+                <DrawerContent>
+                  <DrawerCloseButton />
+                  <DrawerHeader>Edit Project</DrawerHeader>
+
+                  <DrawerBody>
+                  <Stack spacing='24px'>
+                      <Box>
+                        <FormLabel htmlFor='name'>Name</FormLabel>
+                        <Input
+                          name="name"
+                          id={project._id}
+                          value={project.name}
+                          onChange={ (e) => setName(e.target.value) }
+                          ref={firstField}
+                        
+                          placeholder='Please enter name of project'
+                        />
+                      </Box>
+                      <Box>
+                        <FormLabel htmlFor='desc'>Description</FormLabel>
+                        <Textarea
+                            name="description"
+                            id={project._id}
+                            value={project.description}
+                            onChange={handleChange} />
+                      </Box>
+                      <Box>
+                        <FormLabel htmlFor='url'>Deployment URL</FormLabel>
+                        <InputGroup>
+                          <InputLeftAddon>http://</InputLeftAddon>
+                          <Input
+                            name="deployment"
+                            id={project._id}
+                            value={project.deployment}
+                            onChange={handleChange}
+                            type='url'
+                            placeholder='Please enter domain'
+                          />
+                          <InputRightAddon>.com</InputRightAddon>
+                        </InputGroup>
+                      </Box>
+                      <Box>
+                        <FormLabel htmlFor='url'>Front-End Repo</FormLabel>
+                        <InputGroup>
+                          <InputLeftAddon>http://</InputLeftAddon>
+                          <Input
+                            name="front_end_repo"
+                            id={project._id}
+                            value={project.front_end_repo}
+                            onChange={handleChange}
+                            type='url'
+                            placeholder='Please enter domain'
+                          />
+                          <InputRightAddon>.com</InputRightAddon>
+                        </InputGroup>
+                      </Box>
+                      <Box>
+                        <FormLabel htmlFor='url'>Back-End Repo</FormLabel>
+                        <InputGroup>
+                          <InputLeftAddon>http://</InputLeftAddon>
+                          <Input
+                            name="deployment"
+                            id={project._id}
+                            value={project.back_end_repo}
+                            onChange={handleChange}
+                            type='url'
+                            placeholder='Please enter domain'
+                          />
+                          <InputRightAddon>.com</InputRightAddon>
+                        </InputGroup>
+                      </Box>
+                    </Stack>
+                  </DrawerBody>
+                  <DrawerFooter>
+                    <Button variant='outline' mr={3} onClick={onClose}>
+                      Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} colorScheme='blue'>Save</Button>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
           </WrapItem>
         </Wrap>
        ) : null}
@@ -381,7 +536,7 @@ const ShowProject = (props) => {
        
   //     </Container> */}
 
-     <EditProjectsModal
+     {/* <EditProjectsModal
         user={user}
         project={project}
         show={editModalShow}
@@ -390,7 +545,7 @@ const ShowProject = (props) => {
         triggerRefresh={() => setUpdated((prev) => !prev)}
         // onClick={onOpen}
         handleClose={() => setEditModalShow(false)}
-      />
+      /> */}
      </Flex>
   );
 };
