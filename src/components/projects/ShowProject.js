@@ -204,6 +204,13 @@ const ShowProject = (props) => {
         </Box>
   ))
 
+  const tagsSideBar = project.tags.map((tags)=>(
+    <ListItem>
+      <Badge mr='5'>
+        {tags.tags}
+      </Badge>
+    </ListItem>
+  ))
   // const editProjectButton = () => (
   //   <>
   //     <Button leftIcon={<AddIcon />} colorScheme='teal' onClick={onOpen}>
@@ -419,16 +426,10 @@ const ShowProject = (props) => {
         <Box p='8' borderWidth='1px' pb='100%' marginTop='55px' textAlign='center'>
           <h1><strong style={{ paddingBottom: '10px'}}>Tags:</strong> </h1>
           <UnorderedList listStyleType='none'textAlign='center'>
-            <ListItem>
-            {/* Will map through each tag*/}
-            <Badge mr='5'>
-            React
-            {project.tags}
-            </Badge>
-            </ListItem>
+            {tagsSideBar}
           </UnorderedList>
         </Box>
-        {/* {developerSideBar} */}
+        {developerSideBar}
     </VStack>
     
    
