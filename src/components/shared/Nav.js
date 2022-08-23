@@ -27,6 +27,9 @@ const Nav = ({ onOpen, user, clearUser }) => {
       ? setScroll(true)
       : setScroll(false)
 
+  const navStyle = {
+    textDecoration: 'none'
+  }
   window.addEventListener('scroll', changeScroll)
   console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
   return (
@@ -47,11 +50,11 @@ const Nav = ({ onOpen, user, clearUser }) => {
               </Text>
       {isLargerThanMD ? (
         <>
-          <Link onClick={() => navigate('/developers')} fontSize="md" ml={6}>
+          <Link onClick={() => navigate('/developers')} fontSize="md" ml={6} style={navStyle}>
             Developers
           </Link>
           
-          <Link onClick={() => navigate('/projects')} fontSize="md" ml={6}>
+          <Link onClick={() => navigate('/projects')} fontSize="md" ml={6} style={navStyle}>
             Projects
           </Link>
 
@@ -59,7 +62,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
 
           { user ? (
             <>
-              <Link onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6}>
+              <Link onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6} style={navStyle}>
                 Add Developer
               </Link>
               
@@ -71,14 +74,15 @@ const Nav = ({ onOpen, user, clearUser }) => {
                 My Posts
               </Link> */}
               <Link 
-                onClick={() => navigate('/projects/create-project')}    fontSize="md" ml={6}
-              >
+                onClick={() => navigate('/projects/create-project')} fontSize="md" ml={6}
+                style={navStyle}>
                 Add Project
               </Link>
               <Link 
                 onClick={() => navigate('/change-password')} 
                 fontSize="md" 
                 ml={6}
+                style={navStyle}
               >
                 Change Password
               </Link>
@@ -88,6 +92,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
               onClick={() => navigate('/sign-up')} 
               fontSize="md" 
               ml={6}
+              style={navStyle}
             >
               Sign Up
             </Link>
@@ -110,9 +115,9 @@ const Nav = ({ onOpen, user, clearUser }) => {
         {isLargerThanMD ? (
           <>
             { user ? 
-              <Link onClick={clearUser} mb="3">Logout</Link> 
+              <Link onClick={clearUser} mb="3" style={navStyle}>Logout</Link> 
               : 
-              <Link href="/sign-in" fontSize="md" >Log In </Link>
+              <Link href="/sign-in" fontSize="md" style={navStyle}>Log In </Link>
             }
           </>
         ) : (
