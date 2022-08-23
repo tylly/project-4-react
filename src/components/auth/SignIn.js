@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button'
 const signInStyle = {
     color: "white",
     justifyContentCenter: 'center',
-    textAlign: 'center',
+    textAlign: 'center'
 }
 
 const SignIn = (props) => {

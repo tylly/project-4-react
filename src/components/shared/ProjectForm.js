@@ -6,21 +6,13 @@ import Dropdown from "react-bootstrap/Dropdown";
 import '../../style.css'
 import { createUrl } from "../../api/aws";
 import { createProject } from '../../api/projects'
-import { getOneDevByName } from "../../api/developers";
+import { getOneDevByName, getOneDeveloper, updateDeveloperWithProject } from "../../api/developers";
 import { createProjectSuccess, createProjectFailure, errorUploadingImage, errorFindingDev } from '../shared/AutoDismissAlert/messages'
 
 
 
 const ProjectForm = ({heading, user, msgAlert}) => {
   
-//   const [image, setImage] = useState({ preview: "", raw: "" });
-//   const [value, setValue] = useState("React");
-
-//   const handleSelect = (e) => {
-//     console.log(e);
-//     setValue(e);
-//   };
-  //let dev = null // add to state?
   const formStyle ={
     color: 'white',
     textAlign: 'center',
@@ -120,8 +112,20 @@ const ProjectForm = ({heading, user, msgAlert}) => {
         
         createProject(user, newProject)
           .then(res => {
-            console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\N", res)
-            
+            console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\n", res)
+            console.log('DEV ID GOING IN\n', dev)
+            updateDeveloperWithProject(user, res.data.project._id, dev)
+              .then(developer => {
+                console.log('DEVELOPER', developer)
+              })
+              .catch(err => {
+                console.log(err)
+                msgAlert({
+                  heading: 'Error',
+                  message: errorFindingDev,
+                  variant: 'danger'
+                })
+              })
             navigate(`/projects/${res.data.project._id}`)})
           .then(() =>
             msgAlert({

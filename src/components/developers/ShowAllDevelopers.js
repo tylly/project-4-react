@@ -28,7 +28,7 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
 
     if (!developers) {
         return (
-            <div style={{marginTop: 100}}>
+            
                 <LoadingChakra
                     style={{
                         marginTop: 100,
@@ -37,7 +37,7 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
                     align='center'
                     justify='center'
                 />
-            </div>
+            
            
         )
     } else if (developers.length === 0) {
@@ -59,9 +59,7 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
 
     return (
         <>
-            <div style={{marginTop: 100}}>
-                {myDevs}
-            </div>
+            {myDevs}
         </>
     )
 
