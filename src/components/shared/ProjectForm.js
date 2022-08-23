@@ -132,6 +132,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           ...project,
           img: image,
           developers: dev, // dev is undefined
+          tags: tags
         };
 
         console.log("ARE WE THERE YET", newProject);
@@ -224,7 +225,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           </DropdownButton>
           <Form.Control
             placeholder="Tags"
-            name="tag"
+            name="tags"
             id={project._id}
             value={tags}
             onChange={handleChange}
