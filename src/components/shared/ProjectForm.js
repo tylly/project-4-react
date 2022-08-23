@@ -142,21 +142,22 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           projects: dev,
         };
         createProject(user, newProject)
-          .then((res) => {
-            console.log(
-              "FIRST THEN IN CREATE PROJECT================",
-              project,
-              "RES FROM CREATEN",
-              res
-            );
-            updateDeveloperWithProject(user, res.data.project._id, dev).then(
-              (res) => {
-                console.log(res);
-              }
-            );
-
-            navigate(`/projects/${res.data.project._id}`);
-          })
+          .then(res => {
+            console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\n", res)
+            console.log('DEV ID GOING IN\n', dev)
+            updateDeveloperWithProject(user, res.data.project._id, dev)
+              .then(developer => {
+                console.log('DEVELOPER', developer)
+              })
+              .catch(err => {
+                console.log(err)
+                msgAlert({
+                  heading: 'Error',
+                  message: errorFindingDev,
+                  variant: 'danger'
+                })
+              })
+            navigate(`/projects/${res.data.project._id}`)})
           .then(() =>
             msgAlert({
               heading: "oh yea!",

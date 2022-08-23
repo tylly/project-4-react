@@ -10,11 +10,11 @@ const CreateProjects = ({ user, msgAlert }) => {
 
     return (
       <>
-      <ProjectForm 
-      msgAlert={msgAlert} 
-      user={user}
-      heading={"where to?"} 
-      />
+        <ProjectForm 
+        msgAlert={msgAlert} 
+        user={user}
+        heading={"where to?"} 
+        />
 
       </>
     )
