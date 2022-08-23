@@ -31,27 +31,33 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
         <DrawerBody>
           <Flex flexDirection="column">
             <Link 
-              onClick={() => navigate('/')} 
+              onClick={() => navigate('/projects')} 
               mb="3"
             >
-              Feed
+              Projects
+            </Link>
+            <Link 
+              onClick={() => navigate('/developers')} 
+              mb="3"
+            >
+              Developers
             </Link>
             {user ? (
               <>
                 <Link 
-                  onClick={() => navigate('/myposts')} 
+                  onClick={() => navigate('/developers/createDev')} 
                   mb='3'
                 >
-                  My Posts
+                  Add Developer
                 </Link>
                 <Link 
-                  onClick={() => navigate('/addpost')}
+                  onClick={() => navigate('/projects/create-project')}
                   mb='3'
                 >
-                  Add Post
+                  Add Project
                 </Link>
                   <Link 
-                    onClick={() => navigate('/changepassword')} 
+                    onClick={() => navigate('/change-password')} 
                     mb='3'
                   >
                     Change Password
@@ -60,7 +66,10 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
               </>
             ) : 
             (
-              <Link onClick={() => navigate("/signin")} mb="3">Login</Link>
+              <>
+                <Link onClick={() => navigate("/sign-in")} mb="3">Login</Link>
+                <Link onClick={() => navigate("/sign-up")} mb="3">Sign Up</Link>
+              </>
             )
             }
           </Flex>
