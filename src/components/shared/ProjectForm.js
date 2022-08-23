@@ -26,19 +26,20 @@ import {
   errorFindingDev,
 } from "../shared/AutoDismissAlert/messages";
 import Tags from "../shared/Tags";
+import "../../style.css";
 
 const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
   const [value, setValue] = useState("React");
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState([]);
 
   const handleSelect = (e) => {
     console.log(e);
-    setTags(current => [e, ...current]);
-    console.log(tags)
-  // setValue(e);
-  // console.log(e)
-    };
+    setTags((current) => [e, ...current]);
+    console.log(tags);
+    // setValue(e);
+    // console.log(e)
+  };
   //let dev = null // add to state?
   const formStyle = {
     color: "white",
@@ -132,7 +133,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           ...project,
           img: image,
           developers: dev, // dev is undefined
-          tags: tags
+          tags: tags,
         };
 
         console.log("ARE WE THERE YET", newProject);
@@ -218,20 +219,24 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                     Vanilla JavaScript
                     </Dropdown.Item>
                 </DropdownButton> */}
-         <DropdownButton onSelect={handleSelect}>
-          <Tags
-          
-          />
-          </DropdownButton>
-          <Form.Control
-            placeholder="Tags"
-            name="tags"
-            id={project._id}
-            value={tags}
-            onChange={handleChange}
-            className="mt-2"
-            style={{ textAlign: "center" }}
-          />
+          <div id="tagField">
+            <Form.Control
+              placeholder="Tags"
+              name="tags"
+              id={project._id}
+              value={tags}
+              className="mt-2"
+              style={{ textAlign: "center" }}
+            ></Form.Control>
+            <Dropdown>
+              <DropdownButton
+                style={{ marginTop: "8px" }}
+                onSelect={handleSelect}
+              >
+                <Tags />
+              </DropdownButton>
+            </Dropdown>
+          </div>
           <Form.Control
             placeholder="Description"
             name="description"
