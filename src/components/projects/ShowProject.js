@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 // useNavigate will allow us to navigate to a specific page
 import "../../style.css";
 
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import LoadingScreen from "../shared/LoadingScreen";
 import {
@@ -15,8 +15,8 @@ import {
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditProjectsModal from "./EditProjectsModal";
-import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem, Button, WrapItem, Wrap, useDisclosure } from '@chakra-ui/react';
+import { ExternalLinkIcon, DeleteIcon, EditIcon, AddIcon } from '@chakra-ui/icons'
 
 // import EditDestinationModal from "./EditDestinationModal";
 // import NewActivityModal from "../activities/NewActivityModal";
@@ -98,6 +98,9 @@ const ShowProject = (props) => {
   // }
   console.log('this is the front end repo', project.front_end_repo)
 
+  // const onOpen = useDisclosure()
+  // const firstField = React.useRef()
+
   const developerSideBar = project.developers.map((developer)=>(
     <Box p='8' borderWidth='1px' pb='150%' marginTop='55px' >
           <h1 style={{textAlign: 'center', paddingBottom: '10px'}}><strong>Developers:</strong></h1>
@@ -119,17 +122,93 @@ const ShowProject = (props) => {
               </Grid>
             </ListItem>
           </UnorderedList> 
+          {user && project.owner === user._id ? (
+            <Wrap direction='row' justify='right' p='2'>
+              <WrapItem>
+                <Button leftIcon={<AddIcon/>} colorScheme='orange' size='xs' onClick={() => removeTheProject()}>
+                  Add Developer
+                </Button>
+              </WrapItem>
+            </Wrap>
+          ) : null}
         </Box>
   ))
 
+  // const editProjectButton = () => (
+  //   <>
+  //     <Button leftIcon={<AddIcon />} colorScheme='teal' onClick={onOpen}>
+  //         Create user
+  //     </Button>
+  //     <Drawer
+  //         isOpen={isOpen}
+  //         placement='right'
+  //         onClose={onClose}
+  //         initialFocusRef={firstField}
+  //       >
+  //       <DrawerOverlay />
+  //       <DrawerContent>
+  //         <DrawerCloseButton />
+  //         <DrawerHeader>Edit Project</DrawerHeader>
+
+  //         <DrawerBody>
+  //         <Stack spacing='24px'>
+  //             <Box>
+  //               <FormLabel htmlFor='username'>Name</FormLabel>
+  //               <Input
+  //                 ref={firstField}
+  //                 id='username'
+  //                 placeholder='Please enter user name'
+  //               />
+  //             </Box>
+
+  //             <Box>
+  //               <FormLabel htmlFor='url'>Url</FormLabel>
+  //               <InputGroup>
+  //                 <InputLeftAddon>http://</InputLeftAddon>
+  //                 <Input
+  //                   type='url'
+  //                   id='url'
+  //                   placeholder='Please enter domain'
+  //                 />
+  //                 <InputRightAddon>.com</InputRightAddon>
+  //               </InputGroup>
+  //             </Box>
+
+  //             <Box>
+  //               <FormLabel htmlFor='owner'>Select Owner</FormLabel>
+  //               <Select id='owner' defaultValue='segun'>
+  //                 <option value='segun'>Segun Adebayo</option>
+  //                 <option value='kola'>Kola Tioluwani</option>
+  //               </Select>
+  //             </Box>
+
+  //             <Box>
+  //               <FormLabel htmlFor='desc'>Description</FormLabel>
+  //               <Textarea id='desc' />
+  //             </Box>
+  //           </Stack>
+  //         </DrawerBody>
+
+  //         <DrawerFooter>
+  //           <Button variant='outline' mr={3} onClick={onClose}>
+  //             Cancel
+  //           </Button>
+  //           <Button colorScheme='blue'>Save</Button>
+  //         </DrawerFooter>
+  //       </DrawerContent>
+  //     </Drawer>
+  //   </>
+  // )
+  // const onOpen = useDisclosure()
+
   return (
     <Flex>
-    <Box maxW='sm' maxH='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='10%'  marginLeft='25%' width='50%'>
+    <Box maxW='lg' maxH='80%' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='8%'  marginLeft='25%' width='50%' >
       <Image src={project.img} />
-      <Box p='3'>
+      <Box p='3' >
         <Box display='flex' alignItems='baseline'>
           <Box
-          mt='1'
+          mt='2'
           fontWeight='semibold'
           as='h1'
           lineHeight='tight'
@@ -139,28 +218,46 @@ const ShowProject = (props) => {
           </Box>
         </Box>
           <Box
-          mt='1'
+          mt='4'
           as='h1'
           lineHeight='tight'
           >
             Description: {project.description}
           </Box>
-          <Box>
+          <Box mt='2'>
           <Link href={project.deployment} isExternal  paddingRight='10px'>
             Deployment URL<ExternalLinkIcon mx='2px' />
           </Link>
           </Box>
-          <Box>
+          <Box  mt='2'>
           <Link href={project.front_end_repo} isExternal  paddingRight='10px'>
             Front-End Repo<ExternalLinkIcon mx='2px' />
           </Link>
           </Box>
-          <Box>
+          <Box  mt='2'>
           <Link href={project.back_end_repo} isExternal>
             Back-End Repo<ExternalLinkIcon mx='2px' />
           </Link>
           </Box>
       </Box>
+      {user && project.owner === user._id ? (
+        <Wrap direction='row' justify='right' p='2'>
+          <WrapItem>
+            <Button leftIcon={<DeleteIcon/>}colorScheme='red' size='xs' onClick={() => removeTheProject()}>
+              Delete
+            </Button>
+          </WrapItem>
+          <WrapItem>
+            {/* {editProjectButton} */}
+          {/* <Button leftIcon={<EditIcon />} colorScheme='teal' onClick=  {onOpen && setEditModalShow(true)} >
+            Edit
+          </Button> */}
+            <Button leftIcon={<EditIcon/>}colorScheme='twitter' size='xs' onClick={() => setEditModalShow(true)}>
+              Edit
+            </Button>
+          </WrapItem>
+        </Wrap>
+       ) : null}
     </Box>
     <Spacer />
     <VStack spacing={-.85} align='stretch' w='250px'>
@@ -176,7 +273,7 @@ const ShowProject = (props) => {
             </ListItem>
           </UnorderedList>
         </Box>
-        {developerSideBar}
+        {/* {developerSideBar} */}
     </VStack>
     
    
@@ -291,6 +388,7 @@ const ShowProject = (props) => {
         updateProject={updateProject}
         msgAlert={msgAlert}
         triggerRefresh={() => setUpdated((prev) => !prev)}
+        // onClick={onOpen}
         handleClose={() => setEditModalShow(false)}
       />
      </Flex>

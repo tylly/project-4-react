@@ -49,8 +49,8 @@ const EditProjectsModal = (props) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}
-      >
+      {/* <Modal show={show} onHide={handleClose}
+      > */}
         {/* <Modal.Header closeButton />
         <Modal.Body> */}
 
@@ -70,7 +70,7 @@ const EditProjectsModal = (props) => {
         />
 
         {/* </Modal.Body> */}
-      </Modal>
+      {/* </Modal> */}
     </>
   );
 };
