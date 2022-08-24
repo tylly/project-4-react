@@ -2,7 +2,7 @@ import { getOneDeveloper, removeDeveloper } from "../../api/developers"
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from "react-bootstrap"
-// import { Link } from "react-router-dom"
+// import { Link as RouterLink } from "react-router-dom"
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingChakra from "../shared/LoadingChakra"
 import { useDisclosure } from "@chakra-ui/hooks"
