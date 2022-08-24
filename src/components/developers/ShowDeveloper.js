@@ -1,6 +1,6 @@
 import { getOneDeveloper, removeDeveloper } from "../../api/developers"
 import { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Card } from "react-bootstrap"
 // import { Link as RouterLink } from "react-router-dom"
 import messages from "../shared/AutoDismissAlert/messages"
@@ -45,6 +45,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
     const location = useLocation()
     console.log(location)
     const state = location.state
+    const { id } = useParams();
     const navigate = useNavigate()
     console.log('THIS IS THE STATE IN DEV SHOW PAGE=======>>', state)
     //console.log('I am the params in sho dev=======>>', dev._id)
@@ -52,7 +53,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
     const [updated, setUpdated] = useState(false)
     const triggerRefresh = () => setUpdated((prev) => !prev)
     useEffect(() => {
-        getOneDeveloper(state)
+        getOneDeveloper(id)
             .then(res => {
                 console.log('resdata in showdev========>>\n', res.data)
                 setDeveloper(res.data.developer)
