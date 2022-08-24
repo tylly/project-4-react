@@ -5,11 +5,14 @@ import messages from "../shared/AutoDismissAlert/messages"
 import LoadingChakra from '../shared/LoadingChakra'
 import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Link as RouteLink }  from 'react-router-dom'
+import { getDevPfp } from '../../api/developers'
+
 const DeveloperShowPreview = ({devs, user, msgAlert}) => {
 
     const [developers, setDevelopers] = useState(null)
     const [updated, setUpdated] = useState(false)
-    
+    console.log(getDevPfp('https://www.linkedin.com/in/haydenmoyes/'))
     if (!devs) {
         return <LoadingChakra />;
     }
@@ -22,15 +25,17 @@ const DeveloperShowPreview = ({devs, user, msgAlert}) => {
                   {dev.name}
                 </GridItem>
                 <GridItem >
-                  <Link href={dev.linkedin}><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img><ExternalLinkIcon mx='2px' /></Link>
+                  <Link href={dev.linkedin} isExternal><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img><ExternalLinkIcon mx='2px' /></Link>
                 </GridItem>
                 <GridItem>
-                  <Link href={dev.github} d-inline><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img><ExternalLinkIcon mx='2px' /></Link>
+                  <Link href={dev.github} d-inline isExternal><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img><ExternalLinkIcon mx='2px' /></Link>
                 </GridItem>
                 <GridItem colEnd={6}>
+                <RouteLink to={`/developers/${dev._id}`}>
                 <Box as='button' borderRadius='sm' bg='orange' color='white' px={4} h={8} alignContent='center'>
                     View
                 </Box>
+                </RouteLink>
                 </GridItem>
               </Grid>
             </ListItem>
