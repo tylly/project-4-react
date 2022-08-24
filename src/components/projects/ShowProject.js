@@ -83,8 +83,9 @@ const ShowProject = (props) => {
   const [deployment, setDeployment] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
-  const { user, handleClose, msgAlert, triggerRefresh } = props;
+  const { user, handleClose, msgAlert } = props;
   //   const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
+  const triggerRefresh = () => setUpdated((prev) => !prev)
   console.log(props);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -94,13 +95,14 @@ const ShowProject = (props) => {
     getOneProject(id)
       .then((res) => {
         setProject(res.data.project);
+        //triggerRefresh()
       })
       .catch((err) => {
         console.log(err);
         navigate("/");
         //navigate back to the home page if there's an error fetching
       });
-  }, []);
+  }, [updated]);
 
   // const handleChange = (e) => {
   //   setProject((prevProject) => {
@@ -132,19 +134,19 @@ const ShowProject = (props) => {
     };
 
     updateProject(user, project._id, updatedProject)
-      .then((res) => {
-        console.log("In the updateProject function");
-        handleClose();
-        setUpdated(true);
+      .then(() => {
+        onClose();
+        
       })
       .then(() =>
-        msgAlert({
-          heading: "oh yea!",
-          message: "success",
-          variant: "success",
-        })
+      triggerRefresh(),
+        // msgAlert({
+        //   heading: "oh yea!",
+        //   message: "success",
+        //   variant: "success",
+        // })
       )
-      .then(() => setUpdated(prev => !prev))
+      // .then(() => triggerRefresh())
       .catch(() =>
         msgAlert({
           heading: "oh no!",
