@@ -25,10 +25,10 @@ export const createProject = (user, newProject) => {
 	})
 }
 // UPDATE
-export const updateProject = (user, updatedProject) => {
+export const updateProject = (user,	projectId, updatedProject) => {
     console.log('this is updatedProject', updatedProject)
 	return axios({
-		url: `${apiUrl}/projects/${updatedProject._id}`,
+		url: `${apiUrl}/projects/${projectId}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,

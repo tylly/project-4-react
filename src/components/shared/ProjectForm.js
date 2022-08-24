@@ -43,7 +43,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
   };
   //let dev = null // add to state?
   const formStyle = {
-    color: "white",
+    color: "black",
     textAlign: "center",
     position: "absolute",
     zIndex: "2",
@@ -288,11 +288,12 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               onChange={handleChangeFile}
             />
           </Form.Group>
-                {/* <Autocomplete style={{color: "black"}}/> */}
+                
           {/* <Button onClick={handleUpload}>Upload</Button> */}
           <Button type="submit" className="mt-3" size="sm">
             Submit
           </Button>
+          <Autocomplete theme={{color: "black"}}/>
         </Form>
       </div>
     </div>
