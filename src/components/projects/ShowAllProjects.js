@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { Link as RouteLink }  from 'react-router-dom'
+import DeveloperShowPreview from "../shared/DeveloperShow"
 // ShowAllProjects should make a request to the api
 // To get all services
 // Then display them when it gets them
@@ -87,7 +88,7 @@ const ProjectIndex = (props) => {
           fontSize='xs'
           textTransform='uppercase'
           ml='2'
-        >
+          >
           <Link href={project.front_end_repo} isExternal>
             Front-End Repo<ExternalLinkIcon mx='2px' />
           </Link> &bull; <Link href={project.back_end_repo} isExternal>
@@ -102,7 +103,7 @@ const ProjectIndex = (props) => {
         as='h4'
         lineHeight='tight'
         marginBottom='10px'
-      >
+        >
         {project.name}
       </Box>
 
@@ -132,8 +133,15 @@ const ProjectIndex = (props) => {
         <AccordionIcon />
       </AccordionButton>
     </h2>
+        {/* {projects.developers.map((developer) => (
+          {developer}
+      ))} */}
     <AccordionPanel pb={4}>
-      {/* {project.developers} */}
+          <DeveloperShowPreview
+            devs={project.developers}
+            msgAlert={msgAlert}
+            />
+            
     </AccordionPanel>
   </AccordionItem>
 </Accordion>
