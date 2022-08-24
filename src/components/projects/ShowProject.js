@@ -55,7 +55,12 @@ const ShowProject = (props) => {
   //   const [activityModalShow, setActivityModalShow] = useState(false);
      const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const [name, setName] = useState()
+  const [name, setName] = useState('')
+  const [ description, setDescription] = useState('')
+
+  const [front_end_repo, setFront_end_repo] = useState('')
+  const [back_end_repo, setBack_end_repo] = useState('')
+  const [deployment, setDeployment] = useState('')
   const {isOpen, onOpen, onClose } = useDisclosure()
   const firstField = React.useRef()
   const { user, handleClose, msgAlert, triggerRefresh } =
@@ -76,39 +81,41 @@ const ShowProject = (props) => {
         navigate("/");
         //navigate back to the home page if there's an error fetching
       });
-  }, [updated]);
+  }, []);
 
-  const handleChange = (e) => {
-    setProject((prevProject) => {
-      let updatedValue = e.target.value;
-      updatedValue =
-        updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
-      const updatedName = e.target.name;
-      console.log(e.target.type);
+  // const handleChange = (e) => {
+  //   setProject((prevProject) => {
+  //     let updatedValue = e.target.value;
+  //     updatedValue =
+  //       updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
+  //     const updatedName = e.target.name;
+  //     console.log(e.target.type);
 
-      const updatedProject = {
-        [updatedName]: updatedValue,
-      };
-      return {
-        ...prevProject,
-        ...updatedProject,
-      };
-    });
-  };
+  //     const updatedProject = {
+  //       [updatedName]: updatedValue,
+  //     };
+  //     return {
+  //       ...prevProject,
+  //       ...updatedProject,
+  //     };
+  //   });
+  // };
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const project = {
+    
+    const updatedProject = {
       name, 
-      // description, 
-      // deployment, 
-      // front_end_repo,
-      // back_end_repo
+      description, 
+      deployment,
+      front_end_repo,
+      back_end_repo
     }
 
-    updateProject(user, project)
+    updateProject(user, project._id, updatedProject)
       .then(res=> {
+          console.log('In the updateProject function')
           handleClose()
           setUpdated(true)
       }) 
@@ -337,14 +344,13 @@ const ShowProject = (props) => {
                   <Stack spacing='24px'>
                       <Box>
                         <FormLabel htmlFor='name'>Name</FormLabel>
-                        <Input
-                          name="name"
+                        <Input 
                           id={project._id}
-                          value={project.name}
-                          onChange={ (e) => setName(e.target.value) }
-                          ref={firstField}
-                        
-                          placeholder='Please enter name of project'
+                          name="name"
+                          type="text"
+                          onChange={(e) => setName(e.target.value)}
+                          defaultValue={project.name}
+                          required
                         />
                       </Box>
                       <Box>
@@ -352,8 +358,9 @@ const ShowProject = (props) => {
                         <Textarea
                             name="description"
                             id={project._id}
-                            value={project.description}
-                            onChange={handleChange} />
+                            defaultValue={project.description}
+                            onChange={(e) => setDescription(e.target.value)} 
+                        />
                       </Box>
                       <Box>
                         <FormLabel htmlFor='url'>Deployment URL</FormLabel>
@@ -362,8 +369,8 @@ const ShowProject = (props) => {
                           <Input
                             name="deployment"
                             id={project._id}
-                            value={project.deployment}
-                            onChange={handleChange}
+                            defaultValue={project.deployment}
+                            onChange={(e) => setDeployment}
                             type='url'
                             placeholder='Please enter domain'
                           />
@@ -377,8 +384,8 @@ const ShowProject = (props) => {
                           <Input
                             name="front_end_repo"
                             id={project._id}
-                            value={project.front_end_repo}
-                            onChange={handleChange}
+                            defaultValue={project.front_end_repo}
+                            onChange={(e) => setFront_end_repo}
                             type='url'
                             placeholder='Please enter domain'
                           />
@@ -390,10 +397,10 @@ const ShowProject = (props) => {
                         <InputGroup>
                           <InputLeftAddon>http://</InputLeftAddon>
                           <Input
-                            name="deployment"
+                            name="back_end_repo"
                             id={project._id}
-                            value={project.back_end_repo}
-                            onChange={handleChange}
+                            defaultValue={project.back_end_repo}
+                            onChange={(e) => setBack_end_repo}
                             type='url'
                             placeholder='Please enter domain'
                           />
