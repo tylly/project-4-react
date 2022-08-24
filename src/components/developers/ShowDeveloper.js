@@ -2,7 +2,7 @@ import { getOneDeveloper, removeDeveloper } from "../../api/developers"
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Card } from "react-bootstrap"
-// import { Link } from "react-router-dom"
+// import { Link as RouterLink } from "react-router-dom"
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingChakra from "../shared/LoadingChakra"
 import { useDisclosure } from "@chakra-ui/hooks"
@@ -235,12 +235,11 @@ const ShowDevelopers = ({ msgAlert, user }) => {
           </Box>
         </Center>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
+            <ModalBody textAlign={'center'}>
                 <DevForm
                     type='edit'
                     msgAlert={msgAlert} 
@@ -250,15 +249,6 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                     onClose={onClose}
                 />
             </ModalBody>
-
-            <ModalFooter>
-            
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-                Cancel
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-
-            </ModalFooter>
         </ModalContent>
         </Modal>
         </>
