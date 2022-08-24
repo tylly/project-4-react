@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import { theme } from '../../theme.css'
 
 // Imagine you have a list of tags that you'd like to autosuggest.
 const tags = [
@@ -127,6 +128,7 @@ class Autocomplete extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
+        theme={{theme}}
       />
     );
   }

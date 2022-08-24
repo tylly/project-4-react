@@ -58,7 +58,7 @@ export default function Tags() {
     "typescript",
     "visual studio",
     "vue",
-,
+
   ];
 
   let tagDropDownItems = Tags.map((item) => (
