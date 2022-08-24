@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { Link as RouteLink }  from 'react-router-dom'
-import DeveloperShowPreview from "../shared/DeveloperShow";
+import DeveloperShowPreview from "../shared/DeveloperShow"
 // ShowAllProjects should make a request to the api
 // To get all services
 // Then display them when it gets them
