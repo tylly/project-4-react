@@ -356,7 +356,6 @@ const ShowProject = (props) => {
             <ListItem>
               {/* Will map through each tag*/}
               <Badge mr="5">
-                React
                 {project.tags}
               </Badge>
             </ListItem>

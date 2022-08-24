@@ -19,35 +19,33 @@ import {
   Box,
   Text,
   Button,
-  Textarea,
-  useDisclosure, 
-  Center,
   InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Stack
+  Center,
+  Stack,
+  Textarea,
+  useDisclosure
   } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import LoadingChakra from './LoadingChakra'
-import { errorCreatingDev } from './AutoDismissAlert/messages'
+import { errorCreatingDev, errorUpdatingDev } from './AutoDismissAlert/messages'
 import { createDeveloper, updateDeveloper } from '../../api/developers'
 //import { useDisclosure } from '@chakra-ui/react'
-
-function DevForm({ user, type, msgAlert, dev, onClose }){
-const [updated, setUpdated] = useState(false)
-const [name, setName] = useState('')
-const [linkedin, setLinkedin ] = useState('')
-const [github, setGithub ] = useState('')
-const [portfolio, setPortfolio ] = useState('')
-const [ upload, setUpload ] = useState({})
-const [ loading, setLoading ] = useState(null)
-const navigate = useNavigate()
-const myUrl = useRef("")
-const triggerRefresh = () => setUpdated(prev => !prev)
-
-function handleSubmitCreate(event) {
-  event.preventDefault()
-  setLoading(true)
+  
+function DevForm({ user, type, msgAlert, dev, onClose, triggerRefresh }){
+  const [updated, setUpdated] = useState(false)
+  const [name, setName] = useState('')
+  const [linkedin, setLinkedin ] = useState('')
+  const [github, setGithub ] = useState('')
+  const [portfolio, setPortfolio ] = useState('')
+  const [ upload, setUpload ] = useState({})
+  const [ loading, setLoading ] = useState(null)
+  const navigate = useNavigate()
+  const myUrl = useRef("")
+  //const triggerRefresh = () => setUpdated(prev => !prev)
+    
+  function handleSubmitCreate(event) {
+    event.preventDefault()
+    setLoading(true)
       const newDev = {
         name,
         linkedin,
@@ -67,33 +65,41 @@ function handleSubmitCreate(event) {
           })
           setLoading(false)
         })
-    
-    .then(() => setLoading(false))
-    .catch(err => {
-      console.log(err)
-      msgAlert("Image upload error", "error")
-      setLoading(false)
-    })
+        .then(() => setLoading(false))
+        .catch(err => {
+          console.log(err)
+          msgAlert({
+            heading: 'Error',
+            message: errorCreatingDev,
+            variant: 'danger'
+          })
+          setLoading(false)
+        })
+    }
+  
+    function handleSubmitEdit (e) {
+      e.preventDefault()
+      const editedFields = {
+      name,
+      linkedin,
+      github,
+      portfolio
+      }
+      updateDeveloper(user, dev._id, editedFields)
+        .then(res => {
+          onClose()
+          triggerRefresh()
+      })
+      .catch(err => {
+        console.log(err)
+        msgAlert({
+          heading: 'Error',
+          message: errorUpdatingDev,
+          variant: 'danger'
+        })
+      })
   }
-
-function handleSubmitEdit (e) {
-  e.preventDefault()
-  const editedFields = {
-  name,
-  linkedin,
-  github,
-  portfolio
-  }
-  updateDeveloper(user, dev._id, editedFields)
-    .then(res => {
-      onClose()
-      triggerRefresh()
-  })
-  .catch(err => {
-    console.log(err)
-    msgAlert("edit post error", "error")
-  })
-}
+  
 
 const editWidth = {
   width: '100%'
@@ -112,10 +118,8 @@ return <LoadingChakra/>
     <Center>
       <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} width={type === "edit" ? editWidth : createWidth}>
         <Text
-          fontSize='3xl'
+          fontSize='4xl'
           textAlign={"center"}
-          as='b'
-          
         >
           {type==="edit" ? "Edit Developer" : "Create Developer" }
         </Text>
@@ -164,6 +168,7 @@ return <LoadingChakra/>
               />
             </InputGroup>
           </FormControl>
+
           <FormControl my="3">
           <FormLabel htmlFor="url" fontSize="lg">Portfolio</FormLabel>
             <InputGroup>
@@ -185,16 +190,9 @@ return <LoadingChakra/>
           </Stack>
         </form>
       </Box> 
-    </Center>
+      </Center>
     </>
   )
 }
 
 export default DevForm
-
-
-  
-  
-     
-           
-   

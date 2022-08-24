@@ -71,7 +71,7 @@ const ProjectIndex = (props) => {
   console.log("here are our projects!", projects);
 
   const projectCards = projects.map((project) => (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px'>
+    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id}>
     <RouteLink to={`/projects/${project._id}`}>
           <Image src={project.img} alt={project.name} />
           </RouteLink>

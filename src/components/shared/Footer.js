@@ -13,6 +13,7 @@ const Footer = () => {
       justifyContent="center"
       position='absolute'
       marginTop='70%'
+
     >
       <Text mb="3">
          By{' '}
