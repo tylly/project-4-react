@@ -95,6 +95,14 @@ function handleSubmitEdit (e) {
   })
 }
 
+const editWidth = {
+  width: '100%'
+}
+
+const createWidth = {
+  width: '80%'
+}
+
 if (loading) {
 return <LoadingChakra/>
 }
@@ -102,7 +110,7 @@ return <LoadingChakra/>
   return (
     <>
     <Center>
-      <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} width='100%'>
+      <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} width={type === "edit" ? editWidth : createWidth}>
         <Text
           fontSize='3xl'
           textAlign={"center"}
@@ -115,7 +123,6 @@ return <LoadingChakra/>
         <form 
           onSubmit={type === "edit" ? handleSubmitEdit : handleSubmitCreate}
           id='createDev'
-          
         >
           <FormControl mt={3} my="3">
             <FormLabel htmlFor="name" textAlign={"left"} fontSize="lg">
@@ -134,7 +141,6 @@ return <LoadingChakra/>
           <FormControl my="3">
           <FormLabel htmlFor="url" fontSize="lg">LinkedIn</FormLabel>
             <InputGroup>
-              <InputLeftAddon>http://</InputLeftAddon>
               <Input
                 id="linkedin"
                 name="linkedin"
@@ -143,13 +149,11 @@ return <LoadingChakra/>
                 defaultValue={type === "edit" ? `${dev.linkedin}` : ""}
                 required 
               />
-              <InputRightAddon>.com</InputRightAddon>
             </InputGroup>
             </FormControl>
             <FormControl my="3">
           <FormLabel htmlFor="url" fontSize="lg">Github</FormLabel>
             <InputGroup>
-              <InputLeftAddon>http://</InputLeftAddon>
               <Input
                 id="github"
                 name="github"
@@ -158,13 +162,11 @@ return <LoadingChakra/>
                 defaultValue={type === "edit" ? `${dev.github}` : ""}
                 required 
               />
-              <InputRightAddon>.com</InputRightAddon>
             </InputGroup>
           </FormControl>
           <FormControl my="3">
           <FormLabel htmlFor="url" fontSize="lg">Portfolio</FormLabel>
             <InputGroup>
-              <InputLeftAddon>http://</InputLeftAddon>
               <Input
                 id="portfolio"
                 name="portfolio"
@@ -173,7 +175,6 @@ return <LoadingChakra/>
                 defaultValue={type === "edit" ? `${dev.portfolio}` : ""}
                 required
                 />
-              <InputRightAddon>.com</InputRightAddon>
             </InputGroup>
           </FormControl>
           <Stack direction='row' justifyContent={'right'} mt={7}>

@@ -288,7 +288,6 @@ const ShowProject = (props) => {
                       <Box>
                         <FormLabel htmlFor="url">Deployment URL</FormLabel>
                         <InputGroup>
-                          <InputLeftAddon>http://</InputLeftAddon>
                           <Input
                             name="deployment"
                             id={project._id}
@@ -297,13 +296,11 @@ const ShowProject = (props) => {
                             type="url"
                             placeholder="Please enter domain"
                           />
-                          <InputRightAddon>.com</InputRightAddon>
                         </InputGroup>
                       </Box>
                       <Box>
                         <FormLabel htmlFor="url">Front-End Repo</FormLabel>
                         <InputGroup>
-                          <InputLeftAddon>http://</InputLeftAddon>
                           <Input
                             name="front_end_repo"
                             id={project._id}
@@ -312,13 +309,11 @@ const ShowProject = (props) => {
                             type="url"
                             placeholder="Please enter domain"
                           />
-                          <InputRightAddon>.com</InputRightAddon>
                         </InputGroup>
                       </Box>
                       <Box>
                         <FormLabel htmlFor="url">Back-End Repo</FormLabel>
                         <InputGroup>
-                          <InputLeftAddon>http://</InputLeftAddon>
                           <Input
                             name="back_end_repo"
                             id={project._id}
@@ -327,7 +322,6 @@ const ShowProject = (props) => {
                             type="url"
                             placeholder="Please enter domain"
                           />
-                          <InputRightAddon>.com</InputRightAddon>
                         </InputGroup>
                       </Box>
                     </Stack>
