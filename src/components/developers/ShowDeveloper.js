@@ -234,12 +234,11 @@ const ShowDevelopers = ({ msgAlert, user }) => {
           </Box>
         </Center>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
+            <ModalBody textAlign={'center'}>
                 <DevForm
                     type='edit'
                     msgAlert={msgAlert} 
@@ -249,15 +248,6 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                     onClose={onClose}
                 />
             </ModalBody>
-
-            <ModalFooter>
-            
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-                Cancel
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-
-            </ModalFooter>
         </ModalContent>
         </Modal>
         </>
