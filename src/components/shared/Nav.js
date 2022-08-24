@@ -52,11 +52,11 @@ const Nav = ({ onOpen, user, clearUser }) => {
       {isLargerThanMD ? (
         <>
         <div id="navCont">
-          <Link class="navItems" onClick={() => navigate('/developers')} fontSize="md" ml={6}>
+          <Link className="navItems" onClick={() => navigate('/developers')} fontSize="md" ml={6}>
             Developers
           </Link>
           
-          <Link class="navItems" onClick={() => navigate('/projects')} fontSize="md" ml={6}>
+          <Link className="navItems" onClick={() => navigate('/projects')} fontSize="md" ml={6}>
             Projects
           </Link>
 
@@ -64,7 +64,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
 
           { user ? (
             <>
-              <Link class="navItems" onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6}>
+              <Link className="navItems" onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6}>
                 Add Developer
               </Link>
               
@@ -75,12 +75,12 @@ const Nav = ({ onOpen, user, clearUser }) => {
               >
                 My Posts
               </Link> */}
-              <Link class="navItems" 
+              <Link className="navItems" 
                 onClick={() => navigate('/projects/create-project')}    fontSize="md" ml={6}
               >
                 Add Project
               </Link>
-              <Link class="navItems" 
+              <Link className="navItems" 
                 onClick={() => navigate('/change-password')} 
                 fontSize="md" 
                 ml={6}
@@ -90,7 +90,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
               </Link>
             </>) 
             :
-            <Link class="navItems" 
+            <Link className="navItems" 
               onClick={() => navigate('/sign-up')} 
               fontSize="md" 
               ml={6}

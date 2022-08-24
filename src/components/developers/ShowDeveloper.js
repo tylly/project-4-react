@@ -66,7 +66,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 })
             })
             
-    }, [developer])
+    }, [updated])
 
     const onModalClose = () => {
       onClose()

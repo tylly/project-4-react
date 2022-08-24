@@ -28,7 +28,7 @@ import { errorCreatingDev, errorUpdatingDev } from './AutoDismissAlert/messages'
 import { createDeveloper, updateDeveloper } from '../../api/developers'
 //import { useDisclosure } from '@chakra-ui/react'
   
-function DevForm({ user, type, msgAlert, dev, onClose }){
+function DevForm({ user, type, msgAlert, dev, onClose, triggerRefresh }){
   const [updated, setUpdated] = useState(false)
   const [name, setName] = useState('')
   const [linkedin, setLinkedin ] = useState('')
@@ -38,7 +38,7 @@ function DevForm({ user, type, msgAlert, dev, onClose }){
   const [ loading, setLoading ] = useState(null)
   const navigate = useNavigate()
   const myUrl = useRef("")
-  const triggerRefresh = () => setUpdated(prev => !prev)
+  //const triggerRefresh = () => setUpdated(prev => !prev)
     
   function handleSubmitCreate(event) {
     event.preventDefault()
