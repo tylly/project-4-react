@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import React from 'react'
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // useParams will allow us to see our parameters
 // useNavigate will allow us to navigate to a specific page
@@ -15,22 +15,43 @@ import {
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditProjectsModal from "./EditProjectsModal";
-import { Box, Image, Flex, Spacer, Badge, UnorderedList, ListItem, VStack, Link, Grid, GridItem, Button, WrapItem, Wrap, useDisclosure,  Drawer,
+import {
+  Box,
+  Image,
+  Flex,
+  Spacer,
+  Badge,
+  UnorderedList,
+  ListItem,
+  VStack,
+  Link,
+  Grid,
+  GridItem,
+  Button,
+  WrapItem,
+  Wrap,
+  useDisclosure,
+  Drawer,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton, 
+  DrawerCloseButton,
   FormLabel,
   Stack,
-  Input, 
+  Input,
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
-  Textarea, 
-} from '@chakra-ui/react';
-import { ExternalLinkIcon, DeleteIcon, EditIcon, AddIcon } from '@chakra-ui/icons'
+  Textarea,
+} from "@chakra-ui/react";
+import {
+  ExternalLinkIcon,
+  DeleteIcon,
+  EditIcon,
+  AddIcon,
+} from "@chakra-ui/icons";
 
 // import EditDestinationModal from "./EditDestinationModal";
 // import NewActivityModal from "../activities/NewActivityModal";
@@ -38,7 +59,6 @@ import { ExternalLinkIcon, DeleteIcon, EditIcon, AddIcon } from '@chakra-ui/icon
 // import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
 import ShowDevelopers from "../developers/ShowDeveloper";
-
 
 // We need to get the destination's id from the parameters
 // Then we need to make a request to the api
@@ -53,18 +73,17 @@ const cardContainerLayout = {
 const ShowProject = (props) => {
   const [project, setProject] = useState(null);
   //   const [activityModalShow, setActivityModalShow] = useState(false);
-     const [editModalShow, setEditModalShow] = useState(false);
+  const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const [name, setName] = useState('')
-  const [ description, setDescription] = useState('')
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
-  const [front_end_repo, setFront_end_repo] = useState('')
-  const [back_end_repo, setBack_end_repo] = useState('')
-  const [deployment, setDeployment] = useState('')
-  const {isOpen, onOpen, onClose } = useDisclosure()
-  const firstField = React.useRef()
-  const { user, handleClose, msgAlert, triggerRefresh } =
-  props;
+  const [front_end_repo, setFront_end_repo] = useState("");
+  const [back_end_repo, setBack_end_repo] = useState("");
+  const [deployment, setDeployment] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const firstField = React.useRef();
+  const { user, handleClose, msgAlert, triggerRefresh } = props;
   //   const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
   console.log(props);
   const { id } = useParams();
@@ -101,24 +120,23 @@ const ShowProject = (props) => {
   //   });
   // };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const updatedProject = {
-      name, 
-      description, 
+      name,
+      description,
       deployment,
       front_end_repo,
-      back_end_repo
-    }
+      back_end_repo,
+    };
 
     updateProject(user, project._id, updatedProject)
-      .then(res=> {
-          console.log('In the updateProject function')
-          handleClose()
-          setUpdated(true)
-      }) 
+      .then((res) => {
+        console.log("In the updateProject function");
+        handleClose();
+        setUpdated(true);
+      })
       .then(() =>
         msgAlert({
           heading: "oh yea!",
@@ -126,7 +144,7 @@ const ShowProject = (props) => {
           variant: "success",
         })
       )
-      .then(() => triggerRefresh())
+      .then(() => setUpdated(prev => !prev))
       .catch(() =>
         msgAlert({
           heading: "oh no!",
@@ -174,42 +192,58 @@ const ShowProject = (props) => {
   //   reviewCount: 34,
   //   rating: 4,
   // }
-  console.log('this is the front end repo', project.front_end_repo)
+  console.log("this is the front end repo", project.front_end_repo);
 
-  
-
-  const developerSideBar = project.developers.map((developer)=>(
-    <Box p='8' borderWidth='1px' pb='150%' marginTop='55px' >
-          <h1 style={{textAlign: 'center', paddingBottom: '10px'}}><strong>Developers:</strong></h1>
-          <UnorderedList listStyleType='none'>
-            <ListItem>
-              <Grid ml='-3'>
-                <GridItem colStart={2} mr='-2'>
-                  {/* Map through links */}
-                  <Link href={developer.linkedin}><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img></Link>
-                </GridItem>
-                <GridItem >
-                  <Link href={developer.github}d-inline><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img>
-                  </Link>
-                </GridItem>
-                <GridItem colEnd={6} ml='-4'>
-                  {/* {developer.name} map through */}
-                  {developer.name}
-                </GridItem>
-              </Grid>
-            </ListItem>
-          </UnorderedList> 
-          {user && project.owner === user._id ? (
-            <Wrap direction='row' justify='right' p='2'>
-              <WrapItem>
-                <Button leftIcon={<AddIcon/>} colorScheme='orange' size='xs' onClick={() => removeTheProject()}>
-                  Add Developer
-                </Button>
-              </WrapItem>
-            </Wrap>
-          ) : null}
-        </Box>
-  ))
+  const developerSideBar = project.developers.map((developer) => (
+    <Box p="8" borderWidth="1px" pb="150%" marginTop="55px">
+      <h1 style={{ textAlign: "center", paddingBottom: "10px" }}>
+        <strong>Developers:</strong>
+      </h1>
+      <UnorderedList listStyleType="none">
+        <ListItem>
+          <Grid ml="-3">
+            <GridItem colStart={2} mr="-2">
+              {/* Map through links */}
+              <Link href={developer.linkedin}>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  width="20px"
+                  height="20px"
+                ></img>
+              </Link>
+            </GridItem>
+            <GridItem>
+              <Link href={developer.github} d-inline>
+                <img
+                  src="https://www.svgrepo.com/show/332401/github.svg"
+                  width="20px"
+                  height="20px"
+                ></img>
+              </Link>
+            </GridItem>
+            <GridItem colEnd={6} ml="-4">
+              {/* {developer.name} map through */}
+              {developer.name}
+            </GridItem>
+          </Grid>
+        </ListItem>
+      </UnorderedList>
+      {user && project.owner === user._id ? (
+        <Wrap direction="row" justify="right" p="2">
+          <WrapItem>
+            <Button
+              leftIcon={<AddIcon />}
+              colorScheme="orange"
+              size="xs"
+              onClick={() => removeTheProject()}
+            >
+              Add Developer
+            </Button>
+          </WrapItem>
+        </Wrap>
+      ) : null}
+    </Box>
+  ));
 
   // const editProjectButton = () => (
   //   <>
@@ -280,60 +314,78 @@ const ShowProject = (props) => {
 
   return (
     <Flex>
-    <Box maxW='lg' maxH='80%' borderWidth='1px' borderRadius='lg' overflow='hidden' marginTop='80px'  marginLeft='25%' width='50%' >
-      <Image src={project.img} />
-      <Box p='3' >
-        <Box display='flex' alignItems='baseline'>
-          <Box
-          mt='2'
-          fontWeight='semibold'
-          as='h1'
-          lineHeight='tight'
-          noOfLines={1}
-          >
-          {project.name}
+      <Box
+        maxW="lg"
+        maxH="80%"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        marginTop="80px"
+        marginLeft="25%"
+        width="50%"
+      >
+        <Image src={project.img} />
+        <Box p="3">
+          <Box display="flex" alignItems="baseline">
+            <Box
+              mt="2"
+              fontWeight="semibold"
+              as="h1"
+              lineHeight="tight"
+              noOfLines={1}
+            >
+              {project.name}
+            </Box>
           </Box>
-        </Box>
-          <Box
-          mt='4'
-          as='h1'
-          lineHeight='tight'
-          >
+          <Box mt="4" as="h1" lineHeight="tight">
             Description: {project.description}
           </Box>
-          <Box mt='2'>
-          <Link href={project.deployment} isExternal  paddingRight='10px'>
-            Deployment URL<ExternalLinkIcon mx='2px' />
-          </Link>
+          <Box mt="2">
+            <Link href={project.deployment} isExternal paddingRight="10px">
+              Deployment URL
+              <ExternalLinkIcon mx="2px" />
+            </Link>
           </Box>
-          <Box  mt='2'>
-          <Link href={project.front_end_repo} isExternal  paddingRight='10px'>
-            Front-End Repo<ExternalLinkIcon mx='2px' />
-          </Link>
+          <Box mt="2">
+            <Link href={project.front_end_repo} isExternal paddingRight="10px">
+              Front-End Repo
+              <ExternalLinkIcon mx="2px" />
+            </Link>
           </Box>
-          <Box  mt='2'>
-          <Link href={project.back_end_repo} isExternal>
-            Back-End Repo<ExternalLinkIcon mx='2px' />
-          </Link>
+          <Box mt="2">
+            <Link href={project.back_end_repo} isExternal>
+              Back-End Repo
+              <ExternalLinkIcon mx="2px" />
+            </Link>
           </Box>
-      </Box>
-      {user && project.owner === user._id ? (
-        <Wrap direction='row' justify='right' p='2'>
-          <WrapItem>
-            <Button leftIcon={<DeleteIcon/>}colorScheme='red' size='xs' onClick={() => removeTheProject()}>
-              Delete
-            </Button>
-          </WrapItem>
-          <WrapItem>
-              <Button leftIcon={<EditIcon />} colorScheme='linkedin' size='xs' onClick={onOpen}>
+        </Box>
+        {user && project.owner === user._id ? (
+          <Wrap direction="row" justify="right" p="2">
+            <WrapItem>
+              <Button
+                leftIcon={<DeleteIcon />}
+                colorScheme="red"
+                size="xs"
+                onClick={() => removeTheProject()}
+              >
+                Delete
+              </Button>
+            </WrapItem>
+            <WrapItem>
+              <Button
+                leftIcon={<EditIcon />}
+                colorScheme="linkedin"
+                size="xs"
+                onClick={onOpen}
+              >
                 Edit
               </Button>
               <Drawer
                 isOpen={isOpen}
-                placement='right'
+                placement="right"
                 onClose={onClose}
                 initialFocusRef={firstField}
-                size='md'
+                size="md"
               >
                 <DrawerOverlay />
                 <DrawerContent>
@@ -341,10 +393,10 @@ const ShowProject = (props) => {
                   <DrawerHeader>Edit Project</DrawerHeader>
 
                   <DrawerBody>
-                  <Stack spacing='24px'>
+                    <Stack spacing="24px">
                       <Box>
-                        <FormLabel htmlFor='name'>Name</FormLabel>
-                        <Input 
+                        <FormLabel htmlFor="name">Name</FormLabel>
+                        <Input
                           id={project._id}
                           name="name"
                           type="text"
@@ -354,16 +406,16 @@ const ShowProject = (props) => {
                         />
                       </Box>
                       <Box>
-                        <FormLabel htmlFor='desc'>Description</FormLabel>
+                        <FormLabel htmlFor="desc">Description</FormLabel>
                         <Textarea
-                            name="description"
-                            id={project._id}
-                            defaultValue={project.description}
-                            onChange={(e) => setDescription(e.target.value)} 
+                          name="description"
+                          id={project._id}
+                          defaultValue={project.description}
+                          onChange={(e) => setDescription(e.target.value)}
                         />
                       </Box>
                       <Box>
-                        <FormLabel htmlFor='url'>Deployment URL</FormLabel>
+                        <FormLabel htmlFor="url">Deployment URL</FormLabel>
                         <InputGroup>
                           <InputLeftAddon>http://</InputLeftAddon>
                           <Input
@@ -371,14 +423,14 @@ const ShowProject = (props) => {
                             id={project._id}
                             defaultValue={project.deployment}
                             onChange={(e) => setDeployment(e.target.value)}
-                            type='url'
-                            placeholder='Please enter domain'
+                            type="url"
+                            placeholder="Please enter domain"
                           />
                           <InputRightAddon>.com</InputRightAddon>
                         </InputGroup>
                       </Box>
                       <Box>
-                        <FormLabel htmlFor='url'>Front-End Repo</FormLabel>
+                        <FormLabel htmlFor="url">Front-End Repo</FormLabel>
                         <InputGroup>
                           <InputLeftAddon>http://</InputLeftAddon>
                           <Input
@@ -386,14 +438,14 @@ const ShowProject = (props) => {
                             id={project._id}
                             defaultValue={project.front_end_repo}
                             onChange={(e) => setFront_end_repo(e.target.value)}
-                            type='url'
-                            placeholder='Please enter domain'
+                            type="url"
+                            placeholder="Please enter domain"
                           />
                           <InputRightAddon>.com</InputRightAddon>
                         </InputGroup>
                       </Box>
                       <Box>
-                        <FormLabel htmlFor='url'>Back-End Repo</FormLabel>
+                        <FormLabel htmlFor="url">Back-End Repo</FormLabel>
                         <InputGroup>
                           <InputLeftAddon>http://</InputLeftAddon>
                           <Input
@@ -401,8 +453,8 @@ const ShowProject = (props) => {
                             id={project._id}
                             defaultValue={project.back_end_repo}
                             onChange={(e) => setBack_end_repo(e.target.value)}
-                            type='url'
-                            placeholder='Please enter domain'
+                            type="url"
+                            placeholder="Please enter domain"
                           />
                           <InputRightAddon>.com</InputRightAddon>
                         </InputGroup>
@@ -410,36 +462,43 @@ const ShowProject = (props) => {
                     </Stack>
                   </DrawerBody>
                   <DrawerFooter>
-                    <Button variant='outline' mr={3} onClick={onClose}>
+                    <Button variant="outline" mr={3} onClick={onClose}>
                       Cancel
                     </Button>
-                    <Button onClick={handleSubmit} colorScheme='blue'>Save</Button>
+                    <Button onClick={handleSubmit} colorScheme="blue">
+                      Save
+                    </Button>
                   </DrawerFooter>
                 </DrawerContent>
               </Drawer>
-          </WrapItem>
-        </Wrap>
-       ) : null}
-    </Box>
-    <Spacer />
-    <VStack spacing={-.85} align='stretch' w='250px'>
-        <Box p='8' borderWidth='1px' pb='100%' marginTop='55px' textAlign='center'>
-          <h1><strong style={{ paddingBottom: '10px'}}>Tags:</strong> </h1>
-          <UnorderedList listStyleType='none'textAlign='center'>
+            </WrapItem>
+          </Wrap>
+        ) : null}
+      </Box>
+      <Spacer />
+      <VStack spacing={-0.85} align="stretch" w="250px">
+        <Box
+          p="8"
+          borderWidth="1px"
+          pb="100%"
+          marginTop="55px"
+          textAlign="center"
+        >
+          <h1>
+            <strong style={{ paddingBottom: "10px" }}>Tags:</strong>{" "}
+          </h1>
+          <UnorderedList listStyleType="none" textAlign="center">
             <ListItem>
-            {/* Will map through each tag*/}
-            <Badge mr='5'>
-            React
-            {project.tags}
-            </Badge>
+              {/* Will map through each tag*/}
+              <Badge mr="5">
+                React
+                {project.tags}
+              </Badge>
             </ListItem>
           </UnorderedList>
         </Box>
         {/* {developerSideBar} */}
-    </VStack>
-    
-   
-    
+      </VStack>
 
       {/* <Box p='6'>
         <Box display='flex' alignItems='baseline'>
@@ -503,8 +562,7 @@ const ShowProject = (props) => {
     </Box>
   ) */}
 
-
-  {/* // return (
+      {/* // return (
   //   <>
   //     <Container className="fluid" style={{ marginTop: "10%" }}>
   //       <Card
@@ -543,7 +601,7 @@ const ShowProject = (props) => {
        
   //     </Container> */}
 
-     {/* <EditProjectsModal
+      {/* <EditProjectsModal
         user={user}
         project={project}
         show={editModalShow}
@@ -553,7 +611,7 @@ const ShowProject = (props) => {
         // onClick={onOpen}
         handleClose={() => setEditModalShow(false)}
       /> */}
-     </Flex>
+    </Flex>
   );
 };
 
