@@ -12,7 +12,7 @@ const Footer = () => {
       textAlign="center"
       justifyContent="center"
       position='absolute'
-      marginBottom='0'
+      marginTop='40%'
     >
       <Text mb="3">
          By{' '}

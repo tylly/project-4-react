@@ -19,6 +19,9 @@ import {
   Box,
   Text,
   Button,
+  InputGroup,
+  Center,
+  Stack,
   Textarea,
   useDisclosure
   } from '@chakra-ui/react'
@@ -95,15 +98,25 @@ function DevForm({ user, type, msgAlert, dev, onClose, triggerRefresh }){
           variant: 'danger'
         })
       })
-    }
-    
-    if (loading) {
-    return <LoadingChakra/>
-    }
+  }
+  
+
+const editWidth = {
+  width: '100%'
+}
+
+const createWidth = {
+  width: '80%'
+}
+
+if (loading) {
+return <LoadingChakra/>
+}
   
   return (
     <>
-      <Box bg="gray:50" p={3} rounded="md" w={64}>
+    <Center>
+      <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} width={type === "edit" ? editWidth : createWidth}>
         <Text
           fontSize='4xl'
           textAlign={"center"}
@@ -115,8 +128,8 @@ function DevForm({ user, type, msgAlert, dev, onClose, triggerRefresh }){
           onSubmit={type === "edit" ? handleSubmitEdit : handleSubmitCreate}
           id='createDev'
         >
-          <FormControl>
-            <FormLabel htmlFor="name" textAlign={"center"} fontSize="lg">
+          <FormControl mt={3} my="3">
+            <FormLabel htmlFor="name" textAlign={"left"} fontSize="lg">
               Name
             </FormLabel>
             <Input 
@@ -130,50 +143,54 @@ function DevForm({ user, type, msgAlert, dev, onClose, triggerRefresh }){
           </FormControl>
 
           <FormControl my="3">
-            <FormLabel htmlFor="linkedin" textAlign={"center"} fontSize="lg">
-              LinkedIn
-            </FormLabel>
-            <Input 
-              id="linkedin"
-              name="linkedin"
-              type="text"
-              onChange={(e) => setLinkedin(e.target.value)}
-              defaultValue={type === "edit" ? `${dev.linkedin}` : ""}
-              required>
-            </Input>
+          <FormLabel htmlFor="url" fontSize="lg">LinkedIn</FormLabel>
+            <InputGroup>
+              <Input
+                id="linkedin"
+                name="linkedin"
+                type="text"
+                onChange={(e) => setLinkedin(e.target.value)}
+                defaultValue={type === "edit" ? `${dev.linkedin}` : ""}
+                required 
+              />
+            </InputGroup>
+            </FormControl>
+            <FormControl my="3">
+          <FormLabel htmlFor="url" fontSize="lg">Github</FormLabel>
+            <InputGroup>
+              <Input
+                id="github"
+                name="github"
+                type="text"
+                onChange={(e) => setLinkedin(e.target.value)}
+                defaultValue={type === "edit" ? `${dev.github}` : ""}
+                required 
+              />
+            </InputGroup>
           </FormControl>
 
           <FormControl my="3">
-            <FormLabel htmlFor="github" textAlign={"center"} fontSize="lg">
-              Github
-            </FormLabel>
-            <Input 
-              id="github"
-              name="github"
-              type="text"
-              onChange={(e) => setGithub(e.target.value)}
-              defaultValue={type === "edit" ? `${dev.github}` : ""}
-              required>
-            </Input>
+          <FormLabel htmlFor="url" fontSize="lg">Portfolio</FormLabel>
+            <InputGroup>
+              <Input
+                id="portfolio"
+                name="portfolio"
+                type="text"
+                onChange={(e) => setPortfolio(e.target.value)}
+                defaultValue={type === "edit" ? `${dev.portfolio}` : ""}
+                required
+                />
+            </InputGroup>
           </FormControl>
-
-          <FormControl my="3">
-            <FormLabel htmlFor="portfolio" textAlign={"center"} fontSize="lg">
-              Portfolio
-            </FormLabel>
-            <Input 
-              id="portfolio"
-              name="portfolio"
-              type="text"
-              onChange={(e) => setPortfolio(e.target.value)}
-              defaultValue={type === "edit" ? `${dev.portfolio}` : ""}
-              required>
-            </Input>
-          </FormControl>
-          
-          <Button mt="5" type="submit" width="half" align='center' colorScheme="blue">{type === "edit" ? "edit" : "create"}</Button>
+          <Stack direction='row' justifyContent={'right'} mt={7}>
+          <Button size='sm' type="submit" width="half" align='center' colorScheme="whatsapp">{type === "edit" ? "Save" : "Create"}</Button>
+          <Button  size='sm' colorScheme='twitter' onClick={onClose}>
+                Cancel
+          </Button>
+          </Stack>
         </form>
       </Box> 
+      </Center>
     </>
   )
 }

@@ -178,6 +178,7 @@ const App = () => {
           message={msgAlert.message}
           id={msgAlert.id}
           deleteAlert={deleteAlert}
+         
         />
       ))}
       
