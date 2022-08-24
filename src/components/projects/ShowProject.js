@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-// useParams will allow us to see our parameters
-// useNavigate will allow us to navigate to a specific page
 import "../../style.css";
-
-import { Container, Card } from "react-bootstrap";
-// import { Link } from "react-router-dom";
 import LoadingScreen from "../shared/LoadingScreen";
 import {
   getOneProject,
@@ -14,7 +9,6 @@ import {
   removeProject,
 } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
-import EditProjectsModal from "./EditProjectsModal";
 import {
   Box,
   Image,
@@ -31,20 +25,6 @@ import {
   WrapItem,
   Wrap,
   useDisclosure,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  FormLabel,
-  Stack,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Textarea,
 } from "@chakra-ui/react";
 import {
   ExternalLinkIcon,
@@ -52,6 +32,7 @@ import {
   EditIcon,
   AddIcon,
 } from "@chakra-ui/icons";
+import EditDrawer from "./EditDrawer";
 
 const ShowProject = (props) => {
   const [project, setProject] = useState(null);
@@ -251,91 +232,19 @@ const ShowProject = (props) => {
               >
                 Edit
               </Button>
-              <Drawer
+              <EditDrawer
                 isOpen={isOpen}
-                placement="right"
                 onClose={onClose}
-                initialFocusRef={firstField}
-                size="md"
-              >
-                <DrawerOverlay />
-                <DrawerContent>
-                  <DrawerCloseButton />
-                  <DrawerHeader>Edit Project</DrawerHeader>
-
-                  <DrawerBody>
-                    <Stack spacing="24px">
-                      <Box>
-                        <FormLabel htmlFor="name">Name</FormLabel>
-                        <Input
-                          id={project._id}
-                          name="name"
-                          type="text"
-                          onChange={(e) => setName(e.target.value)}
-                          defaultValue={project.name}
-                          required
-                        />
-                      </Box>
-                      <Box>
-                        <FormLabel htmlFor="desc">Description</FormLabel>
-                        <Textarea
-                          name="description"
-                          id={project._id}
-                          defaultValue={project.description}
-                          onChange={(e) => setDescription(e.target.value)}
-                        />
-                      </Box>
-                      <Box>
-                        <FormLabel htmlFor="url">Deployment URL</FormLabel>
-                        <InputGroup>
-                          <Input
-                            name="deployment"
-                            id={project._id}
-                            defaultValue={project.deployment}
-                            onChange={(e) => setDeployment(e.target.value)}
-                            type="url"
-                            placeholder="Please enter domain"
-                          />
-                        </InputGroup>
-                      </Box>
-                      <Box>
-                        <FormLabel htmlFor="url">Front-End Repo</FormLabel>
-                        <InputGroup>
-                          <Input
-                            name="front_end_repo"
-                            id={project._id}
-                            defaultValue={project.front_end_repo}
-                            onChange={(e) => setFront_end_repo(e.target.value)}
-                            type="url"
-                            placeholder="Please enter domain"
-                          />
-                        </InputGroup>
-                      </Box>
-                      <Box>
-                        <FormLabel htmlFor="url">Back-End Repo</FormLabel>
-                        <InputGroup>
-                          <Input
-                            name="back_end_repo"
-                            id={project._id}
-                            defaultValue={project.back_end_repo}
-                            onChange={(e) => setBack_end_repo(e.target.value)}
-                            type="url"
-                            placeholder="Please enter domain"
-                          />
-                        </InputGroup>
-                      </Box>
-                    </Stack>
-                  </DrawerBody>
-                  <DrawerFooter>
-                    <Button variant="outline" mr={3} onClick={onClose}>
-                      Cancel
-                    </Button>
-                    <Button onClick={handleSubmit} colorScheme="blue">
-                      Save
-                    </Button>
-                  </DrawerFooter>
-                </DrawerContent>
-              </Drawer>
+                setName={setName}
+                setDescription={setDescription}
+                setFront_end_repo={setFront_end_repo}
+                setBack_end_repo={setBack_end_repo}
+                setDeployment={setDeployment}
+                project={project}
+                handleSubmit={handleSubmit}
+                firstField={firstField}
+              />
+              
             </WrapItem>
           </Wrap>
         ) : null}
