@@ -28,7 +28,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
       : setScroll(false)
 
   window.addEventListener('scroll', changeScroll)
-  console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
+  //console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
   return (
     <Flex
       h="10vh"
