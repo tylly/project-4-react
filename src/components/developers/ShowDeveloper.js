@@ -206,34 +206,41 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 bg={'blue'}
                 size='sm'
                 color={'white'}
-                to={`/developers/`}
+                onClick={() => navigate(`/developers/`)}
                >
                Back
               </Button>
-              <Button
-                leftIcon={<EditIcon/>}
-                flex={1}
-                fontSize={'sm'}
-                rounded={'full'}
-                bg={'orange'}
-                size='sm'
-                color={'white'}
-                onClick={onOpen}
-               >
-               Edit
-              </Button>
-            <Button
-                leftIcon={<DeleteIcon/>}
-                flex={1}
-                fontSize={'sm'}
-                rounded={'full'}
-                bg={'red'}
-                size='sm'
-                color={'white'}
-                onClick={deleteDev}
-               >
-                Del
-              </Button>
+              { user ? (
+              <>
+                <Button
+                  leftIcon={<EditIcon/>}
+                  flex={1}
+                  fontSize={'sm'}
+                  rounded={'full'}
+                  bg={'orange'}
+                  size='sm'
+                  color={'white'}
+                  onClick={onOpen}
+                >
+                Edit
+                </Button>
+                <Button
+                  leftIcon={<DeleteIcon/>}
+                  flex={1}
+                  fontSize={'sm'}
+                  rounded={'full'}
+                  bg={'red'}
+                  size='sm'
+                  color={'white'}
+                  onClick={deleteDev}
+                >
+                  Del
+                </Button>
+              </>
+              )
+              :
+              ""
+              }
             </Stack>
           </Box>
         </Center>
