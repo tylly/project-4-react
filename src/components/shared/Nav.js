@@ -28,6 +28,9 @@ const Nav = ({ onOpen, user, clearUser }) => {
       ? setScroll(true)
       : setScroll(false)
 
+  const navStyle = {
+    textDecoration: 'none'
+  }
   window.addEventListener('scroll', changeScroll)
   //console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
   return (
@@ -81,6 +84,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
                 onClick={() => navigate('/change-password')} 
                 fontSize="md" 
                 ml={6}
+                style={navStyle}
               >
                 Change Password
               </Link>
@@ -90,6 +94,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
               onClick={() => navigate('/sign-up')} 
               fontSize="md" 
               ml={6}
+              style={navStyle}
             >
               Sign Up
             </Link>
@@ -113,9 +118,9 @@ const Nav = ({ onOpen, user, clearUser }) => {
         {isLargerThanMD ? (
           <>
             { user ? 
-              <Link onClick={clearUser} mb="3">Logout</Link> 
+              <Link onClick={clearUser} mb="3" style={navStyle}>Logout</Link> 
               : 
-              <Link href="/sign-in" fontSize="md" >Log In </Link>
+              <Link href="/sign-in" fontSize="md" style={navStyle}>Log In </Link>
             }
           </>
         ) : (
