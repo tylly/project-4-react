@@ -75,6 +75,8 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
     setFile(event.target.files[0]);
   }
 
+ 
+
   function handleChange(e) {
     // CS data structure - tree - for the autocomplete
 
@@ -101,10 +103,9 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               variant: "danger",
             });
           });
-      } // else {
-      //   updatedValue = e.target.value
-      //   updatedValue = updatedValue.charAt(0).toUpperCase()+updatedValue.slice(1)
-      // }
+      } else if (updatedName === tags){
+
+      }
 
       const updatedProject = {
         [updatedName]: updatedValue,
@@ -293,7 +294,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           <Button type="submit" className="mt-3" size="sm">
             Submit
           </Button>
-          <Autocomplete theme={{color: "black"}}/>
+          {/* <Autocomplete theme={{color: "black"}}/> */}
         </Form>
       </div>
     </div>

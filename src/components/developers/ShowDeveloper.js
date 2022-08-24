@@ -40,7 +40,7 @@ const linkStyle = {
   }
 
 
-const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
+const ShowDevelopers = ({ msgAlert, user }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const location = useLocation()
     console.log(location)
@@ -50,7 +50,7 @@ const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
     //console.log('I am the params in sho dev=======>>', dev._id)
     const [ developer, setDeveloper ] = useState(null)
     const [updated, setUpdated] = useState(false)
-
+    const triggerRefresh = () => setUpdated((prev) => !prev)
     useEffect(() => {
         getOneDeveloper(state)
             .then(res => {
@@ -66,7 +66,7 @@ const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
                 })
             })
             
-    }, [developer])
+    }, [updated])
 
     const deleteDev = () => {
         removeDeveloper(user, developer._id)

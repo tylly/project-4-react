@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 // import { Link } from "react-router-dom";
 
-import LoadingScreen from '../shared/LoadingScreen'
+import LoadingChakra from "../shared/LoadingChakra";
 import { getAllProjects } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import { Box } from '@chakra-ui/react'
@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { Link as RouteLink }  from 'react-router-dom'
+import DeveloperShowPreview from "../shared/DeveloperShow"
 // ShowAllProjects should make a request to the api
 // To get all services
 // Then display them when it gets them
@@ -59,9 +60,9 @@ const ProjectIndex = (props) => {
 
     // If services haven't been loaded yet, show a loading message
     if (!projects) {
-        return <LoadingScreen />
+        return <LoadingChakra />
     } else if (projects.length === 0) {
-        return <p>No services yet. Better add some.</p>
+        return <p>No projects yet. Better add some.</p>
     }
 
   if (error) {
@@ -87,7 +88,7 @@ const ProjectIndex = (props) => {
           fontSize='xs'
           textTransform='uppercase'
           ml='2'
-        >
+          >
           <Link href={project.front_end_repo} isExternal>
             Front-End Repo<ExternalLinkIcon mx='2px' />
           </Link> &bull; <Link href={project.back_end_repo} isExternal>
@@ -102,7 +103,7 @@ const ProjectIndex = (props) => {
         as='h4'
         lineHeight='tight'
         marginBottom='10px'
-      >
+        >
         {project.name}
       </Box>
 
@@ -133,7 +134,11 @@ const ProjectIndex = (props) => {
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
-      {project.developers}
+          <DeveloperShowPreview
+            devs={project.developers}
+            msgAlert={msgAlert}
+            />
+            
     </AccordionPanel>
   </AccordionItem>
 </Accordion>

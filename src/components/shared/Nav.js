@@ -15,6 +15,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { FaAlignJustify } from 'react-icons/fa'
 import { Icon } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import "../../style.css";
 
 const Nav = ({ onOpen, user, clearUser }) => {
   const [scroll, setScroll] = useState(false)
@@ -31,7 +32,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
     textDecoration: 'none'
   }
   window.addEventListener('scroll', changeScroll)
-  console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
+  //console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
   return (
     <Flex
       h="10vh"
@@ -50,11 +51,12 @@ const Nav = ({ onOpen, user, clearUser }) => {
               </Text>
       {isLargerThanMD ? (
         <>
-          <Link onClick={() => navigate('/developers')} fontSize="md" ml={6} style={navStyle}>
+        <div id="navCont">
+          <Link class="navItems" onClick={() => navigate('/developers')} fontSize="md" ml={6}>
             Developers
           </Link>
           
-          <Link onClick={() => navigate('/projects')} fontSize="md" ml={6} style={navStyle}>
+          <Link class="navItems" onClick={() => navigate('/projects')} fontSize="md" ml={6}>
             Projects
           </Link>
 
@@ -62,7 +64,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
 
           { user ? (
             <>
-              <Link onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6} style={navStyle}>
+              <Link class="navItems" onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6}>
                 Add Developer
               </Link>
               
@@ -73,12 +75,12 @@ const Nav = ({ onOpen, user, clearUser }) => {
               >
                 My Posts
               </Link> */}
-              <Link 
-                onClick={() => navigate('/projects/create-project')} fontSize="md" ml={6}
-                style={navStyle}>
+              <Link class="navItems" 
+                onClick={() => navigate('/projects/create-project')}    fontSize="md" ml={6}
+              >
                 Add Project
               </Link>
-              <Link 
+              <Link class="navItems" 
                 onClick={() => navigate('/change-password')} 
                 fontSize="md" 
                 ml={6}
@@ -88,7 +90,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
               </Link>
             </>) 
             :
-            <Link 
+            <Link class="navItems" 
               onClick={() => navigate('/sign-up')} 
               fontSize="md" 
               ml={6}
@@ -97,6 +99,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
               Sign Up
             </Link>
           }
+          </div>
           
         </>
       ) : (

@@ -16,6 +16,8 @@ const messages = {
 	createProjectSuccess: 'Successfully uploaded your project!',
 	createProjectFailure: 'Failed to upload your project',
 	errorUploadingImage: 'Error uploading image',
+	errorUpdatingProject: 'Error editing project',
+	successEditProject: 'Project edited successfully',
 
 }
 

@@ -16,7 +16,9 @@ export const getOneDeveloper = (id) => {
 export const getOneDevByName = (name) => {
     return axios(`${apiUrl}/developers/name/${name}`)
 }
-
+export const getDevPfp = (linkUrl) => {
+	return axios(linkUrl)
+}
 // CREATE
 export const createDeveloper = (user, newDeveloper) => {
     console.log('hit')
