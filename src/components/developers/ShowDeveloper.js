@@ -2,10 +2,9 @@ import { getOneDeveloper, removeDeveloper } from "../../api/developers"
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from "react-bootstrap"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingChakra from "../shared/LoadingChakra"
-import { Button, ButtonGroup } from '@chakra-ui/react'
 import { useDisclosure } from "@chakra-ui/hooks"
 import {
     Modal,
@@ -15,9 +14,31 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
+    Heading,
+    Avatar,
+    Box,
+    Center,
+    Text,
+    Stack,
+    Button,
+    Link,
+    Badge,
+    Grid, 
+    GridItem, 
+    VStack,
+    HStack,
+    Image,
   } from '@chakra-ui/react'
 
+  import { ArrowBackIcon, DeleteIcon, EditIcon, SearchIcon } from '@chakra-ui/icons'
+
 import DevForm from "../shared/DevForm"
+import ProjectForm from "../shared/ProjectForm"
+
+const linkStyle = {
+    textDecoration: 'none'
+  }
+
 
 const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -77,73 +98,213 @@ const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
         )
     } 
 
+    // const developerTag = project.tags.map((tags)=>(
+        // <Badge
+        //     px={2}
+        //     py={1}
+        //     fontWeight={'400'}>
+        //     {project.tags}
+        // </Badge>
+    // ))
+
     return (
         <>
-            <Card style={{ width: '30%', margin: 5, marginTop: 75}} key={ developer._id }>
-                <Card.Header>{ developer.name}</Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <small>LinkedIn: { developer.linkedin }</small><br />
-                        <small>Github: { developer.github }</small><br />
-                        <small>Portfolio: { developer.portfolio }</small><br />
-                        <hr/>
-                        <small>Projects: { developer.projects }</small><br/>
-                        <hr/>
-                        <Link to={`/developers/`}>Back to index</Link>
-                        {user ? 
-                        <ButtonGroup>
+        <Center py={6}>
+          <Box
+            maxW={'320px'}
+            w={'full'}
+            bg={'white'}
+            boxShadow={'2xl'}
+            rounded={'lg'}
+            p={6}
+            textAlign={'center'}>
+            <Avatar
+              size={'xl'}
+              src={
+                'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+              }
+              alt={'Avatar Alt'}
+              mb={4}
+              pos={'relative'}
+              _after={{
+                content: '""',
+                w: 4,
+                h: 4,
+                bg: 'green.300',
+                border: '2px solid white',
+                rounded: 'full',
+                pos: 'absolute',
+                bottom: 0,
+                right: 3,
+              }}
+            />
+            <Heading fontSize={'2xl'} fontFamily={'body'}>
+              {developer.name}
+            </Heading>
+            <Link href={developer.portfolio} fontWeight={600} color={'gray.500'} mb={4}>
+              {developer.portfolio}
+            </Link>
+            <Stack direction='row' mt={5} boxSize='50px'>
+                <Image
+                    boxSize='20px'
+                    objectFit='cover'
+                    src='https://cdn-icons-png.flaticon.com/512/174/174857.png'
+                    alt='Linked In'
+                /><Link textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle}>{developer.linkedin}</Link>
+            </Stack>
+            <Stack direction='row' mt={3} boxSize='50px'>
+                <Image
+                    boxSize='20px'
+                    objectFit='cover'
+                    src='https://www.svgrepo.com/show/332401/github.svg'
+                    alt='Github'
+                /><Link textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle}>{developer.github}</Link>
+            </Stack>
 
-                            <Button 
-                                colorScheme='teal' 
-                                size='sm'
-                                onClick={onOpen}
-                            >
-                                Edit
-                            </Button>
-                            <Button 
-                                colorScheme='teal' 
-                                size='sm'
-                                onClick={deleteDev}
-                            
-                            >
-                                Delete
-                            </Button>
-                        </ButtonGroup>
-                        :
-                        ""
-                        }
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
+              <Badge
+                px={2}
+                py={1}
+                fontWeight={'400'}>
+                #art
+              </Badge>
+              <Badge
+                px={2}
+                py={1}
+               
+                fontWeight={'400'}>
+                #photography
+              </Badge>
+              <Badge
+                px={2}
+                py={1}
+                
+                fontWeight={'400'}>
+                #music
+              </Badge>
+            </Stack>
+    
+            <Stack mt={8} direction={'row'} spacing={2} mb={2}>
+              <Button
+                flex={1}
+                fontSize={'sm'}
+                rounded={'full'}
+                size='sm'
+                colorScheme={'purple'}
+                >
+                Projects
+              </Button>
+              <Button
+                rightIcon={<ArrowBackIcon/>}
+                flex={1}
+                fontSize={'sm'}
+                rounded={'full'}
+                bg={'blue'}
+                size='sm'
+                color={'white'}
+                to={`/developers/`}
+               >
+               Back
+              </Button>
+              <Button
+                leftIcon={<EditIcon/>}
+                flex={1}
+                fontSize={'sm'}
+                rounded={'full'}
+                bg={'orange'}
+                size='sm'
+                color={'white'}
+                onClick={onOpen}
+               >
+               Edit
+              </Button>
+            <Button
+                leftIcon={<DeleteIcon/>}
+                flex={1}
+                fontSize={'sm'}
+                rounded={'full'}
+                bg={'red'}
+                size='sm'
+                color={'white'}
+                onClick={deleteDev}
+               >
+                Del
+              </Button>
+            </Stack>
+          </Box>
+        </Center>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <DevForm
-                            type='edit'
-                            msgAlert={msgAlert} 
-                            user={user}
-                            triggerRefresh={() => setUpdated(prev => !prev)}
-                            dev={developer}
-                            onClose={onClose}
-                        />
-                    </ModalBody>
-        
-                    <ModalFooter>
-                    
-                    <Button colorScheme='blue' mr={3} onClick={onClose}>
-                        Cancel
-                    </Button>
-                    <Button variant='ghost'>Secondary Action</Button>
+        <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+                <DevForm
+                    type='edit'
+                    msgAlert={msgAlert} 
+                    user={user}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                    dev={developer}
+                    onClose={onClose}
+                />
+            </ModalBody>
 
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+            <ModalFooter>
+            
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Cancel
+            </Button>
+            <Button variant='ghost'>Secondary Action</Button>
+
+            </ModalFooter>
+        </ModalContent>
+        </Modal>
         </>
-    )
+      );
+
+
+    // return (
+    //     <>
+    //         <Card style={{ width: '30%', margin: 5, marginTop: 75}} key={ developer._id }>
+    //             <Card.Header>{ developer.name}</Card.Header>
+    //             <Card.Body>
+    //                 <Card.Text>
+    //                     <small>LinkedIn: { developer.linkedin }</small><br />
+    //                     <small>Github: { developer.github }</small><br />
+    //                     <small>Portfolio: { developer.portfolio }</small><br />
+    //                     <hr/>
+    //                     <small>Projects: { developer.projects }</small><br/>
+    //                     <hr/>
+    //                     <Link to={`/developers/`}>Back to index</Link>
+    //                     {user ? 
+    //                     <ButtonGroup>
+
+    //                         <Button 
+    //                             colorScheme='teal' 
+    //                             size='sm'
+    //                             onClick={onOpen}
+    //                         >
+    //                             Edit
+    //                         </Button>
+    //                         <Button 
+    //                             colorScheme='teal' 
+    //                             size='sm'
+    //                             onClick={deleteDev}
+                            
+    //                         >
+    //                             Delete
+    //                         </Button>
+    //                     </ButtonGroup>
+    //                     :
+    //                     ""
+    //                     }
+    //                 </Card.Text>
+    //             </Card.Body>
+    //         </Card>
+
+    //     </>
+    // )
     
 }
 
