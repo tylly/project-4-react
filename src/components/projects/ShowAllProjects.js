@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 // import { Link } from "react-router-dom";
 
-import LoadingScreen from '../shared/LoadingScreen'
+import LoadingChakra from "../shared/LoadingChakra";
 import { getAllProjects } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import { Box } from '@chakra-ui/react'
@@ -59,9 +59,9 @@ const ProjectIndex = (props) => {
 
     // If services haven't been loaded yet, show a loading message
     if (!projects) {
-        return <LoadingScreen />
+        return <LoadingChakra />
     } else if (projects.length === 0) {
-        return <p>No services yet. Better add some.</p>
+        return <p>No projects yet. Better add some.</p>
     }
 
   if (error) {
@@ -133,7 +133,7 @@ const ProjectIndex = (props) => {
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
-      {project.developers}
+      {/* {project.developers} */}
     </AccordionPanel>
   </AccordionItem>
 </Accordion>
