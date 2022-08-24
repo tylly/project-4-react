@@ -133,9 +133,6 @@ const ProjectIndex = (props) => {
         <AccordionIcon />
       </AccordionButton>
     </h2>
-        {/* {projects.developers.map((developer) => (
-          {developer}
-      ))} */}
     <AccordionPanel pb={4}>
           <DeveloperShowPreview
             devs={project.developers}
