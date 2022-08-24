@@ -150,7 +150,7 @@ const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
                     objectFit='cover'
                     src='https://cdn-icons-png.flaticon.com/512/174/174857.png'
                     alt='Linked In'
-                /><Link textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle}>{developer.linkedin}</Link>
+                /><Link href={developer.linkedin} textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.linkedin} </Link>
             </Stack>
             <Stack direction='row' mt={3} boxSize='50px'>
                 <Image
@@ -158,7 +158,7 @@ const ShowDevelopers = ({msgAlert, user, triggerRefresh}) => {
                     objectFit='cover'
                     src='https://www.svgrepo.com/show/332401/github.svg'
                     alt='Github'
-                /><Link textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle}>{developer.github}</Link>
+                /><Link href={developer.github}textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.github}</Link>
             </Stack>
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
