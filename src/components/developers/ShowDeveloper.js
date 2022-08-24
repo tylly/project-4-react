@@ -66,8 +66,12 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 })
             })
             
-    }, [updated])
+    }, [developer])
 
+    const onModalClose = () => {
+      onClose()
+      triggerRefresh()
+    }
     const deleteDev = () => {
         removeDeveloper(user, developer._id)
             .then(res => {
@@ -234,10 +238,10 @@ const ShowDevelopers = ({ msgAlert, user }) => {
           </Box>
         </Center>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onModalClose={onModalClose}>
         <ModalOverlay />
         <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
+            {/* <ModalHeader>Modal Title</ModalHeader> */}
             <ModalCloseButton />
             <ModalBody>
                 <DevForm

@@ -12,6 +12,7 @@ const messages = {
 	errorFindingDev: 'Error finding the developer',
 	errorCreatingDev: 'Error creating developer',
 	errorDeletingDev: 'Error deleting developer',
+	errorUpdatingDev: 'Error editing developer',
 	successDeletingDev: 'Successfully removed developer!',
 	createProjectSuccess: 'Successfully uploaded your project!',
 	createProjectFailure: 'Failed to upload your project',

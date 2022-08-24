@@ -8,68 +8,71 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 
-  import {useState, useRef} from 'react'
-  import {
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    Input,
-    Flex,
-    Box,
-    Text,
-    Button,
-    Textarea,
-    useDisclosure
-    } from '@chakra-ui/react'
-  import { useNavigate } from 'react-router-dom'
-  import LoadingChakra from './LoadingChakra'
-  import { errorCreatingDev } from './AutoDismissAlert/messages'
+import {useState, useRef} from 'react'
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Input,
+  Flex,
+  Box,
+  Text,
+  Button,
+  Textarea,
+  useDisclosure
+  } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import LoadingChakra from './LoadingChakra'
+import { errorCreatingDev, errorUpdatingDev } from './AutoDismissAlert/messages'
 import { createDeveloper, updateDeveloper } from '../../api/developers'
 //import { useDisclosure } from '@chakra-ui/react'
   
-  function DevForm({ user, type, msgAlert, dev, onClose }){
-    const [updated, setUpdated] = useState(false)
-    const [name, setName] = useState('')
-    const [linkedin, setLinkedin ] = useState('')
-    const [github, setGithub ] = useState('')
-    const [portfolio, setPortfolio ] = useState('')
-    const [ upload, setUpload ] = useState({})
-    const [ loading, setLoading ] = useState(null)
-    const navigate = useNavigate()
-    const myUrl = useRef("")
-    const triggerRefresh = () => setUpdated(prev => !prev)
+function DevForm({ user, type, msgAlert, dev, onClose }){
+  const [updated, setUpdated] = useState(false)
+  const [name, setName] = useState('')
+  const [linkedin, setLinkedin ] = useState('')
+  const [github, setGithub ] = useState('')
+  const [portfolio, setPortfolio ] = useState('')
+  const [ upload, setUpload ] = useState({})
+  const [ loading, setLoading ] = useState(null)
+  const navigate = useNavigate()
+  const myUrl = useRef("")
+  const triggerRefresh = () => setUpdated(prev => !prev)
     
-    function handleSubmitCreate(event) {
-      event.preventDefault()
-      setLoading(true)
-          const newDev = {
-            name,
-            linkedin,
-            github,
-            portfolio
-          }
-          createDeveloper(user, newDev)
-            .then(() => {
-              navigate('/developers')
-            })
-            .catch(err => {
-              console.log(err)
-              msgAlert({
-                heading: 'Error',
-                message: errorCreatingDev,
-                variant: 'danger'
-              })
-              setLoading(false)
-            })
-        
+  function handleSubmitCreate(event) {
+    event.preventDefault()
+    setLoading(true)
+      const newDev = {
+        name,
+        linkedin,
+        github,
+        portfolio
+      }
+      createDeveloper(user, newDev)
+        .then(() => {
+          navigate('/developers')
+        })
+        .catch(err => {
+          console.log(err)
+          msgAlert({
+            heading: 'Error',
+            message: errorCreatingDev,
+            variant: 'danger'
+          })
+          setLoading(false)
+        })
         .then(() => setLoading(false))
         .catch(err => {
           console.log(err)
-          msgAlert("Image upload error", "error")
+          msgAlert({
+            heading: 'Error',
+            message: errorCreatingDev,
+            variant: 'danger'
+          })
           setLoading(false)
         })
-      }
+    }
   
     function handleSubmitEdit (e) {
       e.preventDefault()
@@ -86,7 +89,11 @@ import { createDeveloper, updateDeveloper } from '../../api/developers'
       })
       .catch(err => {
         console.log(err)
-        msgAlert("edit post error", "error")
+        msgAlert({
+          heading: 'Error',
+          message: errorUpdatingDev,
+          variant: 'danger'
+        })
       })
     }
     
