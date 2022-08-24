@@ -18,14 +18,19 @@ const DeveloperShowPreview = ({devs, user, msgAlert}) => {
             <UnorderedList listStyleType='none'>
             <ListItem>
               <Grid ml='-3'>
-                <GridItem colStart={2} mr='-2'>
+                <GridItem colStart={2} mr='1'>
                   {dev.name}
                 </GridItem>
                 <GridItem >
                   <Link href={dev.linkedin}><img src='https://cdn-icons-png.flaticon.com/512/174/174857.png' width='20px' height='20px'></img><ExternalLinkIcon mx='2px' /></Link>
                 </GridItem>
-                <GridItem colEnd={6} ml='-61'>
+                <GridItem>
                   <Link href={dev.github} d-inline><img src='https://www.svgrepo.com/show/332401/github.svg' width='20px' height='20px'></img><ExternalLinkIcon mx='2px' /></Link>
+                </GridItem>
+                <GridItem colEnd={6}>
+                <Box as='button' borderRadius='sm' bg='orange' color='white' px={4} h={8} alignContent='center'>
+                    View
+                </Box>
                 </GridItem>
               </Grid>
             </ListItem>
