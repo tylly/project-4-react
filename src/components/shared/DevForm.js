@@ -20,34 +20,29 @@ import {
   Text,
   Button,
   Textarea,
-  useDisclosure, 
-  Center,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Stack
+  useDisclosure
   } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import LoadingChakra from './LoadingChakra'
-import { errorCreatingDev } from './AutoDismissAlert/messages'
+import { errorCreatingDev, errorUpdatingDev } from './AutoDismissAlert/messages'
 import { createDeveloper, updateDeveloper } from '../../api/developers'
 //import { useDisclosure } from '@chakra-ui/react'
-
-function DevForm({ user, type, msgAlert, dev, onClose }){
-const [updated, setUpdated] = useState(false)
-const [name, setName] = useState('')
-const [linkedin, setLinkedin ] = useState('')
-const [github, setGithub ] = useState('')
-const [portfolio, setPortfolio ] = useState('')
-const [ upload, setUpload ] = useState({})
-const [ loading, setLoading ] = useState(null)
-const navigate = useNavigate()
-const myUrl = useRef("")
-const triggerRefresh = () => setUpdated(prev => !prev)
-
-function handleSubmitCreate(event) {
-  event.preventDefault()
-  setLoading(true)
+  
+function DevForm({ user, type, msgAlert, dev, onClose, triggerRefresh }){
+  const [updated, setUpdated] = useState(false)
+  const [name, setName] = useState('')
+  const [linkedin, setLinkedin ] = useState('')
+  const [github, setGithub ] = useState('')
+  const [portfolio, setPortfolio ] = useState('')
+  const [ upload, setUpload ] = useState({})
+  const [ loading, setLoading ] = useState(null)
+  const navigate = useNavigate()
+  const myUrl = useRef("")
+  //const triggerRefresh = () => setUpdated(prev => !prev)
+    
+  function handleSubmitCreate(event) {
+    event.preventDefault()
+    setLoading(true)
       const newDev = {
         name,
         linkedin,
@@ -67,47 +62,51 @@ function handleSubmitCreate(event) {
           })
           setLoading(false)
         })
+        .then(() => setLoading(false))
+        .catch(err => {
+          console.log(err)
+          msgAlert({
+            heading: 'Error',
+            message: errorCreatingDev,
+            variant: 'danger'
+          })
+          setLoading(false)
+        })
+    }
+  
+    function handleSubmitEdit (e) {
+      e.preventDefault()
+      const editedFields = {
+      name,
+      linkedin,
+      github,
+      portfolio
+      }
+      updateDeveloper(user, dev._id, editedFields)
+        .then(res => {
+          onClose()
+          triggerRefresh()
+      })
+      .catch(err => {
+        console.log(err)
+        msgAlert({
+          heading: 'Error',
+          message: errorUpdatingDev,
+          variant: 'danger'
+        })
+      })
+    }
     
-    .then(() => setLoading(false))
-    .catch(err => {
-      console.log(err)
-      msgAlert("Image upload error", "error")
-      setLoading(false)
-    })
-  }
-
-function handleSubmitEdit (e) {
-  e.preventDefault()
-  const editedFields = {
-  name,
-  linkedin,
-  github,
-  portfolio
-  }
-  updateDeveloper(user, dev._id, editedFields)
-    .then(res => {
-      onClose()
-      triggerRefresh()
-  })
-  .catch(err => {
-    console.log(err)
-    msgAlert("edit post error", "error")
-  })
-}
-
-if (loading) {
-return <LoadingChakra/>
-}
+    if (loading) {
+    return <LoadingChakra/>
+    }
   
   return (
     <>
-    <Center>
-      <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} width='100%'>
+      <Box bg="gray:50" p={3} rounded="md" w={64}>
         <Text
-          fontSize='3xl'
+          fontSize='4xl'
           textAlign={"center"}
-          as='b'
-          
         >
           {type==="edit" ? "Edit Developer" : "Create Developer" }
         </Text>
@@ -115,10 +114,9 @@ return <LoadingChakra/>
         <form 
           onSubmit={type === "edit" ? handleSubmitEdit : handleSubmitCreate}
           id='createDev'
-          
         >
-          <FormControl mt={3}>
-            <FormLabel htmlFor="name" textAlign={"left"} fontSize="lg">
+          <FormControl>
+            <FormLabel htmlFor="name" textAlign={"center"} fontSize="lg">
               Name
             </FormLabel>
             <Input 
@@ -132,68 +130,52 @@ return <LoadingChakra/>
           </FormControl>
 
           <FormControl my="3">
-          <FormLabel htmlFor="url" fontSize="lg">LinkedIn</FormLabel>
-            <InputGroup>
-              <InputLeftAddon>http://</InputLeftAddon>
-              <Input
-                id="linkedin"
-                name="linkedin"
-                type="text"
-                onChange={(e) => setLinkedin(e.target.value)}
-                defaultValue={type === "edit" ? `${dev.linkedin}` : ""}
-                required 
-              />
-              <InputRightAddon>.com</InputRightAddon>
-            </InputGroup>
-            </FormControl>
-            <FormControl my="3">
-          <FormLabel htmlFor="url" fontSize="lg">Github</FormLabel>
-            <InputGroup>
-              <InputLeftAddon>http://</InputLeftAddon>
-              <Input
-                id="github"
-                name="github"
-                type="text"
-                onChange={(e) => setLinkedin(e.target.value)}
-                defaultValue={type === "edit" ? `${dev.github}` : ""}
-                required 
-              />
-              <InputRightAddon>.com</InputRightAddon>
-            </InputGroup>
+            <FormLabel htmlFor="linkedin" textAlign={"center"} fontSize="lg">
+              LinkedIn
+            </FormLabel>
+            <Input 
+              id="linkedin"
+              name="linkedin"
+              type="text"
+              onChange={(e) => setLinkedin(e.target.value)}
+              defaultValue={type === "edit" ? `${dev.linkedin}` : ""}
+              required>
+            </Input>
           </FormControl>
+
           <FormControl my="3">
-          <FormLabel htmlFor="url" fontSize="lg">Portfolio</FormLabel>
-            <InputGroup>
-              <InputLeftAddon>http://</InputLeftAddon>
-              <Input
-                id="portfolio"
-                name="portfolio"
-                type="text"
-                onChange={(e) => setPortfolio(e.target.value)}
-                defaultValue={type === "edit" ? `${dev.portfolio}` : ""}
-                required
-                />
-              <InputRightAddon>.com</InputRightAddon>
-            </InputGroup>
+            <FormLabel htmlFor="github" textAlign={"center"} fontSize="lg">
+              Github
+            </FormLabel>
+            <Input 
+              id="github"
+              name="github"
+              type="text"
+              onChange={(e) => setGithub(e.target.value)}
+              defaultValue={type === "edit" ? `${dev.github}` : ""}
+              required>
+            </Input>
           </FormControl>
-          <Stack direction='row' justifyContent={'right'} mt={7}>
-          <Button size='sm' type="submit" width="half" align='center' colorScheme="whatsapp">{type === "edit" ? "Save" : "Create"}</Button>
-          <Button  size='sm' colorScheme='twitter' onClick={onClose}>
-                Cancel
-          </Button>
-          </Stack>
+
+          <FormControl my="3">
+            <FormLabel htmlFor="portfolio" textAlign={"center"} fontSize="lg">
+              Portfolio
+            </FormLabel>
+            <Input 
+              id="portfolio"
+              name="portfolio"
+              type="text"
+              onChange={(e) => setPortfolio(e.target.value)}
+              defaultValue={type === "edit" ? `${dev.portfolio}` : ""}
+              required>
+            </Input>
+          </FormControl>
+          
+          <Button mt="5" type="submit" width="half" align='center' colorScheme="blue">{type === "edit" ? "edit" : "create"}</Button>
         </form>
       </Box> 
-    </Center>
     </>
   )
 }
 
 export default DevForm
-
-
-  
-  
-     
-           
-   

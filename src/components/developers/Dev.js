@@ -13,13 +13,14 @@ const Dev = ({dev, user, msgAlert}) => {
                     <Card.Text>
                         <small>LinkedIn: { dev.linkedin }</small><br />
                         <small>Github: { dev.github }</small><br />
-                        <hr/>
+                    </Card.Text>
+                    <hr/>
+                    <Card.Text>
                         <Link 
                             to={`/developers/${dev._id}`}
                             state={dev._id}
                         >View { dev.name }
                         </Link>
-
                     </Card.Text>
                 </Card.Body>
             </Card>
