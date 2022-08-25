@@ -3,13 +3,14 @@ import {getAllDevelopers} from '../../api/developers'
 import Dev from '../developers/Dev'
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingChakra from '../shared/LoadingChakra'
-
+import {  useNavigate } from 'react-router-dom'
 
 const ShowAllDevelopers = ({user, msgAlert}) => {
 
     const [developers, setDevelopers] = useState(null)
     const [updated, setUpdated] = useState(false)
-    
+    const navigate = useNavigate()
+
     useEffect(() => {
         getAllDevelopers()
             
@@ -55,6 +56,7 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
             devId={dev._id}
             triggerRefresh={() => setUpdated(prev=>!prev)}
             msgAlert={msgAlert}
+            navigate={navigate}
             />
     })
 

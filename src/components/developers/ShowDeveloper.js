@@ -30,7 +30,7 @@ import {
     Image,
   } from '@chakra-ui/react'
 
-  import { ArrowBackIcon, DeleteIcon, EditIcon, SearchIcon } from '@chakra-ui/icons'
+  import { ArrowBackIcon, DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import DevForm from "../shared/DevForm"
 import ProjectForm from "../shared/ProjectForm"
@@ -40,13 +40,13 @@ const linkStyle = {
   }
 
 
-const ShowDevelopers = ({ msgAlert, user }) => {
+const ShowDevelopers = ({ msgAlert, user, navigate }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const location = useLocation()
     console.log(location)
     const state = location.state
     const { id } = useParams();
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     console.log('THIS IS THE STATE IN DEV SHOW PAGE=======>>', state)
     //console.log('I am the params in sho dev=======>>', dev._id)
     const [ developer, setDeveloper ] = useState(null)
