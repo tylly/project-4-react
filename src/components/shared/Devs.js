@@ -1,11 +1,10 @@
 import React from "react";
-import { useState, useLocation, useEffect } from "react";
-import { Dropdown, DropdownButton, Form } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Dropdown } from "react-bootstrap";
 import { getAllDevelopers } from "../../api/developers";
 import "../../style.css";
 export default function Devs() {
-  const [value, setValue] = useState("React");
-  const [tags, setTags] = useState([]);
+
   const [developersItems, setDevelopersItems] = useState([]);
 
 useEffect(() => {
@@ -19,7 +18,7 @@ useEffect(() => {
     });
 }, [])
   const developerDropDownItems = developersItems.map((item) => (
-    <Dropdown.Item eventKey={item.name}>{item.name}</Dropdown.Item>
+    <Dropdown.Item key={item._id} eventKey={item._id}>{item.name}</Dropdown.Item>
   ));
 
   return <>{developerDropDownItems}</>;

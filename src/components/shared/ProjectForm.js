@@ -142,7 +142,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
         const newProject = {
           ...project,
           img: image,
-          developers: dev, // dev is undefined
+          developers: devs, // dev is undefined
           tags: tags,
         };
 
@@ -153,7 +153,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
         createProject(user, newProject)
           .then(res => {
             console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\n", res)
-            console.log('DEV ID GOING IN\n', dev)
+            console.log('DEV ID GOING IN\n', devs)
             updateDeveloperWithProject(user, res.data.project._id, dev)
               .then(developer => {
                 console.log('DEVELOPER', developer)
@@ -297,7 +297,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             className="mt-2"
             style={{ textAlign: "center" }}
           />
-          <Form.Control
+          {/* <Form.Control
             placeholder="Developers"
             name="developers"
             id={project._id}
@@ -305,7 +305,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             //onChange={handleChange}
             className="mt-2"
             style={{ textAlign: "center" }}
-          />
+          /> */}
 
           <Form.Group controlId="formFileLg" className="mt-2">
             <Form.Label>Image</Form.Label>
