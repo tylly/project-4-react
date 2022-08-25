@@ -111,61 +111,73 @@ const ShowProject = (props) => {
   if (!project) {
     return <LoadingScreen />;
   }
-  console.log("this is the front end repo", project.front_end_repo);
 
-  const developerSideBar = project.developers.map((developer) => (
-    <Box p="8" borderWidth="1px" pb="150%" marginTop="55px">
-      <h1 style={{ textAlign: "center", paddingBottom: "10px" }}>
-        <strong>Developers:</strong>
-      </h1>
-      <UnorderedList listStyleType="none">
-        <ListItem>
-          <Grid ml="-3">
-            <GridItem colStart={2} mr="-2">
-              {/* Map through links */}
-              <Link href={developer.linkedin}>
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                  width="20px"
-                  height="20px"
-                ></img>
-              </Link>
-            </GridItem>
-            <GridItem>
-              <Link href={developer.github} d-inline>
-                <img
-                  src="https://www.svgrepo.com/show/332401/github.svg"
-                  width="20px"
-                  height="20px"
-                ></img>
-              </Link>
-            </GridItem>
-            <GridItem colEnd={6} ml="-4">
-              {/* {developer.name} map through */}
-              {developer.name}
-            </GridItem>
-          </Grid>
-        </ListItem>
-      </UnorderedList>
-      {user && project.owner === user._id ? (
-        <Wrap direction="row" justify="right" p="2">
-          <WrapItem>
-            <Button
-              leftIcon={<AddIcon />}
-              colorScheme="orange"
-              size="xs"
-              onClick={() => removeTheProject()}
-            >
-              Add Developer
-            </Button>
-          </WrapItem>
-        </Wrap>
-      ) : null}
-    </Box>
-  ));
+  // if (!project.developers){
+  //   return <Box>
+  //           This project does not have any developers. You can add some by clicking "Add developer"
+  //         </Box>
+  // }
+  // const developerSideBar = project.developers.map((developer) => (
+  //   <Box p="8" borderWidth="1px" pb="150%" marginTop="55px">
+  //     <h1 style={{ textAlign: "center", paddingBottom: "10px", zIndex: '1', color: 'black' }}>
+  //       <strong>Developers:</strong>
+  //     </h1>
+  //     <UnorderedList listStyleType="none">
+  //       <ListItem>
+  //         <Grid ml="-3">
+  //           <GridItem colStart={2} mr="-1">
+            
+  //             <Link href={developer.linkedin}>
+  //               <img
+  //                 src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+  //                 width="20px"
+  //                 height="20px"
+  //               ></img>
+  //             </Link>
+  //           </GridItem>
+  //           <GridItem>
+  //             <Link href={developer.github} d-inline>
+  //               <img
+  //                 src="https://www.svgrepo.com/show/332401/github.svg"
+  //                 width="20px"
+  //                 height="20px"
+  //               ></img>
+  //             </Link>
+  //           </GridItem>
+  //           <GridItem colEnd={6} ml="-2">
+  //             {developer.name}
+  //           </GridItem>
+  //         </Grid>
+  //       </ListItem>
+  //     </UnorderedList>
+  //     {user && project.owner === user._id ? (
+  //       <Wrap direction="row" justify="right" p="2">
+  //         <WrapItem>
+  //           <Button
+  //             leftIcon={<AddIcon />}
+  //             colorScheme="orange"
+  //             size="xs"
+  //             onClick={() => removeTheProject()}
+  //           >
+  //             Add Developer
+  //           </Button>
+  //         </WrapItem>
+  //       </Wrap>
+  //     ) : null}
+  //   </Box>
+  // ));
 
+  // console.log("this is the tags", project.tags)
+  // const tagSidebar = project.tags.map((tag)=>(
+  //       <ListItem>
+  //         <Badge mr="5">
+  //           {tag}
+  //         </Badge>
+  //       </ListItem>
+  // ))
   return (
     <Flex>
+      {/* <Box style={{zIndex: '1', color: 'white'}}> */}
       <Box
         maxW="lg"
         maxH="80%"
@@ -175,9 +187,10 @@ const ShowProject = (props) => {
         marginTop="80px"
         marginLeft="25%"
         width="50%"
+        style={{zIndex: '1', color: 'white'}}
       >
         <Image src={project.img} />
-        <Box p="3">
+        <Box p="3" style={{zIndex: '1', color: 'white'}}>
           <Box display="flex" alignItems="baseline">
             <Box
               mt="2"
@@ -204,7 +217,7 @@ const ShowProject = (props) => {
               <ExternalLinkIcon mx="2px" />
             </Link>
           </Box>
-          <Box mt="2">
+          <Box mt="2" style={{zIndex: '1', color: 'white'}}>
             <Link href={project.back_end_repo} isExternal>
               Back-End Repo
               <ExternalLinkIcon mx="2px" />
@@ -250,28 +263,24 @@ const ShowProject = (props) => {
         ) : null}
       </Box>
       <Spacer />
-      <VStack spacing={-0.85} align="stretch" w="250px">
+      <VStack spacing={-0.85} marginTop={'-2px'}align="stretch" w="250px">
         <Box
           p="8"
           borderWidth="1px"
           pb="100%"
-          marginTop="55px"
           textAlign="center"
+          style={{zIndex: '1', color: 'white'}}
         >
           <h1>
             <strong style={{ paddingBottom: "10px" }}>Tags:</strong>{" "}
           </h1>
           <UnorderedList listStyleType="none" textAlign="center">
-            <ListItem>
-              {/* Will map through each tag*/}
-              <Badge mr="5">
-                {project.tags}
-              </Badge>
-            </ListItem>
+            {/* {tagSidebar} */}
           </UnorderedList>
         </Box>
         {/* {developerSideBar} */}
       </VStack>
+      {/* </Box> */}
     </Flex>
   );
 };

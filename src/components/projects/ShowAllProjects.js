@@ -16,6 +16,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  ListItem
 } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { Link as RouteLink }  from 'react-router-dom'
@@ -70,8 +71,22 @@ const ProjectIndex = (props) => {
   }
   console.log("here are our projects!", projects);
 
+//   if(!projects.tags){
+//     <Badge>
+//       There are no tags
+//     </Badge>
+//   }
+// const tagSidebar = projects.tags.map((tag)=>(
+      // <ListItem>
+      //    <Badge borderRadius='full' px='2' colorScheme='red'>
+      //     {tag}
+      //   </Badge>
+      // </ListItem>
+// ))
+
+
   const projectCards = projects.map((project) => (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id}>
+    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
     <RouteLink to={`/projects/${project._id}`}>
           <Image src={project.img} alt={project.name} />
           </RouteLink>
@@ -79,7 +94,8 @@ const ProjectIndex = (props) => {
     <Box p='6'>
       <Box display='flex' alignItems='baseline'>
         <Badge borderRadius='full' px='2' colorScheme='red'>
-          New TAGS GO HERE
+          {/* {tagSidebar} */}
+         Tags go here
         </Badge>
         <Box
           color='gray.500'
@@ -89,9 +105,9 @@ const ProjectIndex = (props) => {
           textTransform='uppercase'
           ml='2'
           >
-          <Link href={project.front_end_repo} isExternal>
+          <Link style={{color:'white'}} href={project.front_end_repo} isExternal>
             Front-End Repo<ExternalLinkIcon mx='2px' />
-          </Link> &bull; <Link href={project.back_end_repo} isExternal>
+          </Link> &bull; <Link  style={{color:'white'}} href={project.back_end_repo} isExternal>
             Back-End Repo<ExternalLinkIcon mx='2px' />
           </Link>
         </Box>

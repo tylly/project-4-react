@@ -50,6 +50,7 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
             p={6}
             textAlign={'center'}
             m={10}
+            style={{zIndex: '1', color: 'black'}}
             >
             <Avatar
               size={'xl'}

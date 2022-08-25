@@ -297,7 +297,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             className="mt-2"
             style={{ textAlign: "center" }}
           />
-          <Form.Control
+          {/* <Form.Control
             placeholder="Developers"
             name="developers"
             id={project._id}
@@ -305,7 +305,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             //onChange={handleChange}
             className="mt-2"
             style={{ textAlign: "center" }}
-          />
+          /> */}
 
           <Form.Group controlId="formFileLg" className="mt-2">
             <Form.Label>Image</Form.Label>

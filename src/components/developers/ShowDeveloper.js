@@ -103,6 +103,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         )
     } 
 
+    console.log("this is the projects for developer", developer.projects)
+
     // const developerTag = project.tags.map((tags)=>(
         // <Badge
         //     px={2}
@@ -122,7 +124,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
             boxShadow={'2xl'}
             rounded={'lg'}
             p={6}
-            textAlign={'center'}>
+            textAlign={'center'}
+            style={{zIndex: '1', fontColor: "black"}}>
             <Avatar
               size={'xl'}
               src={
