@@ -124,10 +124,6 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
                 bg={'purple'}
                 size='sm'
                 color={'white'}
-                navigate={navigate}
-                user={user}
-                developer={dev}
-                state={dev._id}
                 onClick={() => navigate(`/developers/${dev._id}`)}
                >
                View developer
