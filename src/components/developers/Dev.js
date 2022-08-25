@@ -103,19 +103,16 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
               <Badge
                 px={2}
                 py={1}
-               
                 fontWeight={'400'}>
                 #photography
               </Badge>
               <Badge
                 px={2}
                 py={1}
-                
                 fontWeight={'400'}>
                 #music
               </Badge>
             </Stack>
-    
             <Stack mt={8} direction={'row'} spacing={2} mb={2}>
               <Button
                 flex={1}
@@ -134,10 +131,10 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
               </Button>
             </Stack>
           </Box>
-          </Center>
+        </Center>
           {/* </GridItem>
           </Grid> */}
-          </div>
+        </div>
             {/* <Card style={{ width: '30%', margin: 5}} key={ dev._id }>
                 <Card.Header>{ dev.name}</Card.Header>
                 <Card.Body>
