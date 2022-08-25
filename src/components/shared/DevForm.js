@@ -162,7 +162,7 @@ return <LoadingChakra/>
                 id="github"
                 name="github"
                 type="text"
-                onChange={(e) => setLinkedin(e.target.value)}
+                onChange={(e) => setGithub(e.target.value)}
                 defaultValue={type === "edit" ? `${dev.github}` : ""}
                 required 
               />
