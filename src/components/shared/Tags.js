@@ -6,11 +6,7 @@ export default function Tags() {
     const [value, setValue] = useState("React");
     const [tags, setTags] = useState([])
     
-    const handleSelect = (e) => {
-      console.log(e);
-      setTags(current => [...current, e]);
-      console.log(tags)
-    };
+
 
   let Tags = [
     "angular",

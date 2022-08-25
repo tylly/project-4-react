@@ -26,6 +26,7 @@ import {
   errorFindingDev,
 } from "../shared/AutoDismissAlert/messages";
 import Tags from "../shared/Tags";
+import Devs from "./Devs";
 import "../../style.css";
 import Autocomplete from "../shared/Tags"
 
@@ -33,11 +34,18 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
   const [value, setValue] = useState("React");
   const [tags, setTags] = useState([]);
+  const [devs, setDevs] = useState([])
 
   const handleSelect = (e) => {
     console.log(e);
     setTags((current) => [e, ...current]);
     console.log(tags);
+    // setValue(e);
+    // console.log(e)
+  };
+  const handleSelectDevs = (e) => {
+    console.log(e);
+    setDevs((current) => [e, ...current]);
     // setValue(e);
     // console.log(e)
   };
@@ -243,6 +251,14 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             </Dropdown>
         
           </div>
+          <Dropdown>
+              <DropdownButton
+                style={{ marginTop: "8px" }}
+                onSelect={handleSelectDevs}
+              >
+                <Devs />
+              </DropdownButton>
+            </Dropdown>
           <Form.Control
             placeholder="Description"
             name="description"
@@ -275,7 +291,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             name="developers"
             id={project._id}
             value={project.developers}
-            onChange={handleChange}
+            //onChange={handleChange}
             className="mt-2"
             style={{ textAlign: "center" }}
           />
