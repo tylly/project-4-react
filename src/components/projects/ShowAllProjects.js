@@ -129,7 +129,7 @@ const ProjectIndex = (props) => {
         <AccordionItem>
     <h2>
       {/* FOR THESE COLORS, LETS CHANGE TOMATO TO WHATEVER OUR THEME COLORS ARE */}
-      <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+      <AccordionButton _expanded={{ bgGradient:'linear(to-l, #7928CA, #FF0080)', color: 'white' }}>
         <Box flex='1' textAlign='left'>
           About
         </Box>
@@ -142,7 +142,7 @@ const ProjectIndex = (props) => {
   </AccordionItem>
   <AccordionItem>
     <h2>
-      <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+      <AccordionButton _expanded={{ bgGradient:'linear(to-l, #7928CA, #FF0080)', color: 'white' }}>
         <Box flex='1' textAlign='left'>
           Developers
         </Box>
@@ -161,7 +161,7 @@ const ProjectIndex = (props) => {
 
     <Center marginTop='10px'>
     <RouteLink to={`/projects/${project._id}`}>
-      <Box as='button' borderRadius='md' bg='green' color='white' px={4} h={8} alignContent='center'>
+      <Box as='button' borderRadius='md' bg='#00aeff' color='white' px={4} h={8} alignContent='center'>
         View Project
       </Box>
     </RouteLink>
