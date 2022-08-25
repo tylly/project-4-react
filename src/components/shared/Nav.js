@@ -48,7 +48,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
 
       <Text fontSize="xl" fontWeight="bold">
               Project Share
-              </Text>
+              </Text><img src='https://i.gifer.com/WRpI.gif' height='30px' width='30px'/>
       {isLargerThanMD ? (
         <>
         <div id="navCont">
