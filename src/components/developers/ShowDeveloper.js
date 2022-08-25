@@ -40,14 +40,14 @@ const linkStyle = {
   }
 
 
-const ShowDevelopers = ({ msgAlert, user, navigate }) => {
+const ShowDevelopers = ({ msgAlert, user }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const location = useLocation()
-    console.log(location)
-    const state = location.state
+    // const location = useLocation()
+    // console.log(location)
+    // const state = location.state
     const { id } = useParams();
-    // const navigate = useNavigate()
-    console.log('THIS IS THE STATE IN DEV SHOW PAGE=======>>', state)
+    const navigate = useNavigate()
+    // console.log('THIS IS THE STATE IN DEV SHOW PAGE=======>>', state)
     //console.log('I am the params in sho dev=======>>', dev._id)
     const [ developer, setDeveloper ] = useState(null)
     const [updated, setUpdated] = useState(false)
