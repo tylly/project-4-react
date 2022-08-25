@@ -46,7 +46,9 @@ const Nav = ({ onOpen, user, clearUser }) => {
       top="0"
       zIndex="sticky"
       w="full"
-      bgGradient='linear(to-l, #7928CA, #00c7ff,#FF0080)'
+      // bgGradient='linear(to-l, #7928CA, #00c7ff,#FF0080)'
+      
+      id='navbar'
       // bg={navBg}
     >
       {/* bgGradient='linear(to-l, #7928CA, #FF0080)' */}
