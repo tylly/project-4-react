@@ -9,7 +9,8 @@ import {
   useMediaQuery,
   Link,
   Button,
-  useDisclosure
+  useDisclosure, 
+  Box,
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { FaAlignJustify } from 'react-icons/fa'
@@ -29,11 +30,13 @@ const Nav = ({ onOpen, user, clearUser }) => {
       : setScroll(false)
 
   const navStyle = {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'white'
   }
   window.addEventListener('scroll', changeScroll)
   //console.log('COLOR MODE//////////////>>>>>', colorMode, navBg)
   return (
+    // <Box bgGradient='linear(to-l, #7928CA, #FF0080)' zIndex="sticky">
     <Flex
       h="10vh"
       alignItems="center"
@@ -43,20 +46,22 @@ const Nav = ({ onOpen, user, clearUser }) => {
       top="0"
       zIndex="sticky"
       w="full"
-      bg={navBg}
+      bgGradient='linear(to-l, #7928CA, #00c7ff,#FF0080)'
+      // bg={navBg}
     >
+      {/* bgGradient='linear(to-l, #7928CA, #FF0080)' */}
 
-      <Text fontSize="xl" fontWeight="bold">
+      <Text fontSize="xl" fontWeight="bold"  bgClip='text' color='white'>
               Project Share
               </Text>
       {isLargerThanMD ? (
         <>
         <div id="navCont">
-          <Link class="navItems" onClick={() => navigate('/developers')} fontSize="md" ml={6}>
+          <Link  style={navStyle} class="navItems" onClick={() => navigate('/developers')} fontSize="md" ml={6}>
             Developers
           </Link>
           
-          <Link class="navItems" onClick={() => navigate('/projects')} fontSize="md" ml={6}>
+          <Link  style={navStyle} class="navItems" onClick={() => navigate('/projects')} fontSize="md" ml={6}>
             Projects
           </Link>
 
@@ -64,7 +69,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
 
           { user ? (
             <>
-              <Link class="navItems" onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6}>
+              <Link  style={navStyle} class="navItems" onClick={() => navigate('/developers/createDev')} fontSize="md" ml={6}>
                 Add Developer
               </Link>
               
@@ -75,7 +80,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
               >
                 My Posts
               </Link> */}
-              <Link class="navItems" 
+              <Link  style={navStyle} class="navItems" 
                 onClick={() => navigate('/projects/create-project')}    fontSize="md" ml={6}
               >
                 Add Project
@@ -130,6 +135,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
         )}
       </Flex>
     </Flex>
+    // </Box>
   )
 }
 

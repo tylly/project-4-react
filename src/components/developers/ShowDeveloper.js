@@ -42,12 +42,12 @@ const linkStyle = {
 
 const ShowDevelopers = ({ msgAlert, user }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    // const location = useLocation()
-    // console.log(location)
-    // const state = location.state
+    const location = useLocation()
+    console.log(location)
+    const state = location.state
     const { id } = useParams();
     const navigate = useNavigate()
-    // console.log('THIS IS THE STATE IN DEV SHOW PAGE=======>>', state)
+    console.log('THIS IS THE STATE IN DEV SHOW PAGE=======>>', state)
     //console.log('I am the params in sho dev=======>>', dev._id)
     const [ developer, setDeveloper ] = useState(null)
     const [updated, setUpdated] = useState(false)
@@ -103,6 +103,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         )
     } 
 
+    console.log("this is the projects for developer", developer.projects)
+
     // const developerTag = project.tags.map((tags)=>(
         // <Badge
         //     px={2}
@@ -122,7 +124,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
             boxShadow={'2xl'}
             rounded={'lg'}
             p={6}
-            textAlign={'center'}>
+            textAlign={'center'}
+            style={{zIndex: '1', fontColor: "black"}}>
             <Avatar
               size={'xl'}
               src={

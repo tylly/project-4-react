@@ -1,4 +1,7 @@
 import { useState } from "react"
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Card } from "react-bootstrap"
 import { useNavigate} from 'react-router-dom'
 import {
@@ -18,7 +21,8 @@ import {
     Flex,
     GridItem, 
     Grid,
-    SimpleGrid, 
+    SimpleGrid,
+    HStack, 
 } from '@chakra-ui/react'
 
 const linkStyle = {
@@ -37,18 +41,16 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
     
     return (
         <>
-        <div style={cardContainerStyle}>
-        {/* <Grid templateColumns='repeat(5, 1fr)' gap={6}>
-          <GridItem> */}
-          <Center>
             <Box
             maxW={'320px'}
-            w={'full'}
+            w={'250px'}
             bg={'white'}
             boxShadow={'2xl'}
             rounded={'lg'}
             p={6}
             textAlign={'center'}
+            m={10}
+            style={{zIndex: '1', color: 'black'}}
             >
             <Avatar
               size={'xl'}
@@ -73,7 +75,7 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
             <Heading fontSize={'2xl'} fontFamily={'body'}>
               {dev.name}
             </Heading>
-            <Link href={dev.portfolio} fontWeight={600} color={'gray.500'} mb={4}>
+            {/* <Link href={dev.portfolio} fontWeight={600} color={'gray.500'} mb={4}>
               {dev.portfolio}
             </Link>
             <Stack direction='row' mt={5} boxSize='50px'>
@@ -91,9 +93,9 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
                     src='https://www.svgrepo.com/show/332401/github.svg'
                     alt='Github'
                 /><Link href={dev.github}textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle} isExternal>{dev.github}</Link>
-            </Stack>
+            </Stack> */}
 
-            <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
+            {/* <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
               <Badge
                 px={2}
                 py={1}
@@ -103,19 +105,16 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
               <Badge
                 px={2}
                 py={1}
-               
                 fontWeight={'400'}>
                 #photography
               </Badge>
               <Badge
                 px={2}
                 py={1}
-                
                 fontWeight={'400'}>
                 #music
               </Badge>
-            </Stack>
-    
+            </Stack> */}
             <Stack mt={8} direction={'row'} spacing={2} mb={2}>
               <Button
                 flex={1}
@@ -130,27 +129,6 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
               </Button>
             </Stack>
           </Box>
-          </Center>
-          {/* </GridItem>
-          </Grid> */}
-          </div>
-            {/* <Card style={{ width: '30%', margin: 5}} key={ dev._id }>
-                <Card.Header>{ dev.name}</Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <small>LinkedIn: { dev.linkedin }</small><br />
-                        <small>Github: { dev.github }</small><br />
-                    </Card.Text>
-                    <hr/>
-                    <Card.Text>
-                        <Link 
-                            to={`/developers/${dev._id}`}
-                            state={dev._id}
-                        >View  { dev.name }
-                        </Link>
-                    </Card.Text>
-                </Card.Body>
-            </Card> */}
         </>
     )
 }
