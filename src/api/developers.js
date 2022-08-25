@@ -33,13 +33,14 @@ export const createDeveloper = (user, newDeveloper) => {
 }
 
 // UPDATE - add project to dev
-export const updateDeveloperWithProject = (user, projectId, devId) => {
+export const updateDeveloperWithProject = (user, projectId, devs) => {
 	return axios({
-		url: `${apiUrl}/developers/addProj/${projectId}/${devId}`,
+		url: `${apiUrl}/developers/addProj/${projectId}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
-		}
+		},
+		data: { developers: devs}
 	})
 }
 // UPDATE
