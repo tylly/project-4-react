@@ -1,34 +1,26 @@
 import React from "react";
-import { useState, useLocation } from "react";
+import { useState, useLocation, useEffect } from "react";
 import { Dropdown, DropdownButton, Form } from "react-bootstrap";
 import { getAllDevelopers } from "../../api/developers";
 import "../../style.css";
 export default function Devs() {
   const [value, setValue] = useState("React");
   const [tags, setTags] = useState([]);
-  const [developers, setDevelopers] = useState(null);
- let developerDropDownItems
-//   const handleSelect = (e) => {
-//     console.log(e);
-//     setTags((current) => [...current, e]);
-//     console.log(tags);
-    
-//   };
+  const [developersItems, setDevelopersItems] = useState([]);
 
+useEffect(() => {
   getAllDevelopers()
-    .then(res => {
-        setDevelopers(res.data.developers)
-        console.log(developers)
-        developerDropDownItems = developers.map((item) => (
-            <Dropdown.Item eventKey={item._id}>{item._id}</Dropdown.Item>
-          ));
+    .then((res) => {
+      setDevelopersItems(res.data.developers);
+      console.log(developersItems);
     })
-    .catch(err => {
-        console.log(err)
-    })
-    //console.log(developers)
+    .catch((err) => {
+      console.log(err);
+    });
+}, [])
+  const developerDropDownItems = developersItems.map((item) => (
+    <Dropdown.Item eventKey={item.name}>{item.name}</Dropdown.Item>
+  ));
 
-
-
-  return (<>{developerDropDownItems}</>);
+  return <>{developerDropDownItems}</>;
 }

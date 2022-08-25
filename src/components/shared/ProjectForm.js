@@ -251,6 +251,16 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             </Dropdown>
         
           </div>
+          <div id="tagField">
+          <Form.Control
+            
+            placeholder="Developers"
+            name="developers"
+            id={project._id}
+            value={devs}
+            className="mt-2"
+            style={{ textAlign: "center" }}
+          ></Form.Control>
           <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
@@ -259,6 +269,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                 <Devs />
               </DropdownButton>
             </Dropdown>
+            </div>
           <Form.Control
             placeholder="Description"
             name="description"

@@ -58,7 +58,7 @@ export default function Tags() {
   ];
 
   let tagDropDownItems = Tags.map((item) => (
-    <Dropdown.Item eventKey={item}>{item}</Dropdown.Item>
+    <Dropdown.Item key={item} eventKey={item}>{item}</Dropdown.Item>
   ));
 
   return (
