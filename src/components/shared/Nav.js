@@ -53,7 +53,8 @@ const Nav = ({ onOpen, user, clearUser }) => {
 
       <Text fontSize="xl" fontWeight="bold"  bgClip='text' color='white'>
               Project Share
-              </Text>
+              </Text><img src='https://cdn.dribbble.com/users/21285/screenshots/1280314/drib.gif
+' height='30px' width='30px' background="transparent"/>
       {isLargerThanMD ? (
         <>
         <div id="navCont">
