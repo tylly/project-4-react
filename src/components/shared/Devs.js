@@ -19,7 +19,7 @@ useEffect(() => {
 }, [])
   const developerDropDownItems = developersItems.map((item) => (
     <Dropdown.Item 
-      eventKey={item._id}
+      eventKey={[item._id, item.name]}
       key={item._id}
     
     >{item.name}</Dropdown.Item>

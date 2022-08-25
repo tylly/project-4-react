@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Form,
   Button,
@@ -35,6 +35,8 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
   const [value, setValue] = useState("React");
   const [tags, setTags] = useState([]);
   const [devs, setDevs] = useState([])
+  const [devName, setDevName] = useState([])
+  const [devId, setDevId] = useState([])
 
   const handleSelect = (e) => {
     console.log(e);
@@ -45,10 +47,23 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
   };
   const handleSelectDevs = (e) => {
     console.log('E from drop down menu', e);
+    //let devId = e.split(",")[0]
     setDevs((current) => [e, ...current]);
-    // setValue(e);
+    
     // console.log(e)
   };
+
+  useEffect(() => {
+    setDevId(devs.map((i) => {
+      return i.split(",")[0]
+    }))
+  }, [devs])
+
+  useEffect(() => {
+    setDevName(devs.map((i) => {
+      return i.split(",")[1]
+    }))
+  }, [devs])
   //let dev = null // add to state?
   const formStyle = {
     color: "black",
@@ -142,7 +157,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
         const newProject = {
           ...project,
           img: image,
-          developers: devs, // dev is undefined
+          developers: devId, // dev is undefined
           tags: tags,
         };
 
@@ -154,7 +169,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           .then(res => {
             console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\n", res)
             console.log('DEV ID GOING IN\n', dev)
-            updateDeveloperWithProject(user, res.data.project._id, devs)
+            updateDeveloperWithProject(user, res.data.project._id, devId)
               .then(developer => {
                 console.log('DEVELOPER', developer)
               })
@@ -253,14 +268,14 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           </div>
           <div id="tagField">
           <Form.Control
-            
             placeholder="Developers"
             name="developers"
             id={project._id}
-            value={devs}
+            value={devId}
             className="mt-2"
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center", display: "none" }}
           ></Form.Control>
+          <input placeholder="slime" type={"text"} value={devName}></input>
           <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
@@ -278,6 +293,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             onChange={handleChange}
             className="mt-2"
             style={{ textAlign: "center" }}
+            
           />
           <Form.Control
             placeholder="Front End Repo"
