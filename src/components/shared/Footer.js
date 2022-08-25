@@ -12,15 +12,15 @@ const Footer = () => {
       textAlign="center"
       justifyContent="center"
       position='absolute'
-      marginTop='70%'
+      marginTop='60%'
     >
-      <Text mb="3">
+      <Text mb="3" color='white'>
          By{' '}
-        <Link href="https://github.com/tylly/project-4-react" isExternal color="blue.500">
+        <Link href="https://github.com/tylly/project-4-react" isExternal>
           Team Breakout Room 3
         </Link>
       </Text>
-      <Text opacity="0.5">Slatt!!!</Text>
+      <Text color='white' opacity="0.7">Slatt!!!</Text>
     </Flex>
   )
 }

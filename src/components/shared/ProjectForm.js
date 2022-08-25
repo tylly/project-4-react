@@ -29,6 +29,7 @@ import Tags from "../shared/Tags";
 import Devs from "./Devs";
 import "../../style.css";
 import Autocomplete from "../shared/Tags"
+import '../../style.css'
 
 const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -98,7 +99,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
     setFile(event.target.files[0]);
   }
 
- 
 
   function handleChange(e) {
     // CS data structure - tree - for the autocomplete
@@ -246,7 +246,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                     </Dropdown.Item>
                 </DropdownButton> */}
                
-          <div id="tagField">
+          <div id="tagField" style={{marginBottom: '3px'}}>
             <Form.Control
             
               placeholder="Tags"
@@ -274,8 +274,9 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             value={devId}
             className="mt-2"
             style={{ textAlign: "center", display: "none" }}
+            
           ></Form.Control>
-          <input placeholder="slime" type={"text"} value={devName}></input>
+          <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input>
           <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
@@ -324,10 +325,10 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           /> */}
 
           <Form.Group controlId="formFileLg" className="mt-2">
-            <Form.Label>Image</Form.Label>
+            {/* <Form.Label>Image</Form.Label> */}
             <Form.Control
               type="file"
-              size="lg"
+              size="md"
               style={{ textAlign: "center" }}
               onChange={handleChangeFile}
             />

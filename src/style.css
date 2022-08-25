@@ -94,3 +94,15 @@
     transform: translateX(-50%) translateY(-50%);
     pointer-events: none;
 }
+
+#projInput{
+  margin-top: 5px;
+  border:solid 1px #ccc;
+  border-radius: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+#projInput::placeholder{
+  color:#6C757D
+}

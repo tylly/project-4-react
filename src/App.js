@@ -122,7 +122,8 @@ const App = () => {
               <ProjectForm 
               msgAlert={msgAlert} 
               user={user}
-              heading={"where to?"} />
+              // heading={"Upload a project"} 
+              />
             </RequireAuth>
           }
         />
