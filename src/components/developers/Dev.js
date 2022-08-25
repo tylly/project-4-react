@@ -13,6 +13,12 @@ import {
     Link,
     Badge,
     Image,
+    Wrap,
+    WrapItem,
+    Flex,
+    GridItem, 
+    Grid,
+    SimpleGrid, 
 } from '@chakra-ui/react'
 
 const linkStyle = {
@@ -32,6 +38,9 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
     return (
         <>
         <div style={cardContainerStyle}>
+        {/* <Grid templateColumns='repeat(5, 1fr)' gap={6}>
+          <GridItem> */}
+          <Center>
             <Box
             maxW={'320px'}
             w={'full'}
@@ -112,26 +121,23 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
-                size='sm'
-                colorScheme={'purple'}
-                >
-                Projects
-              </Button>
-              <Button
-                flex={1}
-                fontSize={'sm'}
-                rounded={'full'}
-                bg={'blue'}
+                bg={'purple'}
                 size='sm'
                 color={'white'}
                 navigate={navigate}
+                user={user}
+                developer={dev}
+                state={dev._id}
                 onClick={() => navigate(`/developers/${dev._id}`)}
                >
                View developer
               </Button>
             </Stack>
           </Box>
-        </div>
+          </Center>
+          {/* </GridItem>
+          </Grid> */}
+          </div>
             {/* <Card style={{ width: '30%', margin: 5}} key={ dev._id }>
                 <Card.Header>{ dev.name}</Card.Header>
                 <Card.Body>
