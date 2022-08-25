@@ -44,7 +44,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
     // console.log(e)
   };
   const handleSelectDevs = (e) => {
-    console.log(e);
+    console.log('E from drop down menu', e);
     setDevs((current) => [e, ...current]);
     // setValue(e);
     // console.log(e)
@@ -96,24 +96,24 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
       const updatedName = e.target.name;
 
       //console.log('this is the input type', e.target.type)
-      if (updatedName === "developers") {
-        getOneDevByName(updatedValue)
-          .then((res) => {
-            console.log("RES.DATA from getOneDevByName", res.data.developer);
-            setDev(res.data.developer._id);
-            console.log("THIS IS updatedValue IN GETONEDEV======>>>\n", dev);
-          })
-          .catch((err) => {
-            console.log(err);
-            msgAlert({
-              heading: "Error",
-              message: errorFindingDev,
-              variant: "danger",
-            });
-          });
-      } else if (updatedName === tags){
+      // if (updatedName === "developers") {
+      //   getOneDevByName(updatedValue)
+      //     .then((res) => {
+      //       console.log("RES.DATA from getOneDevByName", res.data.developer);
+      //       setDev(res.data.developer._id);
+      //       console.log("THIS IS updatedValue IN GETONEDEV======>>>\n", dev);
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //       msgAlert({
+      //         heading: "Error",
+      //         message: errorFindingDev,
+      //         variant: "danger",
+      //       });
+      //     });
+      // } else if (updatedName === tags){
 
-      }
+      // }
 
       const updatedProject = {
         [updatedName]: updatedValue,
@@ -153,8 +153,8 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
         createProject(user, newProject)
           .then(res => {
             console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\n", res)
-            console.log('DEV ID GOING IN\n', devs)
-            updateDeveloperWithProject(user, res.data.project._id, dev)
+            console.log('DEV ID GOING IN\n', dev)
+            updateDeveloperWithProject(user, res.data.project._id, devs)
               .then(developer => {
                 console.log('DEVELOPER', developer)
               })

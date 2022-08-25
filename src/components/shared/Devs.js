@@ -18,7 +18,11 @@ useEffect(() => {
     });
 }, [])
   const developerDropDownItems = developersItems.map((item) => (
-    <Dropdown.Item key={item._id} eventKey={item._id}>{item.name}</Dropdown.Item>
+    <Dropdown.Item 
+      eventKey={item._id}
+      key={item._id}
+    
+    >{item.name}</Dropdown.Item>
   ));
 
   return <>{developerDropDownItems}</>;
