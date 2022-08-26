@@ -8,8 +8,10 @@ import messages from "../shared/AutoDismissAlert/messages";
 import { Box } from '@chakra-ui/react'
 import { Link } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Badge } from '@chakra-ui/react'
+import { Badge, Icon } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
+import { MdSettings } from 'react-icons/md'
+
 import {
   Accordion,
   AccordionItem,
@@ -21,6 +23,7 @@ import {
 import { Center } from '@chakra-ui/react'
 import { Link as RouteLink }  from 'react-router-dom'
 import DeveloperShowPreview from "../shared/DeveloperShow"
+import '../../style.css'
 // ShowAllProjects should make a request to the api
 // To get all services
 // Then display them when it gets them
@@ -183,7 +186,7 @@ const ProjectIndex = (props) => {
   ));
 
   return <div alt="boxContainer" style={cardContainerStyle}>
-    <input onChange={handleChange} id="search" placeholder={"slime"} type={"text"}></input>
+    <input onChange={handleChange} id="search" placeholder={'Search projects'} type={"text"}></input>
     {projectCards}</div>;
 };
 
