@@ -31,9 +31,9 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
   let myColor
     if (user) {
       if (project.likes.includes(user._id)) {
-        myColor = 'teal.500'
+        myColor = '#00ff77'
       } else {
-        myColor = 'gray.500'
+        myColor = 'yellow'
       }
       }
     // handle like function  
@@ -41,7 +41,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
       if (!project.likes.includes(user._id)) {
         increaseLike(user, project._id)
           .then(() => {
-            myColor = 'teal.500'
+            myColor = '#00ff77'
             triggerRefresh()
             setLike(project.likes.length)
           })
@@ -56,7 +56,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
       } else {
         decreaseLike(user, project._id)
           .then(() => {
-            myColor = 'gray.500'
+            myColor = 'yellow'
             triggerRefresh()
             setLike(project.likes.length)
           })
@@ -71,22 +71,9 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
       }
     }
   return (
-  <Box backgroundColor="rgba(255, 255, 255, 0.3)" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
-      <RouteLink to={`/projects/${project._id}`}>
-            <Image id="projImg" src={project.img} alt={project.name} />
-            </RouteLink>
-
-      <Box p='6'>
-        <Box display='flex' alignItems='baseline'>
-          <Badge borderRadius='full' px='2' colorScheme='red'>
-            {/* {tagSidebar} */}
-          Tags go here
-          </Badge>
-          {/* like starts here */}
-          <Box display='flex' mt='2' alignItems='center'>
-            <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-              {project.likes.length} Likes
-            </Box>
+  <Box backgroundColor="rgba(255, 255, 255, 0.2)" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
+     <Box display='flex' alignItems='center'>
+            
             {user ? 
               // like icon
               <StarIcon
@@ -94,12 +81,27 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
                 alignSelf={"center"} 
                 color={myColor} 
                 onClick={() => addLike()}
+                mt='2'
+                mb='-7'
               />
               :
               ""
             }
+            <Box as='span' ml='2' mt='2' mb='-7' color='#00ff77' fontSize='sm'>
+            {project.likes.length} 
+            </Box>
           </Box>
+      <RouteLink to={`/projects/${project._id}`}>
+            <Image id="projImg" src={project.img} alt={project.name} />
+            </RouteLink>
 
+      <Box p='6'>
+        <Box display='flex' alignItems='baseline'>
+          {/* <Badge borderRadius='full' px='2' colorScheme='red'> */}
+            {/* {tagSidebar} */}
+          {/* Tags go here
+          </Badge> */}
+          {/* like starts here */}
           <Box
             color='gray.500'
             fontWeight='semibold'
@@ -114,10 +116,31 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
               Back-End Repo<ExternalLinkIcon mx='2px' />
             </Link>
           </Box>
-        </Box>
+        
+        
+          {/* <Box display='flex' alignItems='center'>
+            
+            {user ? 
+              // like icon
+              <StarIcon
+                ml="1" 
+                alignSelf={"center"} 
+                color={myColor} 
+                onClick={() => addLike()}
+                mt='2'
+              />
+              :
+              ""
+            }
+            <Box as='span' ml='2' mt='2'color='#00ff77' fontSize='sm'>
+            {project.likes.length} 
+            </Box>
+          </Box> */}
+
+          </Box>
 
         <Box
-          mt='1'
+          mt='5'
           fontWeight='semibold'
           as='h4'
           lineHeight='tight'
