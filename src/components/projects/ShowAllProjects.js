@@ -21,6 +21,7 @@ import {
 import { Center } from '@chakra-ui/react'
 import { Link as RouteLink }  from 'react-router-dom'
 import DeveloperShowPreview from "../shared/DeveloperShow"
+import ProjectCard from "./ProjectCard";
 // ShowAllProjects should make a request to the api
 // To get all services
 // Then display them when it gets them
@@ -33,13 +34,14 @@ const cardContainerStyle = {
   justifyContent: "center",
 };
 
-const ProjectIndex = (props) => {
+const ProjectIndex = ({user, msgAlert}) => {
   const [projects, setProjects] = useState(null);
   const [error, setError] = useState(false);
+  const [updated, setUpdated] = useState(false)
 
-  const { msgAlert } = props;
+  // const { msgAlert } = props;
 
-  console.log("Props in ShowAllProjects", props);
+  //console.log("Props in ShowAllProjects", props);
 
     useEffect(() => {
         console.log('happening shai!')
@@ -57,8 +59,9 @@ const ProjectIndex = (props) => {
                 })
                 setError(true)
             })
-    }, [])
+    }, [updated])
 
+    
     // If services haven't been loaded yet, show a loading message
     if (!projects) {
         return <LoadingChakra />
@@ -86,89 +89,111 @@ const ProjectIndex = (props) => {
 
 
   const projectCards = projects.map((project) => (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
-    <RouteLink to={`/projects/${project._id}`}>
-          <Image src={project.img} alt={project.name} />
-          </RouteLink>
+    <ProjectCard
+      user={user}
+      msgAlert={msgAlert}
+      triggerRefresh={() => setUpdated(prev => !prev)}
+      project={project}
+    />
+//     <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
+//     <RouteLink to={`/projects/${project._id}`}>
+//           <Image src={project.img} alt={project.name} />
+//           </RouteLink>
 
-    <Box p='6'>
-      <Box display='flex' alignItems='baseline'>
-        <Badge borderRadius='full' px='2' colorScheme='red'>
-          {/* {tagSidebar} */}
-         Tags go here
-        </Badge>
-        <Box
-          color='gray.500'
-          fontWeight='semibold'
-          letterSpacing='wide'
-          fontSize='xs'
-          textTransform='uppercase'
-          ml='2'
-          >
-          <Link style={{color:'white'}} href={project.front_end_repo} isExternal>
-            Front-End Repo<ExternalLinkIcon mx='2px' />
-          </Link> &bull; <Link  style={{color:'white'}} href={project.back_end_repo} isExternal>
-            Back-End Repo<ExternalLinkIcon mx='2px' />
-          </Link>
-        </Box>
-      </Box>
-
-      <Box
-        mt='1'
-        fontWeight='semibold'
-        as='h4'
-        lineHeight='tight'
-        marginBottom='10px'
-        >
-        {project.name}
-      </Box>
-
-        <Box  marginTop='10px'>
-        <Accordion allowMultiple>
-  
-        <AccordionItem>
-    <h2>
-      {/* FOR THESE COLORS, LETS CHANGE TOMATO TO WHATEVER OUR THEME COLORS ARE */}
-      <AccordionButton _expanded={{ bgGradient:'linear(to-l, #7928CA, #FF0080)', color: 'white' }}>
-        <Box flex='1' textAlign='left'>
-          About
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-          {project.description}
-    </AccordionPanel>
-  </AccordionItem>
-  <AccordionItem>
-    <h2>
-      <AccordionButton _expanded={{ bgGradient:'linear(to-l, #7928CA, #FF0080)', color: 'white' }}>
-        <Box flex='1' textAlign='left'>
-          Developers
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-          <DeveloperShowPreview
-            devs={project.developers}
-            msgAlert={msgAlert}
-            />
+//     <Box p='6'>
+//       <Box display='flex' alignItems='baseline'>
+//         <Badge borderRadius='full' px='2' colorScheme='red'>
+//           {/* {tagSidebar} */}
+//          Tags go here
+//         </Badge>
+//         <Box display='flex' mt='2' alignItems='center'>
             
-    </AccordionPanel>
-  </AccordionItem>
-</Accordion>
+//         <Box as='span' ml='2' color='gray.600' fontSize='sm'>
+//             {post.likes.length} Likes
+//         </Box>
+//         {user ? 
+//           <StarIcon
+//             ml="1" 
+//             alignSelf={"center"} 
+//             color={myColor} 
+//             onClick={() => addLike()}
+//           />
+//           :
+//           ""
+//         }
+//         </Box>
+//         <Box
+//           color='gray.500'
+//           fontWeight='semibold'
+//           letterSpacing='wide'
+//           fontSize='xs'
+//           textTransform='uppercase'
+//           ml='2'
+//           >
+//           <Link style={{color:'white'}} href={project.front_end_repo} isExternal>
+//             Front-End Repo<ExternalLinkIcon mx='2px' />
+//           </Link> &bull; <Link  style={{color:'white'}} href={project.back_end_repo} isExternal>
+//             Back-End Repo<ExternalLinkIcon mx='2px' />
+//           </Link>
+//         </Box>
+//       </Box>
 
-    <Center marginTop='10px'>
-    <RouteLink to={`/projects/${project._id}`}>
-      <Box as='button' borderRadius='md' bg='#00aeff' color='white' px={4} h={8} alignContent='center'>
-        View Project
-      </Box>
-    </RouteLink>
-    </Center>
-      </Box>
-    </Box>
-  </Box>
+//       <Box
+//         mt='1'
+//         fontWeight='semibold'
+//         as='h4'
+//         lineHeight='tight'
+//         marginBottom='10px'
+//         >
+//         {project.name}
+//       </Box>
+
+//         <Box  marginTop='10px'>
+//         <Accordion allowMultiple>
+  
+//         <AccordionItem>
+//     <h2>
+//       {/* FOR THESE COLORS, LETS CHANGE TOMATO TO WHATEVER OUR THEME COLORS ARE */}
+//       <AccordionButton _expanded={{ bgGradient:'linear(to-l, #7928CA, #FF0080)', color: 'white' }}>
+//         <Box flex='1' textAlign='left'>
+//           About
+//         </Box>
+//         <AccordionIcon />
+//       </AccordionButton>
+//     </h2>
+//     <AccordionPanel pb={4}>
+//           {project.description}
+//     </AccordionPanel>
+//   </AccordionItem>
+//   <AccordionItem>
+//     <h2>
+//       <AccordionButton _expanded={{ bgGradient:'linear(to-l, #7928CA, #FF0080)', color: 'white' }}>
+//         <Box flex='1' textAlign='left'>
+//           Developers
+//         </Box>
+//         <AccordionIcon />
+//       </AccordionButton>
+//     </h2>
+//     <AccordionPanel pb={4}>
+//           <DeveloperShowPreview
+//             devs={project.developers}
+//             msgAlert={msgAlert}
+//             />
+            
+//     </AccordionPanel>
+//   </AccordionItem>
+// </Accordion>
+
+//     <Center marginTop='10px'>
+//     <RouteLink to={`/projects/${project._id}`}>
+//       <Box as='button' borderRadius='md' bg='#00aeff' color='white' px={4} h={8} alignContent='center'>
+//         View Project
+//       </Box>
+//     </RouteLink>
+//     </Center>
+//       </Box>
+//     </Box>
+//   </Box>
   // </>
   ));
 

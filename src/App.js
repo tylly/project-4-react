@@ -66,7 +66,7 @@ const App = () => {
   return (
     <>
     <Fragment>
-      <BackgroundImage/>
+      {/* <BackgroundImage/> */}
       {/* <Header user={user} style={{position: 'fixed'}}/> */}
       <Nav
         user={user}
