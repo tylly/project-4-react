@@ -162,7 +162,7 @@ const ShowProject = (props) => {
   // console.log("this is the tags", project.tags)
   const tagSidebar = project.tags.map((tag)=>(
         <ListItem>
-          <Badge mr="5">
+          <Badge mr="5" colorScheme='linkedin' variant='solid'>
             {tag}
           </Badge>
         </ListItem>
@@ -170,8 +170,9 @@ const ShowProject = (props) => {
   return (
     <Flex>
       <Box
-        maxW="lg"
-        maxH="80%"
+        backgroundColor="rgba(255, 255, 255, 0.2)"
+        maxW="70%"
+        maxH="60%"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
@@ -180,7 +181,7 @@ const ShowProject = (props) => {
         width="50%"
         style={{zIndex: '1', color: 'white'}}
       >
-        <Image src={project.img} />
+        <Image src={project.img} height="60%" width='100%'/>
         <Box p="3" style={{zIndex: '1', color: 'white'}}>
           <Box display="flex" alignItems="baseline">
             <Box
@@ -254,11 +255,11 @@ const ShowProject = (props) => {
         ) : null}
       </Box>
       <Spacer />
-      <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } >
+      <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } backgroundColor="rgba(255, 255, 255, 0.2)">
         <Box
           p="8"
           borderWidth="2px"
-          pb="100%"
+          pb='30%'
           textAlign="center"
           style={{zIndex: '1', color: 'white'}}
         >

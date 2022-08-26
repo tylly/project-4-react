@@ -66,6 +66,7 @@ const App = () => {
   return (
     <>
     <Fragment>
+
       <BackgroundVideo/>
       {/* <Header user={user} style={{position: 'fixed'}}/> */}
       <Nav

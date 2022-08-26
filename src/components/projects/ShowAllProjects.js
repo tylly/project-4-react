@@ -101,6 +101,7 @@ const ProjectIndex = ({ user, msgAlert }) => {
       msgAlert={msgAlert}
       triggerRefresh={() => setUpdated((prev) => !prev)}
       project={project}
+      
     />
   ));
 

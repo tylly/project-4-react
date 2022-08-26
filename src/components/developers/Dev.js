@@ -42,9 +42,11 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
     return (
         <>
             <Box
+            backgroundColor="rgba(255, 255, 255, 0.8)"
+            borderWidth="1px"
+            borderRadius="lg"
             maxW={'320px'}
             w={'250px'}
-            bg={'white'}
             boxShadow={'2xl'}
             rounded={'lg'}
             p={6}
@@ -72,7 +74,7 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
                 right: 3,
               }}
             />
-            <Heading fontSize={'2xl'} fontFamily={'body'}>
+            <Heading fontSize={'2xl'} fontFamily={'body'} color={'black'}>
               {dev.name}
             </Heading>
             {/* <Link href={dev.portfolio} fontWeight={600} color={'gray.500'} mb={4}>
@@ -120,7 +122,7 @@ const Dev = ({dev, user, msgAlert, navigate}) => {
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
-                bg={'purple'}
+                bg={'#9310ea'}
                 size='sm'
                 color={'white'}
                 onClick={() => navigate(`/developers/${dev._id}`)}
