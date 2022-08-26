@@ -42,7 +42,9 @@ const ProjectIndex = ({ user, msgAlert }) => {
   }, [updated]);
 
   let handleChange = (e) => {
-    let arr = projects.filter((project) => {
+    getAllProjects()
+    .then((res) => {
+    let arr = res.data.projects.filter((project) => {
       if (e.target.value !== "") {
         console.log(e)
         if (
@@ -56,7 +58,8 @@ const ProjectIndex = ({ user, msgAlert }) => {
         ) {
           return project;
         }
-      } else if (e.target.value === "") {
+      } 
+      else if (e.target.value === "") {
         console.log("heyyyyyyy");
         getAllProjects()
           .then((res) => {
@@ -77,7 +80,7 @@ const ProjectIndex = ({ user, msgAlert }) => {
     });
     console.log("====================>", e.target.value === "", arr);
     setProjects(arr);
-  };
+  })};
 
   // If services haven't been loaded yet, show a loading message
   if (!projects) {
@@ -107,16 +110,17 @@ const ProjectIndex = ({ user, msgAlert }) => {
 
   return (
     <>
+ 
       <input
         onChange={handleChange}
         id="search"
-        placeholder={"Search projects"}
+        placeholder={"Search project name, developers or tags"}
         type={"text"}
       ></input>
       <div alt="boxContainer" style={cardContainerStyle}>
         {projectCards}
       </div>
-      ;
+      
     </>
   );
 };
