@@ -1,28 +1,8 @@
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-// import { Link } from "react-router-dom";
-
 import LoadingChakra from "../shared/LoadingChakra";
 import { getAllProjects } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
-import { Box } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { Badge, Icon } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/react";
-import { MdSettings } from "react-icons/md";
-
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  ListItem,
-} from "@chakra-ui/react";
-import { Center } from "@chakra-ui/react";
-import { Link as RouteLink } from "react-router-dom";
-import DeveloperShowPreview from "../shared/DeveloperShow";
 import ProjectCard from "./ProjectCard";
 import "../../style.css";
 // ShowAllProjects should make a request to the api
@@ -41,10 +21,6 @@ const ProjectIndex = ({ user, msgAlert }) => {
   const [projects, setProjects] = useState(null);
   const [error, setError] = useState(false);
   const [updated, setUpdated] = useState(false);
-
-  // const { msgAlert } = props;
-
-  //console.log("Props in ShowAllProjects", props);
 
   useEffect(() => {
     console.log("happening shai!");
@@ -68,6 +44,7 @@ const ProjectIndex = ({ user, msgAlert }) => {
   let handleChange = (e) => {
     let arr = projects.filter((project) => {
       if (e.target.value !== "") {
+        console.log(e)
         if (
           project.tags.find((tag) =>
             tag.includes(e.target.value.toLowerCase())
@@ -117,19 +94,6 @@ const ProjectIndex = ({ user, msgAlert }) => {
     return <p>Error!</p>;
   }
   console.log("here are our projects!", projects);
-
-  //   if(!projects.tags){
-  //     <Badge>
-  //       There are no tags
-  //     </Badge>
-  //   }
-  // const tagSidebar = projects.tags.map((tag)=>(
-  // <ListItem>
-  //    <Badge borderRadius='full' px='2' colorScheme='red'>
-  //     {tag}
-  //   </Badge>
-  // </ListItem>
-  // ))
 
   const projectCards = projects.map((project) => (
     <ProjectCard
