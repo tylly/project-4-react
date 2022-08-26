@@ -118,9 +118,11 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         <>
         <Center py={6}>
           <Box
-            maxW={'320px'}
+            backgroundColor="rgba(255, 255, 255, 0.8)"
+            borderWidth="1px"
+            borderRadius="lg"
+            maxW={'330px'}
             w={'full'}
-            bg={'white'}
             boxShadow={'2xl'}
             rounded={'lg'}
             p={6}
@@ -150,7 +152,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
               {developer.name}
             </Heading>
             <Link href={developer.portfolio} fontWeight={600} color={'gray.500'} mb={4} isExternal>
-              View {developer.name}'s Portfolio
+              Portfolio: {developer.portfolio}
             </Link>
             <Stack direction='row' mt={5} boxSize='50px'>
                 <Image

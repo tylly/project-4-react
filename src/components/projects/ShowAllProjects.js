@@ -111,14 +111,6 @@ const ProjectIndex = ({user, msgAlert}) => {
 //       There are no tags
 //     </Badge>
 //   }
-// const tagSidebar = projects.tags.map((tag)=>(
-      // <ListItem>
-      //    <Badge borderRadius='full' px='2' colorScheme='red'>
-      //     {tag}
-      //   </Badge>
-      // </ListItem>
-// ))
-
 
   const projectCards = projects.map((project) => (
 
@@ -127,6 +119,7 @@ const ProjectIndex = ({user, msgAlert}) => {
       msgAlert={msgAlert}
       triggerRefresh={() => setUpdated(prev => !prev)}
       project={project}
+      
     />
    
 

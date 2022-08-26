@@ -7,7 +7,7 @@ import { Box } from '@chakra-ui/react'
 import { Link } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { Badge } from '@chakra-ui/react'
-import { Image } from '@chakra-ui/react'
+import { Image, Text, Wrap, WrapItem } from '@chakra-ui/react'
 import {
   Accordion,
   AccordionItem,
@@ -23,15 +23,23 @@ import { Link as RouteLink }  from 'react-router-dom'
 import DeveloperShowPreview from "../shared/DeveloperShow"
 import { increaseLike, decreaseLike } from "../../api/like";
 
+
 const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
   const [commentToggle, setCommentToggle] = useState(false)
   const [like, setLike ] = useState(project.likes.length)
-  
+
+    const tagSidebar = project.tags.map((tag)=>(
+      <WrapItem>
+          <Badge borderRadius='full' px='2' colorScheme='linkedin' variant='solid' mr='1'>
+            {tag}
+          </Badge>
+      </WrapItem>
+  ))
   //like color setup
   let myColor
     if (user) {
       if (project.likes.includes(user._id)) {
-        myColor = '#00ff77'
+        myColor = 'red'
       } else {
         myColor = 'yellow'
       }
@@ -41,7 +49,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
       if (!project.likes.includes(user._id)) {
         increaseLike(user, project._id)
           .then(() => {
-            myColor = '#00ff77'
+            myColor = 'white'
             triggerRefresh()
             setLike(project.likes.length)
           })
@@ -56,7 +64,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
       } else {
         decreaseLike(user, project._id)
           .then(() => {
-            myColor = 'yellow'
+            myColor = 'white'
             triggerRefresh()
             setLike(project.likes.length)
           })
@@ -71,23 +79,25 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
       }
     }
   return (
-  <Box backgroundColor="rgba(255, 255, 255, 0.2)" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
+  <Box backgroundColor="rgba(255, 255, 255, 0.2)" maxW='250px' minW='330px' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
      <Box display='flex' alignItems='center'>
-            
             {user ? 
               // like icon
-              <StarIcon
-                ml="1" 
-                alignSelf={"center"} 
-                color={myColor} 
-                onClick={() => addLike()}
+              <Image 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/2250px-Love_Heart_symbol.svg.png"
+                width='18px'
+                height='18px'
                 mt='2'
+                ml='87%'
                 mb='-7'
+                onClick={() => addLike()}
               />
               :
-              ""
+              <Text mb='-7' ml='79%'>
+                Likes:
+              </Text>
             }
-            <Box as='span' ml='2' mt='2' mb='-7' color='#00ff77' fontSize='sm'>
+            <Box as='span' ml='2' mb='-7' color='white' fontSize='sm'>
             {project.likes.length} 
             </Box>
           </Box>
@@ -96,13 +106,11 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
             </RouteLink>
 
       <Box p='6'>
-        <Box display='flex' alignItems='baseline'>
-          {/* <Badge borderRadius='full' px='2' colorScheme='red'> */}
-            {/* {tagSidebar} */}
-          {/* Tags go here
-          </Badge> */}
+        <Wrap display='flex' alignItems='baseline' >
+            {tagSidebar}
+            </Wrap>
           {/* like starts here */}
-          <Box
+          {/* <Box
             color='gray.500'
             fontWeight='semibold'
             letterSpacing='wide'
@@ -115,7 +123,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
             </Link> &bull; <Link  style={{color:'white'}} href={project.back_end_repo} isExternal>
               Back-End Repo<ExternalLinkIcon mx='2px' />
             </Link>
-          </Box>
+          </Box> */}
         
         
           {/* <Box display='flex' alignItems='center'>
@@ -137,7 +145,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
             </Box>
           </Box> */}
 
-          </Box>
+          
 
         <Box
           mt='5'
@@ -187,7 +195,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
 
       <Center marginTop='10px'>
       <RouteLink to={`/projects/${project._id}`}>
-        <Box as='button' borderRadius='md' bg='#00aeff' color='white' px={4} h={8} alignContent='center'>
+        <Box as='button' borderRadius='md' bg='#9310ea' mt='3' color='white' px={4} h={8} alignContent='center'>
           View Project
         </Box>
       </RouteLink>
