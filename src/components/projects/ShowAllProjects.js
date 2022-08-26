@@ -38,7 +38,7 @@ const ProjectIndex = (props) => {
   const [error, setError] = useState(false);
 
   const { msgAlert } = props;
-
+  const projectStore = projects
   console.log("Props in ShowAllProjects", props);
 
     useEffect(() => {
@@ -61,11 +61,27 @@ const ProjectIndex = (props) => {
 
     let handleChange = (e) => {
       let arr = projects.filter((i) => {
-        if (i.tags[0].includes(e.target.value)){
+        if (e.target.value !== "" && i.tags[0].includes(e.target.value)){
           return i
+        } 
+        else if (e.target.value === "") {
+          getAllProjects()
+            .then(res => {
+                console.log(res)
+                console.log(res.data)
+                console.log(res.data.projects)
+                setProjects(res.data.projects)})
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error Getting Projects',
+                    message: messages.getProjectsFailure,
+                    variant: 'danger',
+                })
+                setError(true)
+            })
         }
       })
-      console.log("====================>", e.target.value)
+      console.log("====================>", e.target.value === "", arr)
       setProjects(arr)
     }
 
