@@ -149,8 +149,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
             <Heading fontSize={'2xl'} fontFamily={'body'}>
               {developer.name}
             </Heading>
-            <Link href={developer.portfolio} fontWeight={600} color={'gray.500'} mb={4}>
-              {developer.portfolio}
+            <Link href={developer.portfolio} fontWeight={600} color={'gray.500'} mb={4} isExternal>
+              View {developer.name}'s Portfolio
             </Link>
             <Stack direction='row' mt={5} boxSize='50px'>
                 <Image
@@ -158,7 +158,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                     objectFit='cover'
                     src='https://cdn-icons-png.flaticon.com/512/174/174857.png'
                     alt='Linked In'
-                /><Link href={developer.linkedin} textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.linkedin} </Link>
+                /><Link href={developer.linkedin} textAlign='left' boxSize={'250px'} height={'50px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.linkedin} </Link>
             </Stack>
             <Stack direction='row' mt={3} boxSize='50px'>
                 <Image
@@ -166,7 +166,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                     objectFit='cover'
                     src='https://www.svgrepo.com/show/332401/github.svg'
                     alt='Github'
-                /><Link href={developer.github}textAlign='left' boxSize={'250px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.github}</Link>
+                /><Link href={developer.github}textAlign='left' boxSize={'250px'} height={'50px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.github}</Link>
             </Stack>
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
