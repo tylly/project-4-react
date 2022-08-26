@@ -108,6 +108,14 @@
 }
 
 #projInput:focus {
-    border: 1px solid blue;
-    border-style: inset;
-  }
+  outline: rgb(0, 179, 255);
+}
+#search {
+    position: relative;
+    height: 30px;
+    border-radius: 8px;
+    text-align: center;
+    background: transparent;
+    border: 2px solid goldenrod;
+    color: goldenrod;
+}

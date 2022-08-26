@@ -269,21 +269,18 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             </Dropdown>
           </div>
           <div id="tagField">
-            <Form.Control
-              placeholder="Developers"
-              name="developers"
-              id={project._id}
-              value={devId}
-              className="mt-2"
-              style={{ textAlign: "center", display: "none" }}
-            ></Form.Control>
-            <input
-              id="projInput"
-              placeholder="Slime"
-              type={"text"}
-              value={devName}
-            ></input>
-            <Dropdown>
+          <Form.Control
+            placeholder="Developers"
+            name="developers"
+            id={project._id}
+            value={devId}
+            className="mt-2"
+            style={{ textAlign: "center", display: "none" }}
+          ></Form.Control>
+          <Form.Control placeholder="Slime" type={"text"} value={devName} style={{ textAlign: "center", marginTop: '5px' }}>
+          </Form.Control>
+          {/* <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input> */}
+          <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
                 onSelect={handleSelectDevs}
@@ -338,9 +335,8 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               onChange={handleChangeFile}
             />
           </Form.Group>
-
           {/* <Button onClick={handleUpload}>Upload</Button> */}
-          <Button type="submit" className="mt-3" size="sm">
+          <Button type="submit" className="mt-3" size="sm" color='pink'>
             Submit
           </Button>
           {/* <Autocomplete theme={{color: "black"}}/> */}

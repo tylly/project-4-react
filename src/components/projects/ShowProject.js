@@ -117,67 +117,65 @@ const ShowProject = (props) => {
   //           This project does not have any developers. You can add some by clicking "Add developer"
   //         </Box>
   // }
-  // const developerSideBar = project.developers.map((developer) => (
-  //   <Box p="8" borderWidth="1px" pb="150%" marginTop="55px">
-  //     <h1 style={{ textAlign: "center", paddingBottom: "10px", zIndex: '1', color: 'black' }}>
-  //       <strong>Developers:</strong>
-  //     </h1>
-  //     <UnorderedList listStyleType="none">
-  //       <ListItem>
-  //         <Grid ml="-3">
-  //           <GridItem colStart={2} mr="-1">
-            
-  //             <Link href={developer.linkedin}>
-  //               <img
-  //                 src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-  //                 width="20px"
-  //                 height="20px"
-  //               ></img>
-  //             </Link>
-  //           </GridItem>
-  //           <GridItem>
-  //             <Link href={developer.github} d-inline>
-  //               <img
-  //                 src="https://www.svgrepo.com/show/332401/github.svg"
-  //                 width="20px"
-  //                 height="20px"
-  //               ></img>
-  //             </Link>
-  //           </GridItem>
-  //           <GridItem colEnd={6} ml="-2">
-  //             {developer.name}
-  //           </GridItem>
-  //         </Grid>
-  //       </ListItem>
-  //     </UnorderedList>
-  //     {user && project.owner === user._id ? (
-  //       <Wrap direction="row" justify="right" p="2">
-  //         <WrapItem>
-  //           <Button
-  //             leftIcon={<AddIcon />}
-  //             colorScheme="orange"
-  //             size="xs"
-  //             onClick={() => removeTheProject()}
-  //           >
-  //             Add Developer
-  //           </Button>
-  //         </WrapItem>
-  //       </Wrap>
-  //     ) : null}
-  //   </Box>
-  // ));
+  const developerSideBar = project.developers.map((developer) => (
+    <Box p="8" borderWidth="1px" pb="150%" marginTop="55px" style={{zIndex: '1', color: 'white'}}>
+      <h1 style={{ textAlign: "center", paddingBottom: "10px", zIndex: '1', color: 'white' }}>
+        <strong>Developers:</strong>
+      </h1>
+      <UnorderedList listStyleType="none">
+        <ListItem>
+          <Grid ml="-3">
+            <GridItem colStart={2} mr="-1">
+              <Link href={developer.linkedin}>
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjMYGlaMrs0jJqymGdQ4bjEnClG4Q2hO-zQ1TQlDj6tezV9lZxGenCNyayF29fjiahjU&usqp=CAU"
+                  width="20px"
+                  height="20px"
+                ></img>
+              </Link>
+            </GridItem>
+            <GridItem>
+              <Link href={developer.github} d-inline>
+                <img
+                  src="https://i.pinimg.com/736x/b5/1b/78/b51b78ecc9e5711274931774e433b5e6.jpg"
+                  width="20px"
+                  height="20px"
+                ></img>
+              </Link>
+            </GridItem>
+            <GridItem colEnd={6} ml="-2">
+              {developer.name}
+            </GridItem>
+          </Grid>
+        </ListItem>
+      </UnorderedList>
+      {user && project.owner === user._id ? (
+        <Wrap direction="row" justify="right" p="2">
+          <WrapItem>
+            <Button
+              leftIcon={<AddIcon />}
+              colorScheme="orange"
+              size="xs"
+              onClick={() => navigate("/developers/createDev")}
+            >
+              Add Developer
+            </Button>
+          </WrapItem>
+        </Wrap>
+      ) : null}
+    </Box>
+  ));
 
   // console.log("this is the tags", project.tags)
-  // const tagSidebar = project.tags.map((tag)=>(
-  //       <ListItem>
-  //         <Badge mr="5">
-  //           {tag}
-  //         </Badge>
-  //       </ListItem>
-  // ))
+  const tagSidebar = project.tags.map((tag)=>(
+        <ListItem>
+          <Badge mr="5">
+            {tag}
+          </Badge>
+        </ListItem>
+  ))
   return (
     <Flex>
-      {/* <Box style={{zIndex: '1', color: 'white'}}> */}
       <Box
         maxW="lg"
         maxH="80%"
@@ -275,12 +273,11 @@ const ShowProject = (props) => {
             <strong style={{ paddingBottom: "10px" }}>Tags:</strong>{" "}
           </h1>
           <UnorderedList listStyleType="none" textAlign="center">
-            {/* {tagSidebar} */}
+            {tagSidebar}
           </UnorderedList>
         </Box>
-        {/* {developerSideBar} */}
+        {developerSideBar}
       </VStack>
-      {/* </Box> */}
     </Flex>
   );
 };

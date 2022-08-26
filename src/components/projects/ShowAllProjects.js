@@ -59,6 +59,16 @@ const ProjectIndex = (props) => {
             })
     }, [])
 
+    let handleChange = (e) => {
+      let arr = projects.filter((i) => {
+        if (i.tags[0].includes(e.target.value)){
+          return i
+        }
+      })
+      console.log("====================>", e.target.value)
+      setProjects(arr)
+    }
+
     // If services haven't been loaded yet, show a loading message
     if (!projects) {
         return <LoadingChakra />
@@ -172,7 +182,9 @@ const ProjectIndex = (props) => {
   // </>
   ));
 
-  return <div alt="boxContainer" style={cardContainerStyle}>{projectCards}</div>;
+  return <div alt="boxContainer" style={cardContainerStyle}>
+    <input onChange={handleChange} id="search" placeholder={"slime"} type={"text"}></input>
+    {projectCards}</div>;
 };
 
 export default ProjectIndex;
