@@ -20,8 +20,8 @@ import "../../style.css";
 
 const Nav = ({ onOpen, user, clearUser }) => {
   const [scroll, setScroll] = useState(false)
-  const { colorMode, toggleColorMode } = useColorMode()
-  const navBg = useColorModeValue('white', 'blackAlpha.200')
+  //const { colorMode, toggleColorMode } = useColorMode()
+  //const navBg = useColorModeValue('white', 'blackAlpha.200')
   const [isLargerThanMD] = useMediaQuery('(min-width: 48em)')
   const navigate = useNavigate()
   const changeScroll = () =>
@@ -119,9 +119,9 @@ const Nav = ({ onOpen, user, clearUser }) => {
       <Spacer />
       
       <Flex alignItems="center">
-        <IconButton mr="5" w={6} h={6} p={5} onClick={toggleColorMode}>
+        {/* <IconButton mr="5" w={6} h={6} p={5} onClick={toggleColorMode}>
           {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        </IconButton>
+        </IconButton> */}
 
         {isLargerThanMD ? (
           <>

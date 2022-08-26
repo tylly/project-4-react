@@ -19,6 +19,8 @@ const messages = {
 	errorUploadingImage: 'Error uploading image',
 	errorUpdatingProject: 'Error editing project',
 	successEditProject: 'Project edited successfully',
+	errorAddLike: 'Error adding a like',
+	errorRemoveLike: 'Error removing a like',
 
 }
 
