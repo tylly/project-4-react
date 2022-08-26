@@ -65,11 +65,11 @@ const ProjectIndex = ({user, msgAlert}) => {
     }, [updated])
 
     let handleChange = (e) => {
-      let arr = projects.filter((i) => {
+      let arr = projects.filter((project) => {
         if (e.target.value !== "")
         { 
-          if(i.tags[0].includes(e.target.value) || i.developers[0].name.includes(e.target.value) || i.name.includes(e.target.value)){
-          return i
+          if(project.tags[0].includes(e.target.value) || project.developers[0].name.includes(e.target.value) || project.name.includes(e.target.value)){
+          return project
         } }
         else if (e.target.value === "") {
           console.log("heyyyyyyy")
