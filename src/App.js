@@ -66,7 +66,8 @@ const App = () => {
   return (
     <>
     <Fragment>
-      <BackgroundImage/>
+
+      <BackgroundVideo/>
       {/* <Header user={user} style={{position: 'fixed'}}/> */}
       <Nav
         user={user}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 // import { Link } from "react-router-dom";
-
+import '../../style.css'
 import messages from "../shared/AutoDismissAlert/messages";
 import { Box } from '@chakra-ui/react'
 import { Link } from '@chakra-ui/react'
@@ -73,7 +73,7 @@ const ProjectCard = ({msgAlert, user, triggerRefresh, project}) => {
   return (
   <Box backgroundColor="rgba(255, 255, 255, 0.3)" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
       <RouteLink to={`/projects/${project._id}`}>
-            <Image src={project.img} alt={project.name} />
+            <Image id="projImg" src={project.img} alt={project.name} />
             </RouteLink>
 
       <Box p='6'>

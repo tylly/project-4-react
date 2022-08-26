@@ -66,9 +66,11 @@ const ProjectIndex = ({user, msgAlert}) => {
 
     let handleChange = (e) => {
       let arr = projects.filter((i) => {
-        if (e.target.value !== "" && i.tags[0].includes(e.target.value)){
+        if (e.target.value !== "")
+        { 
+          if(i.tags[0].includes(e.target.value) || i.developers[0].name.includes(e.target.value) || i.name.includes(e.target.value)){
           return i
-        } 
+        } }
         else if (e.target.value === "") {
           console.log("heyyyyyyy")
           getAllProjects()

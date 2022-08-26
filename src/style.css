@@ -121,3 +121,11 @@
     color: white;
     width: 35%
 }
+
+#projImg {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  border-radius: 8px;
+  border: 2px solid white;
+}
