@@ -65,6 +65,7 @@ const ProjectIndex = (props) => {
           return i
         } 
         else if (e.target.value === "") {
+          console.log("heyyyyyyy")
           getAllProjects()
             .then(res => {
                 console.log(res)
@@ -89,7 +90,8 @@ const ProjectIndex = (props) => {
     if (!projects) {
         return <LoadingChakra />
     } else if (projects.length === 0) {
-        return <p>No projects yet. Better add some.</p>
+        return <><p>No projects yet. Better add some.</p>
+        <input onChange={handleChange} id="search" placeholder={"slime"} type={"text"}></input></>
     }
 
   if (error) {
@@ -112,7 +114,7 @@ const ProjectIndex = (props) => {
 
 
   const projectCards = projects.map((project) => (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
+    <Box backgroundColor="rgba(255, 255, 255, 0.3)" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' margin='20px' key={project._id} style={{zIndex: '1', color: 'white'}}>
     <RouteLink to={`/projects/${project._id}`}>
           <Image src={project.img} alt={project.name} />
           </RouteLink>
