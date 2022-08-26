@@ -6,7 +6,7 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
-	removeProjectSuccess: 'You added a project!',
+	removeProjectSuccess: 'Project succesfully deleted!',
 	removeProjectFailure: 'Project creation failed!',
 	errorShowingDevs: 'Error showing developers',
 	errorFindingDev: 'Error finding the developer',

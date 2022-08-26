@@ -2,10 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import {
   Form,
   Button,
-  Container,
   DropdownButton,
-  FormLabel,
-  Input,
+
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -14,9 +12,6 @@ import "../../style.css";
 import { createUrl } from "../../api/aws";
 import { createProject } from "../../api/projects";
 import {
-  getOneDevByName,
-  updateDeveloper,
-  getOneDeveloper,
   updateDeveloperWithProject,
 } from "../../api/developers";
 import {
@@ -28,16 +23,16 @@ import {
 import Tags from "../shared/Tags";
 import Devs from "./Devs";
 import "../../style.css";
-import Autocomplete from "../shared/Tags"
-import '../../style.css'
+import Autocomplete from "../shared/Tags";
+
 
 const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
   const [value, setValue] = useState("React");
   const [tags, setTags] = useState([]);
-  const [devs, setDevs] = useState([])
-  const [devName, setDevName] = useState([])
-  const [devId, setDevId] = useState([])
+  const [devs, setDevs] = useState([]);
+  const [devName, setDevName] = useState([]);
+  const [devId, setDevId] = useState([]);
 
   const handleSelect = (e) => {
     console.log(e);
@@ -47,24 +42,28 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
     // console.log(e)
   };
   const handleSelectDevs = (e) => {
-    console.log('E from drop down menu', e);
+    console.log("E from drop down menu", e);
     //let devId = e.split(",")[0]
     setDevs((current) => [e, ...current]);
-    
+
     // console.log(e)
   };
 
   useEffect(() => {
-    setDevId(devs.map((i) => {
-      return i.split(",")[0]
-    }))
-  }, [devs])
+    setDevId(
+      devs.map((i) => {
+        return i.split(",")[0];
+      })
+    );
+  }, [devs]);
 
   useEffect(() => {
-    setDevName(devs.map((i) => {
-      return i.split(",")[1]
-    }))
-  }, [devs])
+    setDevName(
+      devs.map((i) => {
+        return i.split(",")[1];
+      })
+    );
+  }, [devs]);
   //let dev = null // add to state?
   const formStyle = {
     color: "black",
@@ -98,7 +97,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
     console.log("IM AM IN THE FILE UPLOAD FUNCTION");
     setFile(event.target.files[0]);
   }
-
 
   function handleChange(e) {
     // CS data structure - tree - for the autocomplete
@@ -166,22 +164,28 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           projects: dev,
         };
         createProject(user, newProject)
-          .then(res => {
-            console.log('FIRST THEN IN CREATE PROJECT================', project, "RES FROM CREATE\n", res)
-            console.log('DEV ID GOING IN\n', dev)
+          .then((res) => {
+            console.log(
+              "FIRST THEN IN CREATE PROJECT================",
+              project,
+              "RES FROM CREATE\n",
+              res
+            );
+            console.log("DEV ID GOING IN\n", dev);
             updateDeveloperWithProject(user, res.data.project._id, devId)
-              .then(developer => {
-                console.log('DEVELOPER', developer)
+              .then((developer) => {
+                console.log("DEVELOPER", developer);
               })
-              .catch(err => {
-                console.log(err)
+              .catch((err) => {
+                console.log(err);
                 msgAlert({
-                  heading: 'Error',
+                  heading: "Error",
                   message: errorFindingDev,
-                  variant: 'danger'
-                })
-              })
-            navigate(`/projects/${res.data.project._id}`)})
+                  variant: "danger",
+                });
+              });
+            navigate(`/projects/${res.data.project._id}`);
+          })
           .then(() =>
             msgAlert({
               heading: "oh yea!",
@@ -245,10 +249,9 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                     Vanilla JavaScript
                     </Dropdown.Item>
                 </DropdownButton> */}
-               
-          <div id="tagField" style={{marginBottom: '3px'}}>
+
+          <div id="tagField" style={{ marginBottom: "3px" }}>
             <Form.Control
-            
               placeholder="Tags"
               name="tags"
               id={project._id}
@@ -264,7 +267,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                 <Tags />
               </DropdownButton>
             </Dropdown>
-        
           </div>
           <div id="tagField">
           <Form.Control
@@ -286,7 +288,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
                 <Devs />
               </DropdownButton>
             </Dropdown>
-            </div>
+          </div>
           <Form.Control
             placeholder="Description"
             name="description"
@@ -295,7 +297,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             onChange={handleChange}
             className="mt-2"
             style={{ textAlign: "center" }}
-            
           />
           <Form.Control
             placeholder="Front End Repo"

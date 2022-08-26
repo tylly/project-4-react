@@ -23,6 +23,7 @@ import {
 const signUpStyle = {
     color: 'white',
     textAlign: 'center', 
+    marginTop: '20px'
 }
 
 

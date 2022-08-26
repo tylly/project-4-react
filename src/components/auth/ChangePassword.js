@@ -9,7 +9,8 @@ import Button from 'react-bootstrap/Button'
 
 const changePasswordStyle = {
     color: "white",
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: '20px'
 }
 
 const ChangePassword = (props) => {
