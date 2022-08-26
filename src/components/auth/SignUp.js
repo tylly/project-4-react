@@ -60,7 +60,7 @@ const SignUp = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/'))
+			.then(() => navigate('/projects'))
 			.catch((error) => {
                 setEmail('')
                 setPassword('')

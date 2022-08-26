@@ -44,7 +44,7 @@ const ChangePassword = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/'))
+			.then(() => navigate('/projects'))
 			.catch((error) => {
 				setOldPassword('')
                 setNewPassword('')
