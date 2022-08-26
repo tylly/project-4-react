@@ -106,3 +106,7 @@
 #projInput::placeholder{
   color:#6C757D
 }
+
+#projInput:focus {
+  outline: rgb(0, 179, 255);
+}
