@@ -274,9 +274,10 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             value={devId}
             className="mt-2"
             style={{ textAlign: "center", display: "none" }}
-            
           ></Form.Control>
-          <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input>
+          <Form.Control placeholder="Slime" type={"text"} value={devName} style={{ textAlign: "center", marginTop: '5px' }}>
+          </Form.Control>
+          {/* <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input> */}
           <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
@@ -333,9 +334,8 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               onChange={handleChangeFile}
             />
           </Form.Group>
-                
           {/* <Button onClick={handleUpload}>Upload</Button> */}
-          <Button type="submit" className="mt-3" size="sm" color='pink' >
+          <Button type="submit" className="mt-3" size="sm" color='pink'>
             Submit
           </Button>
           {/* <Autocomplete theme={{color: "black"}}/> */}
