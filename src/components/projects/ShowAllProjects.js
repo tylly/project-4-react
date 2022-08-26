@@ -79,7 +79,9 @@ const ProjectIndex = ({ user, msgAlert }) => {
       }
     });
     console.log("====================>", e.target.value === "", arr);
-    setProjects(arr);
+    if (arr.length > 0){
+    setProjects(arr)
+  };
   })};
 
   // If services haven't been loaded yet, show a loading message
