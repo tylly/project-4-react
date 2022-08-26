@@ -116,7 +116,7 @@ return <LoadingChakra/>
   return (
     <>
     <Center>
-      <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} style={{zIndex:'1', color: 'white'}} width={type === "edit" ? editWidth : createWidth}>
+      <Box bg="gray:50" p={3} rounded="md" w={64} textAlign={'center'} style={{zIndex:'1', color: 'black'}} width={type === "edit" ? editWidth : createWidth}>
         <Text
           fontSize='4xl'
           textAlign={"center"}
