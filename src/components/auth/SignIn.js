@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Text } from '@chakra-ui/layout'
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
-
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -94,10 +93,11 @@ const SignIn = (props) => {
                     <Button variant="info" type='submit'className="mt-3" size="sm">
                         Submit
                     </Button>
+                    <Link to={'/sign-up'}>
                     <Text textAlign={"center"} fontSize='xs'>
-                        Don't have an account? 
-                        
+                        Don't have an account?     
                     </Text> 
+                    </Link>
                 </Form>
                
             </div>
