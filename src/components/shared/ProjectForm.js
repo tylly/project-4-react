@@ -335,7 +335,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
           </Form.Group>
                 
           {/* <Button onClick={handleUpload}>Upload</Button> */}
-          <Button type="submit" className="mt-3" size="sm">
+          <Button type="submit" className="mt-3" size="sm" color='pink' >
             Submit
           </Button>
           {/* <Autocomplete theme={{color: "black"}}/> */}
