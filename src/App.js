@@ -27,7 +27,7 @@ import DevForm from './components/shared/DevForm'
 // import { DevForm, ProjectForm } from './components/shared'
 import Footer from "./components/shared/Footer";
 import DrawerComponent from "./components/DrawerComponent";
-import BackgroundVideo from "./components/shared/BackgroundVideo"
+import BackgroundImage from "./components/shared/BackgroundVideo"
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 //import CreateProject from './components/projects/CreateProjects'
 //import EditProjectsModal from './component/projects/EditProjectsModal'
@@ -66,11 +66,7 @@ const App = () => {
   return (
     <>
     <Fragment>
-<<<<<<< HEAD
-      {/* <BackgroundImage/> */}
-=======
-      <BackgroundVideo/>
->>>>>>> origin/MandsFrontendDevs
+      <BackgroundImage/>
       {/* <Header user={user} style={{position: 'fixed'}}/> */}
       <Nav
         user={user}
