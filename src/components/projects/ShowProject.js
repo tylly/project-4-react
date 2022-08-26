@@ -118,52 +118,33 @@ const ShowProject = (props) => {
   //         </Box>
   // }
   const developerSideBar = project.developers.map((developer) => (
-    <Box p="8" borderWidth="1px" pb="150%" marginTop="55px" style={{zIndex: '1', color: 'white'}}>
-      <h1 style={{ textAlign: "center", paddingBottom: "10px", zIndex: '1', color: 'white' }}>
-        <strong>Developers:</strong>
-      </h1>
-      <UnorderedList listStyleType="none">
-        <ListItem>
-          <Grid ml="-3">
-            <GridItem colStart={2} mr="-1">
-              <Link href={developer.linkedin}>
+        <ListItem paddingBottom={'10px'}>
+          <Grid>
+            <GridItem colStart={2}>
+              <Link href={developer.linkedin} >
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjMYGlaMrs0jJqymGdQ4bjEnClG4Q2hO-zQ1TQlDj6tezV9lZxGenCNyayF29fjiahjU&usqp=CAU"
                   width="20px"
                   height="20px"
+                  style={{borderRadius: '5px'}}
                 ></img>
               </Link>
             </GridItem>
             <GridItem>
-              <Link href={developer.github} d-inline>
+              <Link href={developer.github}>
                 <img
-                  src="https://i.pinimg.com/736x/b5/1b/78/b51b78ecc9e5711274931774e433b5e6.jpg"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhg-eM9fZX7D8Jf3bdcBwV91f6RCGM7FJ5npKy3XHMKcf3ZV_0vOU5qpQUibyh3nfXLWo&usqp=CAU"
                   width="20px"
                   height="20px"
+                  style={{borderRadius: '2px'}}
                 ></img>
               </Link>
             </GridItem>
-            <GridItem colEnd={6} ml="-2">
+            <GridItem colEnd={6}>
               {developer.name}
             </GridItem>
           </Grid>
         </ListItem>
-      </UnorderedList>
-      {user && project.owner === user._id ? (
-        <Wrap direction="row" justify="right" p="2">
-          <WrapItem>
-            <Button
-              leftIcon={<AddIcon />}
-              colorScheme="orange"
-              size="xs"
-              onClick={() => navigate("/developers/createDev")}
-            >
-              Add Developer
-            </Button>
-          </WrapItem>
-        </Wrap>
-      ) : null}
-    </Box>
   ));
 
   // console.log("this is the tags", project.tags)
@@ -261,22 +242,43 @@ const ShowProject = (props) => {
         ) : null}
       </Box>
       <Spacer />
-      <VStack spacing={-0.85} marginTop={'-2px'}align="stretch" w="250px">
+      <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } >
         <Box
           p="8"
-          borderWidth="1px"
+          borderWidth="2px"
           pb="100%"
           textAlign="center"
           style={{zIndex: '1', color: 'white'}}
         >
           <h1>
-            <strong style={{ paddingBottom: "10px" }}>Tags:</strong>{" "}
+            <strong>Tags:</strong>{" "}
           </h1>
-          <UnorderedList listStyleType="none" textAlign="center">
+          <UnorderedList listStyleType="none" textAlign="center" marginTop='5px'>
             {tagSidebar}
           </UnorderedList>
         </Box>
+        <Box p="8" borderWidth="2px" pb="150%" style={{zIndex: '1', color: 'white'}}>
+      <h1 style={{ textAlign: "center", paddingBottom: "10px", zIndex: '1', color: 'white' }}>
+        <strong>Developers:</strong>
+      </h1>
+      <UnorderedList marginTop='8px' listStyleType="none" textAlign='left'>
         {developerSideBar}
+      </UnorderedList>
+      {user && project.owner === user._id ? (
+        <Wrap direction="row" justify="right" p="2">
+          <WrapItem>
+            <Button
+              leftIcon={<AddIcon />}
+              colorScheme="orange"
+              size="xs"
+              onClick={() => navigate("/developers/createDev")}
+            >
+              Add Developer
+            </Button>
+          </WrapItem>
+        </Wrap>
+      ) : null}
+    </Box>
       </VStack>
     </Flex>
   );

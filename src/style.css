@@ -111,11 +111,13 @@
   outline: rgb(0, 179, 255);
 }
 #search {
-    position: relative;
+    position: absolute;
+    margin-top: -50px;
     height: 30px;
     border-radius: 8px;
     text-align: center;
     background: transparent;
-    border: 2px solid goldenrod;
-    color: goldenrod;
+    border: 2px solid whitesmoke;
+    color: white;
+    width: 35%
 }
