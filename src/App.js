@@ -77,7 +77,7 @@ const App = () => {
         heading={'create'}
       />
       <Routes>
-        <Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
+        <Route path="/" element={<ProjectIndex msgAlert={msgAlert} user={user} />} />
 
         {/* // USER ROUTES */}
 
