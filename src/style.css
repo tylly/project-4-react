@@ -106,3 +106,8 @@
 #projInput::placeholder{
   color:#6C757D
 }
+
+#projInput:focus {
+    border: 1px solid blue;
+    border-style: inset;
+  }
