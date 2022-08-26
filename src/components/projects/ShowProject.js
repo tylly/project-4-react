@@ -6,8 +6,9 @@ import LoadingScreen from "../shared/LoadingScreen";
 import {
   getOneProject,
   updateProject,
-  removeProject,
+  removeProject
 } from "../../api/projects";
+import { removeProjectFromDeveloper } from "../../api/developers";
 import messages from "../shared/AutoDismissAlert/messages";
 import {
   Box,
@@ -43,6 +44,7 @@ const ShowProject = (props) => {
   const [front_end_repo, setFront_end_repo] = useState("");
   const [back_end_repo, setBack_end_repo] = useState("");
   const [deployment, setDeployment] = useState("");
+  const [devs, setDevs] = useState([])
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
   const { user, handleClose, msgAlert } = props;
@@ -90,6 +92,16 @@ const ShowProject = (props) => {
   const removeTheProject = () => {
     removeProject(user, project._id)
       .then(() => {
+        console.log('USER\n', user, '\n project._id\n', project._id, 'Dev array\n', project.developers)
+        removeProjectFromDeveloper(user, project._id, project.developers)
+          .then()
+          .catch(err => {
+            console.log(err)
+            msgAlert({
+              heading: 'Error',
+              message: messages.errorRemovingProjectFromDev
+            })
+          })
         msgAlert({
           heading: "Success",
           message: messages.removeProjectSuccess,

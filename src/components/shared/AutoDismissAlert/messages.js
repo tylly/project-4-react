@@ -21,6 +21,7 @@ const messages = {
 	successEditProject: 'Project edited successfully',
 	errorAddLike: 'Error adding a like',
 	errorRemoveLike: 'Error removing a like',
+	errorRemovingProjectFromDev: 'Error removing project from developer',
 
 }
 

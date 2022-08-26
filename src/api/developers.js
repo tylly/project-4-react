@@ -43,6 +43,19 @@ export const updateDeveloperWithProject = (user, projectId, devs) => {
 		data: { developers: devs}
 	})
 }
+
+// UPDATE - remove project from dev
+export const removeProjectFromDeveloper = (user, projectId, devs) => {
+	return axios({
+		url: `${apiUrl}/developers/delProj/${projectId}`,
+		method: 'PATCH',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+		data: { developers: devs}
+	})
+}
+
 // UPDATE
 export const updateDeveloper = (user, devId, updatedDeveloper) => {
     console.log('this is updatedDeveloper', updatedDeveloper)
