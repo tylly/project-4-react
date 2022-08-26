@@ -98,7 +98,7 @@ const ProjectIndex = ({user, msgAlert}) => {
         return <LoadingChakra />
     } else if (projects.length === 0) {
         return <><p>No projects yet. Better add some.</p>
-        <input onChange={handleChange} id="search" placeholder={"slime"} type={"text"}></input></>
+        </>
     }
 
   if (error) {
@@ -132,9 +132,13 @@ const ProjectIndex = ({user, msgAlert}) => {
 
   ));
 
-  return <div alt="boxContainer" style={cardContainerStyle}>
-    <input onChange={handleChange} id="search" placeholder={'Search projects'} type={"text"}></input>
+  return (
+  <>
+  <input onChange={handleChange} id="search" placeholder={'Search projects'} type={"text"}></input>
+  <div alt="boxContainer" style={cardContainerStyle}>
     {projectCards}</div>;
+    </>
+  )
 };
 
 export default ProjectIndex;

@@ -111,8 +111,8 @@
   outline: rgb(0, 179, 255);
 }
 #search {
-    position: absolute;
-    margin-top: -50px;
+    position: fixed;
+    margin-top: 0;
     height: 30px;
     border-radius: 8px;
     text-align: center;
