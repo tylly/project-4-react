@@ -171,8 +171,8 @@ const ShowProject = (props) => {
     <Flex>
       <Box
         backgroundColor="rgba(255, 255, 255, 0.2)"
-        maxW="70%"
-        maxH="60%"
+        maxW="sm"
+        maxH="900px"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
@@ -181,7 +181,7 @@ const ShowProject = (props) => {
         width="50%"
         style={{zIndex: '1', color: 'white'}}
       >
-        <Image src={project.img} height="60%" width='100%'/>
+        <Image src={project.img} height="300px" width='400px'/>
         <Box p="3" style={{zIndex: '1', color: 'white'}}>
           <Box display="flex" alignItems="baseline">
             <Box

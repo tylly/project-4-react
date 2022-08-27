@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Card } from "react-bootstrap"
 // import { Link as RouterLink } from "react-router-dom"
 import messages from "../shared/AutoDismissAlert/messages"
+import DevTags from "../shared/DevTags"
 import LoadingChakra from "../shared/LoadingChakra"
 import { useDisclosure } from "@chakra-ui/hooks"
 import {
@@ -28,12 +29,14 @@ import {
     VStack,
     HStack,
     Image,
+    UnorderedList,
   } from '@chakra-ui/react'
 
   import { ArrowBackIcon, DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import DevForm from "../shared/DevForm"
 import ProjectForm from "../shared/ProjectForm"
+import DeveloperShowPreview from "../shared/DeveloperShow"
 
 const linkStyle = {
     textDecoration: 'none'
@@ -103,7 +106,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         )
     } 
 
-    console.log("this is the projects for developer", developer.projects)
+    console.log("this is the projects of developer", developer.projects)
+    
 
     // const developerTag = project.tags.map((tags)=>(
         // <Badge
@@ -172,7 +176,13 @@ const ShowDevelopers = ({ msgAlert, user }) => {
             </Stack>
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
-              <Badge
+           
+            <UnorderedList>
+              <DevTags 
+              project={developer.projects}
+              />
+            </UnorderedList>
+              {/* <Badge
                 px={2}
                 py={1}
                 fontWeight={'400'}>
@@ -191,7 +201,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 
                 fontWeight={'400'}>
                 #music
-              </Badge>
+              </Badge> */}
             </Stack>
     
             <Stack mt={8} direction={'row'} spacing={2} mb={2}>
@@ -201,6 +211,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 rounded={'full'}
                 size='sm'
                 colorScheme={'purple'}
+                onClick={() => navigate(`/projects/${developer.projects}`)}
                 >
                 Projects
               </Button>
