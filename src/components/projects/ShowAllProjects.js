@@ -5,20 +5,10 @@ import { getAllProjects } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
 import ProjectCard from "./ProjectCard";
 import "../../style.css";
-// ShowAllProjects should make a request to the api
-// To get all services
-// Then display them when it gets them
-
-// style for our card container
-// const cardContainerStyle = {
-//   marginTop: "100px",
-//   display: "flex",
-//   flexFlow: "row wrap",
-//   justifyContent: "center",
-// };
 
 const ProjectIndex = ({ user, msgAlert }) => {
   const [projects, setProjects] = useState(null);
+  const [projectsReference, setProjectsReference] = useState(null);
   const [error, setError] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [cardContainerStyle, setCardContainerStyle] = useState({
@@ -37,6 +27,7 @@ const ProjectIndex = ({ user, msgAlert }) => {
         console.log(res.data);
         console.log(res.data.projects);
         setProjects(res.data.projects);
+        setProjectsReference(res.data.projects);
       })
       .catch((err) => {
         msgAlert({
@@ -49,52 +40,23 @@ const ProjectIndex = ({ user, msgAlert }) => {
   }, [updated]);
 
   let handleChange = (e) => {
-    getAllProjects().then((res) => {
-      let arr = res.data.projects.filter((project) => {
-        if (e.target.value !== "") {
-          console.log(e);
-          if (
-            project.tags.find((tag) =>
-              tag.includes(e.target.value.toLowerCase())
-            ) ||
-            project.developers.find((developer) =>
-              developer.name
-                .toLowerCase()
-                .includes(e.target.value.toLowerCase())
-            ) ||
-            project.name.toLowerCase().includes(e.target.value.toLowerCase())
-          ) {
-            return project;
-          }
-        } else if (e.target.value === "") {
-          console.log("heyyyyyyy");
-          getAllProjects()
-            .then((res) => {
-              console.log(res);
-              console.log(res.data);
-              console.log(res.data.projects);
-              setProjects(res.data.projects);
-              setCardContainerStyle({
-                marginTop: "100px",
-                display: "flex",
-                flexFlow: "row wrap",
-                justifyContent: "center",
-                display: "flex",
-              });
-            })
-            .catch((err) => {
-              msgAlert({
-                heading: "Error Getting Projects",
-                message: messages.getProjectsFailure,
-                variant: "danger",
-              });
-              setError(true);
-            });
+    let arr = projectsReference.filter((project) => {
+      if (e.target.value !== "") {
+        console.log(e.target.value.length);
+        if (
+          project.tags.find((tag) =>
+            tag.includes(e.target.value.toLowerCase())
+          ) ||
+          project.developers.find((developer) =>
+            developer.name.toLowerCase().includes(e.target.value.toLowerCase())
+          ) ||
+          project.name.toLowerCase().includes(e.target.value.toLowerCase())
+        ) {
+          return project;
         }
-      });
-      console.log("====================>", e.target.value === "", arr);
-      if (arr.length > 0) {
-        setProjects(arr);
+      } else if (e.target.value.length === 0) {
+        console.log("heyyyyyyy");
+        setProjects(projectsReference);
         setCardContainerStyle({
           marginTop: "100px",
           display: "flex",
@@ -102,10 +64,21 @@ const ProjectIndex = ({ user, msgAlert }) => {
           justifyContent: "center",
           display: "flex",
         });
-      } else {
-        setCardContainerStyle({ display: "none" });
       }
     });
+    console.log("====================>", e.target.value === "", arr);
+    if (arr.length > 0) {
+      setProjects(arr);
+      setCardContainerStyle({
+        marginTop: "100px",
+        display: "flex",
+        flexFlow: "row wrap",
+        justifyContent: "center",
+        display: "flex",
+      });
+    } else if (e.target.value.length > 0 && arr.length === 0) {
+      setCardContainerStyle({ display: "none" });
+    }
   };
 
   // If services haven't been loaded yet, show a loading message
