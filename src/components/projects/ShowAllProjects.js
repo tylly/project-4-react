@@ -20,12 +20,8 @@ const ProjectIndex = ({ user, msgAlert }) => {
   });
 
   useEffect(() => {
-    console.log("happening shai!");
     getAllProjects()
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        console.log(res.data.projects);
         setProjects(res.data.projects);
         setProjectsReference(res.data.projects);
       })
@@ -42,7 +38,6 @@ const ProjectIndex = ({ user, msgAlert }) => {
   let handleChange = (e) => {
     let filteredProjects = projectsReference.filter((project) => {
       if (e.target.value !== "") {
-        console.log(e.target.value.length);
         if (
           project.tags.find((tag) =>
             tag.includes(e.target.value.toLowerCase())
@@ -55,7 +50,6 @@ const ProjectIndex = ({ user, msgAlert }) => {
           return project;
         }
       } else if (e.target.value.length === 0) {
-        console.log("heyyyyyyy");
         setProjects(projectsReference);
         setCardContainerStyle({
           marginTop: "100px",
@@ -66,7 +60,6 @@ const ProjectIndex = ({ user, msgAlert }) => {
         });
       }
     });
-    console.log("====================>", e.target.value === "", filteredProjects);
     if (filteredProjects.length > 0) {
       setProjects(filteredProjects);
       setCardContainerStyle({
