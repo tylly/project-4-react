@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'http://localhost:8000',
+	production: 'https://projectshare-api.herokuapp.com',
 	development: 'http://localhost:8000',
 }
 
