@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
 import LoadingChakra from "../shared/LoadingChakra";
 import { getAllProjects } from "../../api/projects";
 import messages from "../shared/AutoDismissAlert/messages";
@@ -9,7 +8,6 @@ import "../../style.css";
 const ProjectIndex = ({ user, msgAlert }) => {
   const containerDefault = {
     marginTop: "100px",
-    display: "flex",
     flexFlow: "row wrap",
     justifyContent: "center",
     display: "flex",
