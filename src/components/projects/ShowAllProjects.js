@@ -81,7 +81,7 @@ const ProjectIndex = ({ user, msgAlert }) => {
       <>
         <p>No projects yet. Better add some.</p>
       </>
-    );
+    )
   }
 
   if (error) {
