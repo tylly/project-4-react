@@ -29,6 +29,7 @@ import {
     VStack,
     HStack,
     Image,
+    UnorderedList,
   } from '@chakra-ui/react'
 
   import { ArrowBackIcon, DeleteIcon, EditIcon} from '@chakra-ui/icons'
@@ -105,7 +106,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         )
     } 
 
-    console.log("this is the projects for developer", developer.projects)
+    console.log("this is the projects of developer", developer.projects)
     
 
     // const developerTag = project.tags.map((tags)=>(
@@ -175,9 +176,12 @@ const ShowDevelopers = ({ msgAlert, user }) => {
             </Stack>
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
+           
+            <UnorderedList>
               <DevTags 
               project={developer.projects}
               />
+            </UnorderedList>
               {/* <Badge
                 px={2}
                 py={1}
