@@ -52,17 +52,13 @@ const ProjectIndex = ({ user, msgAlert }) => {
           ) ||
           project.name.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
-          setNotFoundStyle({
-            display: "none",
-          });
+          setNotFoundStyle({ display: "none" });
           return project;
         }
       } else if (e.target.value.length === 0) {
         setProjects(projectsReference);
         setCardContainerStyle(containerDefault);
-        setNotFoundStyle({
-          display: "none",
-        });
+        setNotFoundStyle({ display: "none" });
       }
     });
     if (filteredProjects.length > 0) {
