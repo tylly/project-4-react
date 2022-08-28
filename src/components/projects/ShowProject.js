@@ -8,7 +8,7 @@ import {
   updateProject,
   removeProject
 } from "../../api/projects";
-import { removeProjectFromDeveloper } from "../../api/developers";
+import { removeProjectFromDeveloper, getOneDevByName } from "../../api/developers";
 import messages from "../shared/AutoDismissAlert/messages";
 import {
   Box,
@@ -22,10 +22,23 @@ import {
   Link,
   Grid,
   GridItem,
-  Button,
   WrapItem,
   Wrap,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Heading,
+  Avatar,
+  Center,
+  Text,
+  Stack,
+  Button,
+  HStack,
 } from "@chakra-ui/react";
 import {
   ExternalLinkIcon,
@@ -34,6 +47,7 @@ import {
   AddIcon,
 } from "@chakra-ui/icons";
 import EditDrawer from "./EditDrawer";
+import AddDevToProject from "../developers/AddDevToProject";
 
 const ShowProject = (props) => {
   const [project, setProject] = useState(null);
@@ -46,6 +60,11 @@ const ShowProject = (props) => {
   const [deployment, setDeployment] = useState("");
   const [devs, setDevs] = useState([])
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { 
+    isOpen: isModalOpen, 
+    onOpen: onModalOpen, 
+    onClose: onModalClose 
+  } = useDisclosure();
   const firstField = React.useRef();
   const { user, handleClose, msgAlert } = props;
   const triggerRefresh = () => setUpdated((prev) => !prev);
@@ -168,131 +187,180 @@ const ShowProject = (props) => {
         </ListItem>
   ))
   return (
-    <Flex>
-      <Box
-        maxW="lg"
-        maxH="80%"
-        borderWidth="1px"
-        borderRadius="lg"
-        overflow="hidden"
-        marginTop="80px"
-        marginLeft="25%"
-        width="50%"
-        style={{zIndex: '1', color: 'white'}}
-      >
-        <Image src={project.img} />
-        <Box p="3" style={{zIndex: '1', color: 'white'}}>
-          <Box display="flex" alignItems="baseline">
-            <Box
-              mt="2"
-              fontWeight="semibold"
-              as="h1"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {project.name}
+    <>
+      <Flex>
+        <Box
+          maxW="lg"
+          maxH="80%"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          marginTop="80px"
+          marginLeft="25%"
+          width="50%"
+          style={{ zIndex: "1", color: "white" }}
+        >
+          <Image src={project.img} />
+          <Box p="3" style={{ zIndex: "1", color: "white" }}>
+            <Box display="flex" alignItems="baseline">
+              <Box
+                mt="2"
+                fontWeight="semibold"
+                as="h1"
+                lineHeight="tight"
+                noOfLines={1}
+              >
+                {project.name}
+              </Box>
+            </Box>
+            <Box mt="4" as="h1" lineHeight="tight">
+              Description: {project.description}
+            </Box>
+            <Box mt="2">
+              <Link href={project.deployment} isExternal paddingRight="10px">
+                Deployment URL
+                <ExternalLinkIcon mx="2px" />
+              </Link>
+            </Box>
+            <Box mt="2">
+              <Link
+                href={project.front_end_repo}
+                isExternal
+                paddingRight="10px"
+              >
+                Front-End Repo
+                <ExternalLinkIcon mx="2px" />
+              </Link>
+            </Box>
+            <Box mt="2" style={{ zIndex: "1", color: "white" }}>
+              <Link href={project.back_end_repo} isExternal>
+                Back-End Repo
+                <ExternalLinkIcon mx="2px" />
+              </Link>
             </Box>
           </Box>
-          <Box mt="4" as="h1" lineHeight="tight">
-            Description: {project.description}
-          </Box>
-          <Box mt="2">
-            <Link href={project.deployment} isExternal paddingRight="10px">
-              Deployment URL
-              <ExternalLinkIcon mx="2px" />
-            </Link>
-          </Box>
-          <Box mt="2">
-            <Link href={project.front_end_repo} isExternal paddingRight="10px">
-              Front-End Repo
-              <ExternalLinkIcon mx="2px" />
-            </Link>
-          </Box>
-          <Box mt="2" style={{zIndex: '1', color: 'white'}}>
-            <Link href={project.back_end_repo} isExternal>
-              Back-End Repo
-              <ExternalLinkIcon mx="2px" />
-            </Link>
-          </Box>
+          {user && project.owner === user._id ? (
+            <Wrap direction="row" justify="right" p="2">
+              <WrapItem>
+                <Button
+                  leftIcon={<DeleteIcon />}
+                  colorScheme="red"
+                  size="xs"
+                  onClick={() => removeTheProject()}
+                >
+                  Delete
+                </Button>
+              </WrapItem>
+              <WrapItem>
+                <Button
+                  leftIcon={<EditIcon />}
+                  colorScheme="linkedin"
+                  size="xs"
+                  onClick={onOpen}
+                >
+                  Edit
+                </Button>
+                <EditDrawer
+                  isOpen={isOpen}
+                  onClose={onClose}
+                  setName={setName}
+                  setDescription={setDescription}
+                  setFront_end_repo={setFront_end_repo}
+                  setBack_end_repo={setBack_end_repo}
+                  setDeployment={setDeployment}
+                  project={project}
+                  handleSubmit={handleSubmit}
+                  firstField={firstField}
+                />
+              </WrapItem>
+            </Wrap>
+          ) : null}
         </Box>
-        {user && project.owner === user._id ? (
-          <Wrap direction="row" justify="right" p="2">
-            <WrapItem>
-              <Button
-                leftIcon={<DeleteIcon />}
-                colorScheme="red"
-                size="xs"
-                onClick={() => removeTheProject()}
-              >
-                Delete
-              </Button>
-            </WrapItem>
-            <WrapItem>
-              <Button
-                leftIcon={<EditIcon />}
-                colorScheme="linkedin"
-                size="xs"
-                onClick={onOpen}
-              >
-                Edit
-              </Button>
-              <EditDrawer
-                isOpen={isOpen}
-                onClose={onClose}
-                setName={setName}
-                setDescription={setDescription}
-                setFront_end_repo={setFront_end_repo}
-                setBack_end_repo={setBack_end_repo}
-                setDeployment={setDeployment}
-                project={project}
-                handleSubmit={handleSubmit}
-                firstField={firstField}
-              />
-              
-            </WrapItem>
-          </Wrap>
-        ) : null}
-      </Box>
-      <Spacer />
-      <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } >
-        <Box
-          p="8"
-          borderWidth="2px"
-          pb="100%"
-          textAlign="center"
-          style={{zIndex: '1', color: 'white'}}
+        <Spacer />
+        <VStack
+          position="fixed"
+          spacing={-0.8}
+          marginTop={"-2px"}
+          marginLeft={"83%"}
+          align="stretch"
+          width={"250px"}
         >
-          <h1>
-            <strong>Tags:</strong>{" "}
-          </h1>
-          <UnorderedList listStyleType="none" textAlign="center" marginTop='5px'>
-            {tagSidebar}
-          </UnorderedList>
-        </Box>
-        <Box p="8" borderWidth="2px" pb="150%" style={{zIndex: '1', color: 'white'}}>
-      <h1 style={{ textAlign: "center", paddingBottom: "10px", zIndex: '1', color: 'white' }}>
-        <strong>Developers:</strong>
-      </h1>
-      <UnorderedList marginTop='8px' listStyleType="none" textAlign='left'>
-        {developerSideBar}
-      </UnorderedList>
-      {user && project.owner === user._id ? (
-        <Wrap direction="row" justify="right" p="2">
-          <WrapItem>
-            <Button
-              leftIcon={<AddIcon />}
-              colorScheme="orange"
-              size="xs"
-              onClick={() => navigate("/developers/createDev")}
+          <Box
+            p="8"
+            borderWidth="2px"
+            pb="100%"
+            textAlign="center"
+            style={{ zIndex: "1", color: "white" }}
+          >
+            <h1>
+              <strong>Tags:</strong>{" "}
+            </h1>
+            <UnorderedList
+              listStyleType="none"
+              textAlign="center"
+              marginTop="5px"
             >
-              Add Developer
-            </Button>
-          </WrapItem>
-        </Wrap>
-      ) : null}
-    </Box>
-      </VStack>
-    </Flex>
+              {tagSidebar}
+            </UnorderedList>
+          </Box>
+          <Box
+            p="8"
+            borderWidth="2px"
+            pb="150%"
+            style={{ zIndex: "1", color: "white" }}
+          >
+            <h1
+              style={{
+                textAlign: "center",
+                paddingBottom: "10px",
+                zIndex: "1",
+                color: "white",
+              }}
+            >
+              <strong>Developers:</strong>
+            </h1>
+            <UnorderedList
+              marginTop="8px"
+              listStyleType="none"
+              textAlign="left"
+            >
+              {developerSideBar}
+            </UnorderedList>
+            {user && project.owner === user._id ? (
+              <Wrap direction="row" justify="right" p="2">
+                <WrapItem>
+                  <Button
+                    leftIcon={<AddIcon />}
+                    colorScheme="orange"
+                    size="xs"
+                    onClick={onModalOpen}
+                  >
+                    Add Developer
+                  </Button>
+                </WrapItem>
+              </Wrap>
+            ) : null}
+          </Box>
+        </VStack>
+      </Flex>
+
+      <Modal isOpen={isModalOpen} onClose={onModalClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody textAlign={"center"}>
+            <AddDevToProject
+              msgAlert={msgAlert}
+              user={user}
+              triggerRefresh={() => setUpdated((prev) => !prev)}
+              // dev={developer}
+              onModalClose={onModalClose}
+              project={project}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
