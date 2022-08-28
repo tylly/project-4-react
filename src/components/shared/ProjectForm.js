@@ -1,19 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import {
-  Form,
-  Button,
-  DropdownButton,
-
-} from "react-bootstrap";
+import { Form, Button, DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 // import axios from "axios";
 import "../../style.css";
 import { createUrl } from "../../api/aws";
 import { createProject } from "../../api/projects";
-import {
-  updateDeveloperWithProject,
-} from "../../api/developers";
+import { updateDeveloperWithProject } from "../../api/developers";
 import {
   createProjectSuccess,
   createProjectFailure,
@@ -24,7 +17,6 @@ import Tags from "../shared/Tags";
 import Devs from "./Devs";
 import "../../style.css";
 import Autocomplete from "../shared/Tags";
-
 
 const ProjectForm = ({ heading, user, msgAlert }) => {
   //   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -230,26 +222,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             className="mt-2"
             style={{ textAlign: "center" }}
           />
-
-          {/* <DropdownButton onSelect={handleSelect} variant="info">
-                    <Dropdown.Item eventKey="React">
-                    React
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey="Python">Python</Dropdown.Item>
-                    <Dropdown.Item eventKey="MongoDB">MongoDB</Dropdown.Item>
-                    <Dropdown.Item eventKey="Express">
-                    Express
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey="JavaScript">JavaScript</Dropdown.Item>
-                    <Dropdown.Item eventKey="Node.js">Node.js</Dropdown.Item>
-                    <Dropdown.Item eventKey="Django">
-                    Django
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey="Vanilla JavaScript">
-                    Vanilla JavaScript
-                    </Dropdown.Item>
-                </DropdownButton> */}
-
           <div id="tagField" style={{ marginBottom: "3px" }}>
             <Form.Control
               placeholder="Tags"
@@ -269,18 +241,22 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             </Dropdown>
           </div>
           <div id="tagField">
-          <Form.Control
-            placeholder="Developers"
-            name="developers"
-            id={project._id}
-            value={devId}
-            className="mt-2"
-            style={{ textAlign: "center", display: "none" }}
-          ></Form.Control>
-          <Form.Control placeholder="Slime" type={"text"} value={devName} style={{ textAlign: "center", marginTop: '5px' }}>
-          </Form.Control>
-          {/* <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input> */}
-          <Dropdown>
+            <Form.Control
+              placeholder="Developers"
+              name="developers"
+              id={project._id}
+              value={devId}
+              className="mt-2"
+              style={{ textAlign: "center", display: "none" }}
+            ></Form.Control>
+            <Form.Control
+              placeholder="Slime"
+              type={"text"}
+              value={devName}
+              style={{ textAlign: "center", marginTop: "5px" }}
+            ></Form.Control>
+            {/* <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input> */}
+            <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
                 onSelect={handleSelectDevs}
@@ -336,7 +312,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
             />
           </Form.Group>
           {/* <Button onClick={handleUpload}>Upload</Button> */}
-          <Button type="submit" className="mt-3" size="sm" color='pink'>
+          <Button type="submit" className="mt-3" size="sm" color="pink">
             Submit
           </Button>
           {/* <Autocomplete theme={{color: "black"}}/> */}
