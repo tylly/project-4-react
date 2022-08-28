@@ -37,6 +37,18 @@ export const updateProject = (user,	projectId, updatedProject) => {
 	})
 }
 
+// UPDATE - Add dev to project
+export const addDevToProject = (user, projectId, devs) => {
+	return axios({
+		url: `${apiUrl}/projects/addDev/${projectId}`,
+		method: 'PATCH',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+		data: { developers: devs }
+	})
+}
+
 // DELETE
 export const removeProject = (user, projectId) => {
     return axios({

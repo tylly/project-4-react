@@ -22,6 +22,7 @@ const messages = {
 	errorAddLike: 'Error adding a like',
 	errorRemoveLike: 'Error removing a like',
 	errorRemovingProjectFromDev: 'Error removing project from developer',
+	successAddingDevToProject: 'Success adding developer to project',
 
 }
 

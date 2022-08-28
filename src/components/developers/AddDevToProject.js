@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getOneDevByName } from "../../api/developers"
-import { updateDeveloperWithProject } from "../../api/developers";
+import { addProjectToDev } from "../../api/developers";
 import messages from "../shared/AutoDismissAlert/messages";
 import {
     Form,
@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import Devs from "../shared/Devs";
+import { addDevToProject } from "../../api/projects";
 
 function AddDevToProject({user, msgAlert, triggerRefresh, onModalClose, project}) {         
     const [devs, setDevs] = useState([])
@@ -52,21 +53,41 @@ function AddDevToProject({user, msgAlert, triggerRefresh, onModalClose, project}
         let newDev = {
             projects: dev,
         };
-        
-        updateDeveloperWithProject(user, project._id, [dev._id])
-            .then((developer) => {
-            console.log("DEVELOPER", developer);
-            onModalClose()
-            triggerRefresh()
+        console.log('devid============>>>', devId)
+        addProjectToDev(user, project._id, devId)
+            .then(() => {
+              msgAlert({
+                heading: 'Success',
+                message: 'Success adding',
+                variant: 'success'
+              })
+              addDevToProject(user, project._id, devId)
+                .then(() => {
+                  onModalClose()
+                  triggerRefresh()
+                  msgAlert({
+                    heading: 'Success',
+                    message: messages.successAddingDevToProject,
+                    variant: 'success'
+                  })
+                })
+                .catch(err => {
+                  console.log(err)
+                  msgAlert({
+                    heading: 'Error',
+                    messahe: 'Error adding developer to project'
+                  })
+                })
             })
             .catch((err) => {
             console.log(err);
             msgAlert({
                 heading: "Error",
-                message: messages.errorFindingDev,
+                message: 'error adding project to developer',
                 variant: "danger",
             });
             });
+
     }   
 
     const formStyle = {
