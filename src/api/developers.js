@@ -33,7 +33,7 @@ export const createDeveloper = (user, newDeveloper) => {
 }
 
 // UPDATE - add project to dev
-export const updateDeveloperWithProject = (user, projectId, devs) => {
+export const addProjectToDev = (user, projectId, devs) => {
 	return axios({
 		url: `${apiUrl}/developers/addProj/${projectId}`,
 		method: 'PATCH',

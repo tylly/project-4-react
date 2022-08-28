@@ -251,43 +251,6 @@ const ShowProject = (props) => {
             </Wrap>
           ) : null}
         </Box>
-        {user && project.owner === user._id ? (
-          <Wrap direction="row" justify="right" p="2">
-            <WrapItem>
-              <Button
-                leftIcon={<DeleteIcon />}
-                colorScheme="red"
-                size="xs"
-                onClick={() => removeTheProject()}
-              >
-                Delete
-              </Button>
-            </WrapItem>
-            <WrapItem>
-              <Button
-                leftIcon={<EditIcon />}
-                colorScheme="linkedin"
-                size="xs"
-                onClick={onOpen}
-              >
-                Edit
-              </Button>
-              <EditDrawer
-                isOpen={isOpen}
-                onClose={onClose}
-                setName={setName}
-                setDescription={setDescription}
-                setFront_end_repo={setFront_end_repo}
-                setBack_end_repo={setBack_end_repo}
-                setDeployment={setDeployment}
-                project={project}
-                handleSubmit={handleSubmit}
-                firstField={firstField}
-              />
-              
-            </WrapItem>
-          </Wrap>
-        ) : null }
       </Box>
       <Spacer />
       <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } backgroundColor="rgba(255, 255, 255, 0.2)">

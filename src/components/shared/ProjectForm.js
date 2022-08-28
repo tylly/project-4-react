@@ -6,7 +6,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "../../style.css";
 import { createUrl } from "../../api/aws";
 import { createProject } from "../../api/projects";
-import { updateDeveloperWithProject } from "../../api/developers";
+import {
+  addProjectToDev,
+} from "../../api/developers";
 import {
   createProjectSuccess,
   createProjectFailure,
@@ -163,8 +165,8 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               "RES FROM CREATE\n",
               res
             );
-            console.log("DEV ID GOING IN\n", dev);
-            updateDeveloperWithProject(user, res.data.project._id, devId)
+            console.log("DEV ID GOING IN\n", devId);
+            addProjectToDev(user, res.data.project._id, devId)
               .then((developer) => {
                 console.log("DEVELOPER", developer);
               })
