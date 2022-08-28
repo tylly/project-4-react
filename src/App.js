@@ -28,10 +28,12 @@ import DevForm from './components/shared/DevForm'
 import Footer from "./components/shared/Footer";
 import DrawerComponent from "./components/DrawerComponent";
 import BackgroundVideo from "./components/shared/BackgroundVideo"
+import AddDevToProject from "./components/developers/AddDevToProject";
 //import { CreateProject, EditProjectsModal, ProjectsIndex, ShowAuthProject, ShowProject, ShowAllProjects } from './components/projects'
 //import CreateProject from './components/projects/CreateProjects'
 //import EditProjectsModal from './component/projects/EditProjectsModal'
 //import ProjectsIndex from './component/projects/ProjectsIndex'
+
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -159,7 +161,18 @@ const App = () => {
               </RequireAuth>
             }
         />
-        
+        {/* Add dev to existing project */}
+        {/* <Route
+            path='/developers/addToProject'
+            element={ 
+              <RequireAuth>
+                <AddDevToProject
+                  msgAlert={msgAlert} 
+                  user={user}
+                /> 
+              </RequireAuth>
+            }
+        /> */}
         {/* // Developer show specific	 */}
         <Route
 			path='/developers/:id'
