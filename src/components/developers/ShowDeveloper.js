@@ -56,19 +56,19 @@ const ShowDevelopers = ({ msgAlert, user }) => {
     const [updated, setUpdated] = useState(false)
     const triggerRefresh = () => setUpdated((prev) => !prev)
     useEffect(() => {
-        getOneDeveloper(id)
-            .then(res => {
-                console.log('resdata in showdev========>>\n', res.data)
-                setDeveloper(res.data.developer)
-                console.log('developer//////////////////>>>\n', developer)
-            })
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error',
-                    message: messages.errorShowingDevs,
-                    variant: 'danger'
-                })
-            })
+      // window.scrollTo(0, 0)
+      getOneDeveloper(id)
+          .then(res => {
+              console.log('resdata in showdev========>>\n', res.data)
+              setDeveloper(res.data.developer)
+          })
+          .catch(err => {
+              msgAlert({
+                  heading: 'Error',
+                  message: messages.errorShowingDevs,
+                  variant: 'danger'
+              })
+          })
             
     }, [updated])
 
@@ -106,7 +106,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         )
     } 
 
-    console.log("this is the projects of developer", developer.projects)
+    console.log("this is the projects of developer===========>>>>", developer.projects, 'This is just developer\n', developer)
 
     return (
         <>
@@ -167,11 +167,16 @@ const ShowDevelopers = ({ msgAlert, user }) => {
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
            
-            <UnorderedList>
+           <h4> Tags: </h4>
+            { developer.projects.length > 0 ? (
+              <UnorderedList>
               <DevTags 
               developer={developer}
               />
-            </UnorderedList>
+            </UnorderedList>)
+            :
+            <p>No tags availavle</p>
+            }
               {/* <Badge
                 px={2}
                 py={1}
