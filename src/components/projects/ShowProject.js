@@ -178,7 +178,7 @@ const ShowProject = (props) => {
             ></img>
           </Link>
         </GridItem>
-        <GridItem colEnd={6}>{developer.name}</GridItem>
+        <GridItem colEnd={6}><Link href={`/developers/${developer._id}`}>{developer.name}</Link></GridItem>
       </Grid>
     </ListItem>
   ));
