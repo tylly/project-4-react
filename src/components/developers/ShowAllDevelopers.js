@@ -65,7 +65,7 @@ const ShowAllDevelopers = ({user, msgAlert}) => {
 
     return (
         <>
-        <SimpleGrid ml={7} columns={{sm: 2, md: 3, lg: 4}}>
+        <SimpleGrid ml={7} mr={7} columns={{sm: 2, md: 3, lg: 4}}>
             {myDevs}
         </SimpleGrid>
         </>

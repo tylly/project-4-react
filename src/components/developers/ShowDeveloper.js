@@ -131,17 +131,17 @@ const ShowDevelopers = ({ msgAlert, user }) => {
               alt={'Avatar Alt'}
               mb={4}
               pos={'relative'}
-              _after={{
-                content: '""',
-                w: 4,
-                h: 4,
-                bg: 'green.300',
-                border: '2px solid white',
-                rounded: 'full',
-                pos: 'absolute',
-                bottom: 0,
-                right: 3,
-              }}
+              // _after={{
+              //   content: '""',
+              //   w: 4,
+              //   h: 4,
+              //   bg: 'green.300',
+              //   border: '2px solid white',
+              //   rounded: 'full',
+              //   pos: 'absolute',
+              //   bottom: 0,
+              //   right: 3,
+              // }}
             />
             <Heading fontSize={'2xl'} fontFamily={'body'}>
               {developer.name}
@@ -165,18 +165,11 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                     alt='Github'
                 /><Link href={developer.github}textAlign='left' boxSize={'250px'} height={'50px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.github}</Link>
             </Stack>
-
-            {/* <Stack align={'center'} justify={'center'} direction={'row'} mt={3} > */}
-           
-            <Wrap display='flex' alignItems='baseline'>
+            {/* <Wrap display='flex' alignItems='baseline'>
               <DevTags 
               project={developer.projects}
               />
-              </Wrap>
-          
-          
-            {/* </Stack> */}
-    
+              </Wrap> */}
             <Stack mt={8} direction={'row'} spacing={2} mb={2}>
               <Button
                 flex={1}
