@@ -178,7 +178,9 @@ const ShowProject = (props) => {
             ></img>
           </Link>
         </GridItem>
-        <GridItem colEnd={6}><Link href={`/developers/${developer._id}`}>{developer.name}</Link></GridItem>
+        <GridItem colEnd={6}>
+          <Link onClick={() => navigate(`/developers/${developer._id}`)}>{developer.name}</Link>
+          </GridItem>
       </Grid>
     </ListItem>
   ));
@@ -349,13 +351,15 @@ const ShowProject = (props) => {
                 {developerSideBar}
               </UnorderedList>
               {user && project.owner === user._id ? (
-                <Wrap direction="row" justify="right" p="2">
+                <Wrap direction="row" justify="left" p="2">
                   <WrapItem>
                     <Button
                       leftIcon={<AddIcon />}
                       colorScheme="orange"
                       size="xs"
                       onClick={onModalOpen}
+                      marginLeft='2%'
+                      position='fixed'
                     >
                       Add Developer
                     </Button>
