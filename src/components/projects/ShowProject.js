@@ -213,6 +213,27 @@ const ShowProject = (props) => {
             >
               {project.name}
             </Box>
+            <Box mt="4" as="h1" lineHeight="tight">
+            Description: {project.description}
+          </Box>
+          <Box mt="2">
+            <Link href={project.deployment} isExternal paddingRight="10px">
+              Deployment URL
+              <ExternalLinkIcon mx="2px" />
+            </Link>
+          </Box>
+          <Box mt="2">
+            <Link href={project.front_end_repo} isExternal paddingRight="10px">
+              Front-End Repo
+              <ExternalLinkIcon mx="2px" />
+            </Link>
+          </Box>
+          <Box mt="2" style={{zIndex: '1', color: 'white'}}>
+            <Link href={project.back_end_repo} isExternal>
+              Back-End Repo
+              <ExternalLinkIcon mx="2px" />
+            </Link>
+          </Box>
           </Box>
           {user && project.owner === user._id ? (
             <Wrap direction="row" justify="right" p="2">
@@ -251,6 +272,7 @@ const ShowProject = (props) => {
             </Wrap>
           ) : null}
         </Box>
+
       </Box>
       <Spacer />
       <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } backgroundColor="rgba(255, 255, 255, 0.2)">
