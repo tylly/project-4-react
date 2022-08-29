@@ -252,7 +252,7 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               style={{ textAlign: "center", display: "none" }}
             ></Form.Control>
             <Form.Control
-              placeholder="Slime"
+              placeholder="Developers"
               type={"text"}
               value={devName}
               style={{ textAlign: "center", marginTop: "5px" }}
