@@ -29,7 +29,7 @@ import {
     VStack,
     HStack,
     Image,
-    UnorderedList,
+    Wrap
   } from '@chakra-ui/react'
 
   import { ArrowBackIcon, DeleteIcon, EditIcon} from '@chakra-ui/icons'
@@ -106,17 +106,8 @@ const ShowDevelopers = ({ msgAlert, user }) => {
         )
     } 
 
-    console.log("this is the projects of developer", developer.projects)
-    
-
-    // const developerTag = project.tags.map((tags)=>(
-        // <Badge
-        //     px={2}
-        //     py={1}
-        //     fontWeight={'400'}>
-        //     {project.tags}
-        // </Badge>
-    // ))
+    console.log("this is the projects of developer", developer.projects[0]._id)
+   
 
     return (
         <>
@@ -162,7 +153,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 <Image
                     boxSize='20px'
                     objectFit='cover'
-                    src='https://cdn-icons-png.flaticon.com/512/174/174857.png'
+                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjMYGlaMrs0jJqymGdQ4bjEnClG4Q2hO-zQ1TQlDj6tezV9lZxGenCNyayF29fjiahjU&usqp=CAU'
                     alt='Linked In'
                 /><Link href={developer.linkedin} textAlign='left' boxSize={'250px'} height={'50px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.linkedin} </Link>
             </Stack>
@@ -170,39 +161,21 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 <Image
                     boxSize='20px'
                     objectFit='cover'
-                    src='https://www.svgrepo.com/show/332401/github.svg'
+                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhg-eM9fZX7D8Jf3bdcBwV91f6RCGM7FJ5npKy3XHMKcf3ZV_0vOU5qpQUibyh3nfXLWo&usqp=CAU'
                     alt='Github'
                 /><Link href={developer.github}textAlign='left' boxSize={'250px'} height={'50px'} fontSize={'15px'} style={linkStyle} isExternal>{developer.github}</Link>
             </Stack>
 
-            <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
+            {/* <Stack align={'center'} justify={'center'} direction={'row'} mt={3} > */}
            
-            <UnorderedList>
+            <Wrap display='flex' alignItems='baseline'>
               <DevTags 
               project={developer.projects}
               />
-            </UnorderedList>
-              {/* <Badge
-                px={2}
-                py={1}
-                fontWeight={'400'}>
-                #art
-              </Badge>
-              <Badge
-                px={2}
-                py={1}
-               
-                fontWeight={'400'}>
-                #photography
-              </Badge>
-              <Badge
-                px={2}
-                py={1}
-                
-                fontWeight={'400'}>
-                #music
-              </Badge> */}
-            </Stack>
+              </Wrap>
+          
+          
+            {/* </Stack> */}
     
             <Stack mt={8} direction={'row'} spacing={2} mb={2}>
               <Button
@@ -211,7 +184,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
                 rounded={'full'}
                 size='sm'
                 colorScheme={'purple'}
-                onClick={() => navigate(`/projects/${developer.projects}`)}
+                onClick={() => navigate(`/projects/${developer.projects[0]._id}`)}
                 >
                 Projects
               </Button>

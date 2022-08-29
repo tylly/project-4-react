@@ -257,7 +257,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
               value={devName}
               style={{ textAlign: "center", marginTop: "5px" }}
             ></Form.Control>
-            {/* <input id='projInput' placeholder="Slime" type={"text"} value={devName}></input> */}
             <Dropdown>
               <DropdownButton
                 style={{ marginTop: "8px" }}
