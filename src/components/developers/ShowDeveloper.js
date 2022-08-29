@@ -177,11 +177,11 @@ const ShowDevelopers = ({ msgAlert, user }) => {
 
             <Stack align={'center'} justify={'center'} direction={'row'} mt={3} >
            
-            <UnorderedList>
+            {/* <UnorderedList>
               <DevTags 
               project={developer.projects}
               />
-            </UnorderedList>
+            </UnorderedList> */}
               {/* <Badge
                 px={2}
                 py={1}
