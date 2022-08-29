@@ -253,7 +253,7 @@ const ShowProject = (props) => {
         </Box>
       </Box>
       <Spacer />
-      <VStack position='fixed' spacing={-0.8} marginTop={'-2px'} marginLeft={'83%'} align="stretch" width={ '250px' } backgroundColor="rgba(255, 255, 255, 0.2)">
+      <VStack position='fixed' spacing={-0.8} marginTop={'-2px'}  align="stretch" width={ '250px' } backgroundColor="rgba(255, 255, 255, 0.2)">
         <Box
           p="8"
           borderWidth="2px"
@@ -261,13 +261,13 @@ const ShowProject = (props) => {
           textAlign="center"
           style={{zIndex: '1', color: 'white'}}
         >
-          <Box
+          {/* <Box
             p="8"
             borderWidth="2px"
             pb="100%"
             textAlign="center"
             style={{ zIndex: "1", color: "white" }}
-          >
+          > */}
             <h1>
               <strong>Tags:</strong>{" "}
             </h1>
@@ -317,7 +317,7 @@ const ShowProject = (props) => {
               </Wrap>
             ) : null}
           </Box>
-          </Box>
+          {/* </Box> */}
         </VStack>
       </Flex>
 
