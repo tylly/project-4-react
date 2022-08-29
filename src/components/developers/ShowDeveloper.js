@@ -107,16 +107,6 @@ const ShowDevelopers = ({ msgAlert, user }) => {
     } 
 
     console.log("this is the projects of developer", developer.projects)
-    
-
-    // const developerTag = project.tags.map((tags)=>(
-        // <Badge
-        //     px={2}
-        //     py={1}
-        //     fontWeight={'400'}>
-        //     {project.tags}
-        // </Badge>
-    // ))
 
     return (
         <>
@@ -135,7 +125,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
             <Avatar
               size={'xl'}
               src={
-                'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+                developer.avatar
               }
               alt={'Avatar Alt'}
               mb={4}
@@ -179,7 +169,7 @@ const ShowDevelopers = ({ msgAlert, user }) => {
            
             <UnorderedList>
               <DevTags 
-              project={developer.projects}
+              developer={developer}
               />
             </UnorderedList>
               {/* <Badge
