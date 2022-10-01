@@ -42,12 +42,10 @@ const ProjectIndex = ({ user, msgAlert }) => {
     let filteredProjects = projectsReference.filter((project) => {
       if (e.target.value !== "") {
         if (
-          project.tags.find((tag) =>
-            tag.includes(e.target.value.toLowerCase())
-          ) ||
-          project.developers.find((developer) =>
-            developer.name.toLowerCase().includes(e.target.value.toLowerCase())
-          ) ||
+          project.tags.toLowerCase().includes(e.target.value.toLowerCase())
+          ||
+          project.developers.toLowerCase().includes(e.target.value.toLowerCase())
+           ||
           project.name.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
           setNotFoundStyle({ display: "none" });
@@ -73,7 +71,6 @@ const ProjectIndex = ({ user, msgAlert }) => {
     }
   };
 
-  // If services haven't been loaded yet, show a loading message
   if (!projects) {
     return <LoadingChakra />;
   } else if (projects.length === 0) {
