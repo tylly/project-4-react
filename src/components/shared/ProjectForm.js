@@ -101,27 +101,6 @@ const ProjectForm = ({ heading, user, msgAlert }) => {
       updatedValue =
         updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
       const updatedName = e.target.name;
-
-      //console.log('this is the input type', e.target.type)
-      // if (updatedName === "developers") {
-      //   getOneDevByName(updatedValue)
-      //     .then((res) => {
-      //       console.log("RES.DATA from getOneDevByName", res.data.developer);
-      //       setDev(res.data.developer._id);
-      //       console.log("THIS IS updatedValue IN GETONEDEV======>>>\n", dev);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //       msgAlert({
-      //         heading: "Error",
-      //         message: errorFindingDev,
-      //         variant: "danger",
-      //       });
-      //     });
-      // } else if (updatedName === tags){
-
-      // }
-
       const updatedProject = {
         [updatedName]: updatedValue,
       };
