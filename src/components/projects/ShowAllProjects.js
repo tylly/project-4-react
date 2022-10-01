@@ -42,10 +42,8 @@ const ProjectIndex = ({ user, msgAlert }) => {
     let filteredProjects = projectsReference.filter((project) => {
       if (e.target.value !== "") {
         if (
-          project.tags.toLowerCase().includes(e.target.value.toLowerCase())
-          ||
-          project.developers.toLowerCase().includes(e.target.value.toLowerCase())
-           ||
+          project.tags.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          project.developers.toLowerCase().includes(e.target.value.toLowerCase()) ||
           project.name.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
           setNotFoundStyle({ display: "none" });
@@ -78,7 +76,7 @@ const ProjectIndex = ({ user, msgAlert }) => {
       <>
         <p>No projects yet. Better add some.</p>
       </>
-    )
+    );
   }
 
   if (error) {
